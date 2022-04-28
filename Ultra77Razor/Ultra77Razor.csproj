@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\img\gamburger100.svg" />
+    <None Include="wwwroot\img\gamburger50.svg" />
+    <None Include="wwwroot\img\menu-close100.svg" />
+    <None Include="wwwroot\img\menu-close50.svg" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\slider.js" />
+  </ItemGroup>
+
+</Project>

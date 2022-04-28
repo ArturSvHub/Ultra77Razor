@@ -1,0 +1,64 @@
+﻿@page
+@model Ultra77Razor.Pages.ContactsModel
+@{
+}
+<div class="content__description">
+        <div class="col-md">
+          <ul class="about__ul"><span>Как работают наши менеджеры?</span>
+            <li>Вы звоните нам / Отправляете заявку на нашу почту zakaz@upak77.ru</li>
+            <li>Менеджер в течении короткого времени связывается с Вами, даёт полную консультацию по выбранному
+              товару,
+              и уточняет детали Вашего заказа сроки / расчет стоимости / объемы</li>
+            <li>В ответ на Вашу заявку Вы получаете Счет на оплату</li>
+            <li>После 100% оплаты, мы собираем Ваш заказ, запускаем производство</li>
+            <li>Оповещаем Вас о готовности заказа / Осуществляем Вам доставку</li>
+          </ul>
+        </div>
+        <div class="col-md">
+          <h4>Так-же вы можете написать нам ниже на форму обратной связи:</h4>
+          <form action="" method="post">
+            <div class="mb-3">
+              <label for="nameFormControlInput" class="form-label">Как вас зовут?</label>
+              <input type="email" class="form-control" id="nameFormControlInput" name="username"
+                placeholder="Евгений Сергеевич">
+            </div>
+            <span class="error"></span>
+            <div class="mb-3">
+              <label for="emailControlInput" class="form-label">Ваш Email адрес</label>
+              <input type="email" class="form-control" id="emailControlInput" name="usermail"
+                placeholder="zakaz@upak77.ru">
+            </div>
+            <span class="error"></span>
+            <div class="mb-3">
+              <label for="phoneFormControlInput" class="form-label">Номер вашего телефона</label>
+              <input type="tel" class="form-control" id="phoneFormControlInput" name="usertel"
+                placeholder="+79261112233">
+            </div>
+            <span class="error"></span>
+            <div class="mb-3">
+              <label for="subjectDataList" class="form-label">Укажите тему письма: </label>
+              <select class="form-select" aria-label="Default select example" name="subject" id="subjectDataList"
+                placeholder="Заказ?...">
+                <span class="error"></span>
+                <option selected label="Заказ" value="order">Заказ</option>
+                <option label="Есть вопрос" value="question">Есть вопрос</option>
+                <option label="Перезвоните мне" value="callme">Перезвоните мне</option>
+                <option label="Другое..." value="other">Другое...</option>
+              </select>
+            </div>
+              <div class="mb-3">
+                <label for="areaFormControlTextarea" class="form-label">Опишите ваш вопрос тут</label>
+                <textarea class="form-control" name="textmess" id="areaFormControlTextarea" rows="3"></textarea>
+              </div>
+              <span class="error"></span>
+              <label for="send_mess" class="form-label">
+                <div>
+                  <button class="btn btn-primary" id="send_mess" type="submit">отправить сообщение</button>
+                </div>
+          </form>
+        </div>
+        <div class="ymap">
+          <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A92556ad82b8decfc1dea020ae4c776cc4f518a1bfaee5bc2c983017c4405873c&amp;
+                width=1080&amp;height=500&amp;lang=ru_RU&amp;scroll=true"></script>
+        </div>
+      </div>
