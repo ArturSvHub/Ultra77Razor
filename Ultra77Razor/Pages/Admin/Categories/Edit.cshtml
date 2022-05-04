@@ -1,11 +1,12 @@
 ﻿@page
-@model Ultra77Razor.Pages.Categories.CreateModel
+@model Ultra77Razor.Pages.Admin.Categories.EditModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Edit</h1>
 
 <h4>Category</h4>
 <hr />
@@ -13,6 +14,7 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Category.Id" />
             <div class="form-group">
                 <label asp-for="Category.Description" class="control-label"></label>
                 <input asp-for="Category.Description" class="form-control" />
@@ -30,17 +32,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="Category.Image" class="control-label"></label>
-                <input asp-for="Category.Image" type="file" class="form-control" />
+                <input asp-for="Category.Image" class="form-control" />
                 <span asp-validation-for="Category.Image" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="./Index">Back to List</a>
 </div>
 

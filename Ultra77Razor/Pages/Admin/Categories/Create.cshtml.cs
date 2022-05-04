@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Ultra77Razor.DataContext;
 using Ultra77Razor.Models;
 
-namespace Ultra77Razor.Pages.Categories
+namespace Ultra77Razor.Pages.Admin.Categories
 {
     public class CreateModel : PageModel
     {
@@ -29,12 +29,17 @@ namespace Ultra77Razor.Pages.Categories
         public Category Category { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(IFormFile image)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid||image==null||image.Length==0)
             {
                 return Page();
             }
+            using(var targetms = new MemoryStream())
+			{
+                image.CopyTo(targetms);
+                Category.Image = targetms.ToArray();
+			}
 
             _context.Categories.Add(Category);
             await _context.SaveChangesAsync();

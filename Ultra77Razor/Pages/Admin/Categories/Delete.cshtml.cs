@@ -9,17 +9,18 @@ using Microsoft.EntityFrameworkCore;
 using Ultra77Razor.DataContext;
 using Ultra77Razor.Models;
 
-namespace Ultra77Razor.Pages.Categories
+namespace Ultra77Razor.Pages.Admin.Categories
 {
-    public class DetailsModel : PageModel
+    public class DeleteModel : PageModel
     {
         private readonly Ultra77Razor.DataContext.MssqlContext _context;
 
-        public DetailsModel(Ultra77Razor.DataContext.MssqlContext context)
+        public DeleteModel(Ultra77Razor.DataContext.MssqlContext context)
         {
             _context = context;
         }
 
+        [BindProperty]
         public Category Category { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -36,6 +37,24 @@ namespace Ultra77Razor.Pages.Categories
                 return NotFound();
             }
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Category = await _context.Categories.FindAsync(id);
+
+            if (Category != null)
+            {
+                _context.Categories.Remove(Category);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
         }
     }
 }

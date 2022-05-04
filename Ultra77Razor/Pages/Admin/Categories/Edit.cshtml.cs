@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Ultra77Razor.DataContext;
 using Ultra77Razor.Models;
 
-namespace Ultra77Razor.Pages.Categories
+namespace Ultra77Razor.Pages.Admin.Categories
 {
     public class EditModel : PageModel
     {
