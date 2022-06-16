@@ -191,7 +191,7 @@ textarea.form-control {
   padding-left: 50px;
   background-image: url("/wwwroot/img/services/service/down.png");
   background-repeat: no-repeat;
-  background-position: left start;
+  background-position: left;
   background-size: 40px;
 }
 
@@ -232,12 +232,6 @@ a,
 footer {
   display: block;
 }
-a[href^="tel:"] {
-        text-decoration: none;
-}
-    a[href^="tel:"]:hover {
-        text-decoration: none;
-    }
 
 p {
   text-align: justify;
@@ -374,7 +368,7 @@ header {
 
 .header__menu {
   font-size: 1em;
-  font-weight: 100%;
+  font-weight: 200;
   padding: 0;
   width: 100%;
   height: 100%;
@@ -529,9 +523,13 @@ h3 {
 
 .footer__wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   margin: 2%;
+}
+.footer__wrapper p {
+  margin-top: 2%;
+  text-align: center;
 }
 
 .footer__description {
@@ -541,46 +539,44 @@ h3 {
 }
 
 .footer__number {
-  margin-bottom: 20%;
+  margin-bottom: 5%;
   font-size: 1.5em;
 }
 
 .footer__links {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  max-width: 80%;
   font-size: x-large;
   text-align: end;
 }
 
-.footer__links li {
-  text-align: end;
-  margin-block: 5%;
+.footer__links a {
+  text-align: center;
+  margin: 5%;
+  white-space: nowrap;
 }
 
-.footer__links li a:hover {
+.footer__links a:hover {
   color: white;
 }
 
 .footer__links p {
   font-size: xx-large;
-  text-align: end;
+  text-align: center;
 }
 
 .footer__links-elements {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
+  width: 50%;
 }
 
 .footer__links-elements-item ul {
   padding: 0 auto;
-}
-
-.footer__links-elements-item:first-child {
-  padding-right: 15%;
-}
-
-.footer__links-elements-item:last-child {
-  padding-left: 0;
 }
 
 .footer__form {
@@ -605,12 +601,13 @@ h3 {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding-left: 35%;
+  padding-right: 35%;
 }
 
 .footer__social-icon {
-  width: 75px;
-  height: 75px;
-  background-color: #fff;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
 }
 
@@ -629,9 +626,10 @@ h3 {
 }
 
 .footer__logo {
+  margin-top: 2%;
   align-self: center;
-  max-width: 15%;
-  max-height: 15%;
+  max-width: 10%;
+  max-height: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,0 +1,29 @@
+﻿@page
+@model LoginWithRecoveryCodeModel
+@{
+    ViewData["Title"] = "Восстановление кода верификации";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<p>
+    Вы запросили вход в систему с помощью кода восстановления. Этот логин не будет сохранен до тех пор, пока вы не введете
+код приложения-аутентификатора при входе в систему или не отключите 2FA и не войдете в систему снова.
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating">
+                <input asp-for="Input.RecoveryCode" class="form-control" autocomplete="off" />
+                <label asp-for="Input.RecoveryCode" class="form-label"></label>
+                <span asp-validation-for="Input.RecoveryCode" class="text-danger"></span>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Вход</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

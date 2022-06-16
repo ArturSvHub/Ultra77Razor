@@ -1,0 +1,239 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor accessor
+@using UpakUtilitiesLibrary.Utility.Extentions
+
+<!DOCTYPE html>
+<html lang="en" class="js">
+<head>
+    <meta charset="utf-8">
+    <meta name="Sveshnikov" content="Upak77">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="base dashboard  for upak77 site.">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="~/img/admin/favicon.png">
+    <title>Панель Администратора</title>
+
+        <link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+    asp-append-version="true"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" asp-append-version="true">    <link rel="stylesheet" href="~/css/all.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/material.css" />  
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style-mobile.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+
+    @await Html.PartialAsync("_AdminLinks")
+</head>
+<body class="nk-body bg-lighter npc-general has-sidebar ">
+    <div class="nk-app-root">
+        <!-- main s -->
+        <div class="nk-main ">
+            <!-- sidebar s -->
+            <div class="nk-sidebar nk-sidebar-fixed is-dark " data-content="sidebarMenu">
+                <div class="nk-sidebar-element nk-sidebar-head">
+                    <div class="nk-menu-trigger">
+                        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
+                        <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                    </div>
+                    <div class="nk-sidebar-brand">
+                        <a asp-area="" asp-page="./Index" class="logo-link nk-sidebar-logo">
+                            <img class="logo-light logo-img" src="~/img/admin/logo.png" srcset="~/img/admin/logo2x.png 2x" alt="logo">
+                            <img class="logo-dark logo-img" src="~/img/admin/logo-dark.png" srcset="~/img/admin/logo-dark2x.png 2x" alt="logo-dark">
+                        </a>
+                    </div>
+                </div><!-- .nk-sidebar-element -->
+                <div class="nk-sidebar-element nk-sidebar-body">
+                    <div class="nk-sidebar-content">
+                        <div class="nk-sidebar-menu" data-simplebar>
+                            <ul class="nk-menu">
+                                <li class="nk-menu-heading">
+                                    <h6 class="overline-title text-primary-alt">Разделы</h6>
+
+                                </li><!-- .nk-menu-heading -->
+                                <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"></span>
+                                        <span class="nk-menu-text">Товары и категории</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a asp-area="Admin" asp-page="/Category/Index" 
+                                            class="nk-menu-link"><span class="nk-menu-text">Категории</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a asp-area="Admin" asp-page="/Product/Index" 
+                                            class="nk-menu-link"><span class="nk-menu-text">Товары</span></a>
+                                        </li>
+                                    </ul><!-- .nk-menu-sub -->
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"></span>
+                                        <span class="nk-menu-text">Заказы</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a asp-area="Admin"  asp-page="/Order/Index" 
+                                            class="nk-menu-link"><span class="nk-menu-text">Заказы</span></a>
+                                        </li>
+                                        
+                                    </ul><!-- .nk-menu-sub -->
+                                </li><!-- .nk-menu-item -->
+                                
+                                
+                            </ul><!-- .nk-menu -->
+                        </div><!-- .nk-sidebar-menu -->
+                    </div><!-- .nk-sidebar-content -->
+                </div><!-- .nk-sidebar-element -->
+            </div>
+            <!-- sidebar e -->
+            <!-- wrap s -->
+            <div class="nk-wrap ">
+                <!-- main header s -->
+                <div class="nk-header nk-header-fixed is-light">
+                    <div class="container-fluid">
+                        <div class="nk-header-wrap">
+                            <div class="nk-menu-trigger d-xl-none ml-n1">
+                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                            </div>
+                            <div class="nk-header-brand d-xl-none">
+                                <a asp-area="Admin" asp-page="Index" class="logo-link">
+                                    <img class="logo-light logo-img" src="~/img/admin/logo.png" srcset="~/img/admin/logo2x.png 2x" alt="logo">
+                                    <img class="logo-dark logo-img" src="~/img/admin/logo-dark.png" srcset="~/img/admin/logo-dark2x.png 2x" alt="logo-dark">
+                                </a>
+                            </div><!-- .nk-header-brand -->
+                            <div class="nk-header-news d-none d-xl-block">
+                                <div class="nk-news-list">
+                                    <a class="nk-news-item" href="#">
+                                        <div class="nk-news-icon">
+                                            <em class="icon ni ni-card-view"></em>
+                                        </div>
+                                        <div class="nk-news-text">
+                                            <p>Do you know the latest update of 2021? <span> A overview of our is now available on YouTube</span></p>
+                                            <em class="icon ni ni-external"></em>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div><!-- .nk-header-news -->
+                            <div class="nk-header-tools">
+                                <ul class="nk-quick-nav">
+
+                                </ul><!-- .nk-quick-nav -->
+                            </div><!-- .nk-header-tools -->
+                        </div><!-- .nk-header-wrap -->
+                    </div><!-- .container-fliud -->
+                </div>
+                <!-- main header e -->
+                <!-- content s -->
+                <div class="nk-content ">
+                    <div class="container-fluid">
+                        <div class="nk-content-inner">
+                            <div class="nk-content-body">
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content e -->
+                <!-- footer s -->
+                <div class="nk-footer">
+                    <div class="container-fluid">
+                        <div class="nk-footer-wrap">
+                            <div class="nk-footer-copyright"> &copy; 2022 DashLite. Template by <a href="https://softnio.com" target="_blank">Softnio</a>
+                            </div>
+                            <div class="nk-footer-links">
+                                <ul class="nav nav-sm">
+                                    <li class="nav-item dropup">
+                                        <a herf="#" class="dropdown-toggle dropdown-indicator has-indicator nav-link" data-toggle="dropdown" data-offset="0,10"><span>English</span></a>
+                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                            <ul class="language-list">
+                                                <li>
+                                                    <a href="#" class="language-item">
+                                                        <span class="language-name">English</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="language-item">
+                                                        <span class="language-name">Español</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="language-item">
+                                                        <span class="language-name">Français</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="language-item">
+                                                        <span class="language-name">Türkçe</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" data-toggle="modal" data-target="#region" class="nav-link"><em class="icon ni ni-globe"></em><span class="ml-1">Select Region</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer e -->
+            </div>
+            <!-- wrape -->
+        </div>
+        <!-- main e -->
+    </div>
+    <!-- app-root e -->
+    <!-- select region modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="region">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                <div class="modal-body modal-body-md">
+                    <h5 class="title mb-4">Select Your Country</h5>
+                    <div class="nk-country-region">
+                        <ul class="country-list text-center gy-2">
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="~/img/admin/flags/arg.png" alt="" class="country-flag">
+                                    <span class="country-name">Argentina</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="~/img/admin/flags/aus.png" alt="" class="country-flag">
+                                    <span class="country-name">Australia</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- .modal-content -->
+        </div><!-- .modla-dialog -->
+    </div><!-- .modal -->
+    <!-- JavaScript -->@*
+    <script src="~/js/bundle.js?ver=2.9.0"></script>
+    <script src="~/js/scripts.js?ver=2.9.0"></script>
+    <script src="~/js/vendors/nioapp/nioapp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=dc7cefd4-24aa-428f-9f98-475058bcbf26&lang=ru_RU&load=Geolink"
+    type="text/javascript"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/tabs.js" asp-append-version="true"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+     <script src="~/js/summernote-ru-RU.js"></script>
+     <script src="https://kit.fontawesome.com/a0128a8feb.js" crossorigin="anonymous"></script>*@
+    @await RenderSectionAsync("Scripts", required: false)
+        @await Html.PartialAsync("_Scripts")
+        @await Html.PartialAsync("_AdminScripts")
+        <script src="cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> 
+</body>
+</html>

@@ -1,0 +1,8 @@
+﻿@page
+@using Ultra77Razor.Components
+@model Ultra77Razor.Areas.Admin.Pages.Order.IndexModel
+@{
+    ViewData["Title"] = "Заказы";
+}
+
+<component type="typeof(TableOrder)" render-mode="ServerPrerendered"/>

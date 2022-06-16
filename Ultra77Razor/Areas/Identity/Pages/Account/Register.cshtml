@@ -1,0 +1,83 @@
+﻿@page
+@using Ultra77Razor
+@model RegisterModel
+    @if(User.IsInRole(WebConstants.AdminRole))
+    {
+        ViewData["Title"] = "Регистрация администратора";
+    }
+    else{
+        ViewData["Title"] = "Регистрация";
+    }
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Создайте новую учетную запись.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <div class="form-floating">
+                <input asp-for="Input.FullName" class="form-control" autocomplete="fullname" aria-required="true" />
+                <label asp-for="Input.FullName"></label>
+                <span asp-validation-for="Input.FullName" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="Input.Email"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.Password"></label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.ConfirmPassword"></label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            @if(User.IsInRole(WebConstants.AdminRole))
+    {
+         <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-warning">Создать администратора</button>
+    }
+    else{
+         <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Зарегестрироваться</button>
+    }
+        </form>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3>Использовать другой сервис для регистрации?</h3>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            Внешние службы аутентификации не настроены. Подробнее: <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                            о настройке поддержки входа в систему через внешние службы</a>.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Войдите в систему, используя ваш: @provider.DisplayName, аккаунт">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

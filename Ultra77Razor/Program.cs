@@ -1,25 +1,48 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-
-using Ultra77Razor.DataContext;
+using UpakUtilitiesLibrary.Utility.EmailServices;
+using UpakDataAccessLibrary.DataContext;
+using UpakModelsLibrary.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddRazorPages();
+var connectionString = builder.Configuration.GetConnectionString("UpakGkultraConnextion") ?? throw new InvalidOperationException("Connection string 'MssqlContextConnection' not found.");
 builder.Services.AddDbContext<MssqlContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("UpakMssqlConnextion")));
+    options.UseSqlServer(connectionString));
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
+	options.SignIn.RequireConfirmedAccount = true;
+	options.Password.RequiredLength = 5;
+	options.Password.RequireNonAlphanumeric = false;
+	options.Password.RequireUppercase = false;
+	options.Password.RequireDigit = false;
+})
+	.AddDefaultTokenProviders()
+	.AddDefaultUI()
+	.AddEntityFrameworkStores<MssqlContext>();
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession(opts =>
+{
+	opts.IdleTimeout = TimeSpan.FromMinutes(10);
+	opts.Cookie.HttpOnly = true;
+	opts.Cookie.IsEssential = true;
+});
+builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
 	app.UseExceptionHandler("/Error");
 	app.UseHsts();
 }
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession();
 app.MapRazorPages();
+app.MapBlazorHub();
 app.Run();

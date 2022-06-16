@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Домашняя";
 }
 
       <div class="slider__wrapper">
@@ -39,72 +39,10 @@
         </div>
       </div>
       <div class="catalog">
-        <div class="catalog__card card">
-          <a href="#">
-            <img src="~/img/cards/g.png" alt="">
-            <span>гофрокартон в роликах</span>
-          </a>
-        </div>
-        <div class="catalog__card card">
-          <a href="#">
-            <img src="~/img/cards/k.png" alt="">
-            <span>Коробки</span>
-          </a>
-        </div>
-        <div class="catalog__card card">
-          <a href="#">
-            <img src="~/img/cards/lpet.png" alt="">
-            <span>Лента ПЭТ</span>
-          </a>
-        </div>
-        <div class="catalog__card card">
-          <a href="#">
-            <img src="~/img/cards/lpp.png" alt="">
-            <span>Лента ПП</span>
-          </a>
-        </div>
-        <div class="catalog__card card">
-          <a href="#">
-            <img src="~/img/cards/m.png" alt="">
-            <span>Мешки</span>
-          </a>
-        </div>
-        <div class="catalog__card">
-          <a href="#">
-            <img src="~/img/cards/p.png" alt="">
-            <span>Перчатки</span>
-          </a>
-        </div>
-        <div class="catalog__card">
-          <a href="#">
-            <img src="~/img/cards/plenka-192x176.png" alt="">
-            <span>Пленка упаковочная</span>
-          </a>
-        </div>
-        <div class="catalog__card">
-          <a href="#">
-            <img src="~/img/cards/pp.png" alt="">
-            <span>Пленка Воздушно-пузырьковая</span>
-          </a>
-        </div>
-        <div class="catalog__card">
-          <a href="#">
-            <img src="~/img/cards/sk.png" alt="">
-            <span>Клейкая лента скотч</span>
-          </a>
-        </div>
-        <div class="catalog__card">
-          <a href="#">
-            <img src="~/img/cards/str.png" alt="">
-            <span>Пленка стретч</span>
-          </a>
-        </div>
-        <div class="catalog__card">
-          <a href="#">
-            <img src="~/img/cards/v.png" alt="">
-            <span>Ветошь обтирочная</span>
-          </a>
-        </div>
+        @foreach (var catCards in Model.CategoryList)
+          {
+            <partial name="_IndividualCategoryCard" model="catCards"/>
+    }
       </div>
       <div class="content__description">
         <h3>Упаковочные материалы оптом в Москве</h3>

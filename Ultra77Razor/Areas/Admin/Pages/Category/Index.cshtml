@@ -1,0 +1,58 @@
+﻿@page
+@model Ultra77Razor.Areas.Admin.Pages.Category.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Категории товаров</h2>
+        </div>
+        <div class="col-6">
+            <a asp-area="Admin" asp-page="Create" class="btn btn-primary">
+                Добавить
+            </a>
+        </div>
+    </div>
+
+    @if (Model.CatList.Count() > 0)
+    {
+            <h6 style="margin-top:50px">Категории</h6>
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Название категории
+                        </th>
+                        <th>
+                            Описание категории
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CatList)
+                    {
+                        <tr>
+                            <td width="30%">@item.Name</td>
+                            <td width="20%">@item.Description</td>
+                            <td class="text-center">
+                                <div class="w-75 btn-group" role="group">
+                                    <a asp-area="Admin" asp-route-Id="@item.Id" asp-page="Edit" class="btn btn-primary">
+                                        Изменить категорию
+                                    </a>
+                                    <a asp-area="Admin"asp-route-Id="@item.Id" asp-page="Delete" class="btn btn-danger">
+                                        Удалить категорию
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    }
+    else
+    {
+        <p>Нет категорий</p>
+    }
+</div>

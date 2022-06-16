@@ -1,0 +1,11 @@
+﻿@using Ultra77Razor
+@using UpakUtilitiesLibrary.Utility.Extentions
+@model UpakModelsLibrary.Models.Category
+
+
+<div class="catalog__card card">
+          <a asp-page="Details" asp-route-id=@Model.Id>
+            <img src="@Model.Image.DataArrayToImageUrl()" alt="">
+            <span>@Model.Name</span>
+          </a>
+        </div>

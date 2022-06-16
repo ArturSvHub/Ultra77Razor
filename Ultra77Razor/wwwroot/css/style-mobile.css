@@ -261,57 +261,79 @@
     margin-top: 10%;
   }
 
-  .footer__social {
-    margin-top: 10%;
-    width: 60%;
-  }
-
   .footer__links {
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: large;
+  }
+  .footer__links li {
+    margin-block: 2%;
+  }
+  .footer__links .footer__social {
+    margin-top: 10%;
+    width: 100%;
+  }
+  .footer__links .footer__social-icons {
+    margin-top: 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+  }
+  .footer__links .footer__links {
     text-align: center;
     margin-top: 10%;
+    margin-bottom: 10%;
     width: 60%;
   }
-
-  .footer__links li,
-.footer__links p {
+  .footer__links .footer__links li,
+.footer__links .footer__links p {
     text-align: center;
   }
-
-  .footer__copy {
+  .footer__links .footer__copy {
     margin: 4%;
     text-align: center;
   }
-
-  .swiper-button-next {
+  .footer__links .swiper-button-next {
     right: 20px;
     transform: rotate(90deg);
   }
-
-  .swiper-button-prev {
+  .footer__links .swiper-button-prev {
     left: 20px;
     transform: rotate(90deg);
   }
-
-  .service {
+  .footer__links .service {
     grid-template-rows: 1fr 1fr 1fr 1fr;
     gap: 2%;
     grid-template-columns: auto;
     height: auto;
   }
-
-  .tabs__nav {
+  .footer__links .tabs__nav {
     flex-direction: column;
   }
-}
-@keyframes show {
-  0% {
-    opacity: 0;
+
+  @keyframes show {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
-  100% {
-    opacity: 1;
-  }
 }
-@media (max-width: 767px) {
+@media (max-width: 960px) and (max-width: 767px) {
+  .footer__social-icons {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+  }
+
+  .footer__links li {
+    margin-block: 1%;
+  }
+
   .catalog {
     grid-template-columns: repeat(2, 1fr);
     gap: 4%;
@@ -327,7 +349,17 @@
     font-size: 170%;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 960px) and (max-width: 600px) {
+  .footer__social-icons {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+  }
+
+  .slider__wrapper {
+    display: none;
+  }
+
   .header__info {
     width: 100%;
     margin-top: 30px;

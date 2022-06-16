@@ -1,0 +1,81 @@
+﻿@page
+@model Ultra77Razor.Areas.Admin.Pages.Category.EditModel
+@using UpakUtilitiesLibrary
+@using UpakUtilitiesLibrary.Utility.Extentions
+
+<form method="post" enctype="multipart/form-data">
+
+    <input asp-for="@Model.Category.Id" hidden />
+    <div class="border p-3">
+        <div class="form-group row">
+            <h2 class="text-info p-lg-3">Изменить категорию</h2>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="@Model.Category.Name"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="@Model.Category.Name" class="form-control" />
+                <span asp-validation-for="@Model.Category.Name" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="@Model.Category.Description"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="@Model.Category.Description" class="form-control" />
+                <span asp-validation-for="@Model.Category.Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+            </div>
+            <div class="col-8">
+                <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-8 offset-4 row">
+
+                <div class="col">
+                    <input type="submit" class="btn btn-info w-100" value="Изменить" />
+                </div>
+                <div class="col">
+                    <a asp-page="Index" class="btn btn-success w-100">
+                        Назад
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            @if (Model.Category != null)
+            {
+                <img src="@Model.Category.Image?.DataArrayToImageUrl()"
+                 width="100%" style="border-radius:5px;border:1px solid #bbb" />
+            }
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        function validateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                Swal.fire(
+                    'Ошибка!',
+                    'Пожалуйста, загрузите изображение',
+                    'error'
+                )
+                return false;
+            }
+            return true;
+        }
+    </script>
+} 

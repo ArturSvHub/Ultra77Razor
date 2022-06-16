@@ -1,0 +1,23 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Подтверждение регистрации";
+}
+
+<h1>@ViewData["Title"]</h1>
+@{
+    if (@Model.DisplayConfirmAccountLink)
+    {
+<p>
+    Реальный пльзователь электронной почты не зарегестрирован в настоящий момент, подробнее: <a href="https://aka.ms/aspaccountconf">документация</a> for how to configure a real email senderо том, как настроить реального пользователя электронной почты.
+    Обычно это сообщение отправляется по электронной почте: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Нажмите здесь, чтобы подтвердить свою учетную запись</a>
+</p>
+    }
+    else
+    {
+<p>
+        Пожалуйста, проверьте свою электронную почту, для подтверждения учетной записи.
+</p>
+    }
+}
+

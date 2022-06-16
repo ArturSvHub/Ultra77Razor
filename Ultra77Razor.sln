@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ultra77Razor", "Ultra77Razor\Ultra77Razor.csproj", "{134C1126-77E7-412F-BF1C-51C27F8CC110}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultra77Razor", "Ultra77Razor\Ultra77Razor.csproj", "{134C1126-77E7-412F-BF1C-51C27F8CC110}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpakDataAccessLibrary", "UpakDataAccessLibrary\UpakDataAccessLibrary.csproj", "{369D9319-C886-4B43-A853-21335AEA0ACF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpakModelsLibrary", "UpakModelsLibrary\UpakModelsLibrary.csproj", "{D242D35B-36FF-4A2E-ABEC-C443EF731CBB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpakUtilitiesLibrary", "UpakUtilitiesLibrary\UpakUtilitiesLibrary.csproj", "{01BDF23E-0297-4CD2-ACA3-C6FE25E59583}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{134C1126-77E7-412F-BF1C-51C27F8CC110}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{134C1126-77E7-412F-BF1C-51C27F8CC110}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{134C1126-77E7-412F-BF1C-51C27F8CC110}.Release|Any CPU.Build.0 = Release|Any CPU
+		{369D9319-C886-4B43-A853-21335AEA0ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{369D9319-C886-4B43-A853-21335AEA0ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{369D9319-C886-4B43-A853-21335AEA0ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{369D9319-C886-4B43-A853-21335AEA0ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D242D35B-36FF-4A2E-ABEC-C443EF731CBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D242D35B-36FF-4A2E-ABEC-C443EF731CBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D242D35B-36FF-4A2E-ABEC-C443EF731CBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D242D35B-36FF-4A2E-ABEC-C443EF731CBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01BDF23E-0297-4CD2-ACA3-C6FE25E59583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01BDF23E-0297-4CD2-ACA3-C6FE25E59583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01BDF23E-0297-4CD2-ACA3-C6FE25E59583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01BDF23E-0297-4CD2-ACA3-C6FE25E59583}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

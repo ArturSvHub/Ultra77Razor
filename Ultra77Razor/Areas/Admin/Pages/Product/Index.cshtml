@@ -1,0 +1,71 @@
+﻿@page
+@model Ultra77Razor.Areas.Admin.Pages.Product.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Список товаров</h2>
+        </div>
+        <div class="col-6">
+            <a asp-page="Upsert" class="btn btn-primary">
+               Добавить товар
+            </a>
+        </div>
+    </div>
+
+    @if (Model.Products.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Название товара
+                    </th>
+                    <th>
+                        Описание Товара
+                    </th>
+                    <th>
+                        Категория
+                    </th>
+                    <th>
+                        Закупочная цена
+                    </th>
+                    <th>
+                        Розничная Цена
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Products)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@Html.Raw(item.Description)</td>
+                        <td>@item.Category?.Name</td>
+                        <td>@item.PurchasePrice</td>
+                        <td>@item.RetailPrice</td>
+                        <td>
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-route-Id="@item.Id" asp-page="Upsert" class="btn btn-primary">
+                                    Изменить категорию
+                                </a>
+                                <a asp-route-Id="@item.Id" asp-page="Delete" class="btn btn-danger">
+                                    Удалить категорию
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Нет товаров</p>
+    }
+</div>

@@ -1,0 +1,89 @@
+﻿@page
+@model Ultra77Razor.Areas.Admin.Pages.Category.CreateModel
+@{
+
+}
+@using UpakUtilitiesLibrary.Utility.Extentions
+
+<form method="post" enctype="multipart/form-data">
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <h2 class="text-info p-lg-3">Добавить категорию</h2>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Category.Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Category.Name" class="form-control" />
+                        <span asp-validation-for="Category.Name" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Category.Description"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Category.Description" class="form-control" />
+                        <span asp-validation-for="Category.Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        image
+                    </div>
+                    <div class="col-8">
+                        <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+                    </div>
+                </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+
+                        <div class="col">
+                            <input type="submit" onclick="return validateInput()" class="btn btn-info w-100" value="Создать" />
+                        </div>
+                        <div class="col">
+                            <a asp-page="Index" class="btn btn-success w-100">
+                                Назад
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                @* Keep this empty *@
+                 @if (Model!=null)
+                {
+                    <img src="Category.Image.DataArrayToImageUrl()"
+                     width="100%" style="border-radius:5px;border:1px solid #bbb" />
+                }
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+<script>
+            function validateInput() 
+            {
+                if (document.getElementById("uploadBox").value == "") 
+                {
+                    Swal.fire(
+                        'Ошибка!',
+                        'Пожалуйста, загрузите изображение',
+                        'error'
+                    )
+                    return false;
+                }
+                return true;
+            }
+</script>
+} 
