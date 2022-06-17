@@ -26,11 +26,11 @@ namespace UpakUtilitiesLibrary.Utility.EmailServices
 
             using(var client = new SmtpClient())
             {
-                await client.ConnectAsync("mail.hosting.reg.ru", 465, true);
-                await client.AuthenticateAsync("upak@gkultra.ru", "Upaksite2022.");
-                await client.SendAsync(emailMessage);
+                client.Connect("mail.hosting.reg.ru", 465, true);
+                client.Authenticate("upak@gkultra.ru", "Ultrasite2022.");
+                client.Send(emailMessage);
 
-                await client.DisconnectAsync(true);
+                client.Disconnect(true);
             }
         }
     }
