@@ -26,7 +26,7 @@ namespace UpakUtilitiesLibrary.Utility.EmailServices
 
             using(var client = new SmtpClient())
             {
-                await client.ConnectAsync("mail.hosting.reg.ru", 25, false);
+                await client.ConnectAsync("mail.hosting.reg.ru", 465, true);
                 await client.AuthenticateAsync("upak@gkultra.ru", "Upaksite2022.");
                 await client.SendAsync(emailMessage);
 

@@ -33,7 +33,7 @@ namespace Ultra77Razor.Pages
 				shoppingCartsList = HttpContext.Session.Get<List<ShoppingCart>>(WebConstants.SessionCart);
 			}
 
-			Product = await _context.Products.Include(u => u.Category)
+			Product = await _context.Products!.Include(u => u.Category)
 			.FirstOrDefaultAsync(c => c.Id == id);
 				ExistsInCart = false;
 
@@ -46,7 +46,7 @@ namespace Ultra77Razor.Pages
 			}
 			return Page();
 		}
-		public async Task<IActionResult> OnPostAsync(int id)
+		public IActionResult OnPostAsync(int id)
 		{
 			List<ShoppingCart> shoppingCartsList = new();
 			if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart) != null &&

@@ -1,79 +1,73 @@
 ﻿@page
 @using UpakUtilitiesLibrary.Utility.Extentions
 @model Ultra77Razor.Pages.Cart.IndexModel
-@if(Model.ProductList?.Count()>0)
+
+<form method="post" class="cart-wrapper">
+        <div class="cart-header">
+          <a asp-page="./Index" class="head-submit-button">
+            <div class="triangle triangle-right"></div>
+            <p>На главную</p>
+          </a>
+          <h3>Ваша корзина</h3>
+          <a href='javascript:history.go(-1)' class="head-submit-button">
+            <div class="triangle triangle-right"></div>
+            <p>Вернуться</p>
+          </a>
+        </div>
+        <div class="cart-content">
+            @if(Model.ProductList?.Count()>0)
     {
-    <form method="post">
-    <br />
-    <div class="backgroundWhiteBorder">
-        <div class="container row">
-            <div class="col -8">
-                <div class="card mt-4">
-                    <div class="card-header bg-dark text-light ml-0 row container">
-                        <div class="col-6">
-                            <i class="fa fa-shopping-cart"></i> &nbsp;
-                            Shopping Cart
-                        </div>
-                        <div class="col-6 text-right">
-                            <a asp-area="Home" asp-page="Index" class="btn btn-outline-info btn-sm">Продолжить</a>
-                        </div>
+            <div class="cart-product">
+
+                <div class="product-dictionary">
+                    <p>Стрейч-пленка прозрачная</p>
+                </div>
+                <div class="cart-card">
+                    <div class="cart-product-image">
+                        <img src="~/img/cards/str.png" alt="">
                     </div>
-                    <div class="card-body">
-                        <div class=" d-none d-lg-block">
-                            <div class="row" style="color:#821f3d">
-                                <div class="col-lg-2">
-                                </div>
-                                <div class="col-12 col-lg-7">
-                                    Product Details
-                                </div>
-                                <div class="col-12 col-lg-2">
-                                    Price per sqft
-                                </div>
-                                <div class="col-6 col-sm-4 col-lg-1">
-                                </div>
+                    <div class="number-wrapper">
+                        <div class="number cart-number">
+                            <div class="number-input">
+                                <input type="number" min="0" value="1" />
                             </div>
-                        </div>
-
-                        <hr />
-                        @foreach(var obj in Model.ProductList)
-                        {
-                        <div class="row h-100">
-                            <div class="col-4 col-md-2 text-center py-2">
-                                <img src="@obj.Image?.DataArrayToImageUrl()" class="rounded" width="100%" />
+                            <div class="number-label">
+                                <p>ШТ.</p>
                             </div>
-                            <div class="col-8 col-lg-7">
-                                <h5>@obj.Name</h5>
-                                <div style="font-size:11px;">@obj.ShortDesc</div>
-                            </div>
-                            <div class="col-3 col-lg-2 pt-lg-4" style="font-size:11px;">
-                                <span style="font-size:17px;"> @obj.RetailPrice руб.</span> шт.
-
-                            </div>
-                            <div class="col-2 col-lg-1 p-0 pt-lg-4 text-center">
-                                <button type="submit" asp-page-handler="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger">
-                                    Удалить
+                            <div class="number-buttons">
+                                <button class="number-minus" type="button"
+                      onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepUp();">
+                                    <P>+</P>
                                 </button>
-                            </div>
-                        </div>
-                        <hr />
-                        }
-                    </div>
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col-6 col-md-3 offset-md-9">
-                                <button type="submit" class="btn btn-success">
-                                    <span>Далее</span>
+                                <button class="number-plus" type="button"
+                      onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepDown(); ">
+                                    <p>-</p>
                                 </button>
                             </div>
                         </div>
                     </div>
+                    <div class="price-one">520 р.</div>
+                    <div class="price-percount">1040 р.</div>
+                    <a href="#" class="delete-submit submit-button">Удалить</a>
                 </div>
             </div>
+
+            <div class="cart-summary">
+            <p>Итого</p>
+            <div class="total">
+              <div class="price-total">8500 р.</div>
+              <a href="#" class="confirm-submit submit-button">Оформить заказ</a>
+            </div>
+          </div>
+           }
+        else
+        {
+            <p>Корзина пуста</p>
+        }
         </div>
-    </div>
-</form>
-}
-else
-{
-    <p>Корзина пуста</p>
-}
+        <div class="cart-footer">
+          <p></p>
+        </div>
+      </form>
+       
+
