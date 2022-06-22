@@ -9,7 +9,7 @@
     @if (Model != null)
     {
         title = "Изменить товар";
-        <input asp-for="Product.Id" hidden />
+        <input asp-for="Product!.Id" hidden />
     }
     <div class="border p-3">
         <div class="form-group row">
@@ -89,7 +89,7 @@
 
                         </div>
                         <div class="col">
-                            <a asp-action="Index" class="btn btn-success w-100">
+                            <a asp-page="Index" class="btn btn-success w-100">
                                 Назад
                             </a>
                         </div>

@@ -1,8 +1,10 @@
-﻿@page
+﻿@inject MssqlContext _context
+@inject IHttpContextAccessor _accessor
+
+@using UpakDataAccessLibrary.DataContext
+@using UpakModelsLibrary.Models
+@using UpakUtilitiesLibrary
 @using UpakUtilitiesLibrary.Utility.Extentions
-@using System.ComponentModel
-@using Ultra77Razor.Components
-@model Ultra77Razor.Pages.Cart.IndexModel
 
 <form method="post" class="cart-wrapper">
         <div class="cart-header">
@@ -17,25 +19,23 @@
           </a>
         </div>
         <div class="cart-content">
-            @if(Model.ProductList?.Count()>0)
-            {
-                float total = 0.0f;
-        @for (int i=0;i<Model.ProductList.Count;i++)
+            @if(ProductList.Count>0)
+    {
+        @foreach (var item in ProductList)
         {
-            <input type="hidden" asp-for="ProductList[i].Id"/>
             <div class="cart-product">
 
                 <div class="product-dictionary">
-                    <p>@Model.ProductList[i].Name</p>
+                    <p>@item.Name</p>
                 </div>
                 <div class="cart-card">
                     <div class="cart-product-image">
-                        <img src="@Model.ProductList[i].Image!.DataArrayToImageUrl()" alt="">
+                        <img src="@item.Image!.DataArrayToImageUrl()" alt="">
                     </div>
                     <div class="number-wrapper">
                         <div class="number cart-number">
                             <div class="number-input">
-                                <input asp-for="@Model.ProductList[i].TempCount" id="inputNumber" type="number" min="1"/>
+                                <input id="inputNumber" type="number" min="0" value="1"/>
                             </div>
                             <div class="number-label">
                                 <p>ШТ.</p>
@@ -52,25 +52,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="price-one" id="priceOne">@String.Format("{0:c}",Model.ProductList[i].RetailPrice)</div>
-                    <div class="price-percount"id="pricePerCount">@String.Format("{0:c}",Model.ProductList[i].RetailPrice*Model.ProductList[i].TempCount)</div>
-                    <a asp-page-handler="Delete" class="delete-submit submit-button">Удалить</a>
+                    <div class="price-one" ><span id="priceOne">@item.RetailPrice</span> р.</div>
+                    <div class="price-percount"><span id="pricePerCount"></span> р.</div>
+                    <a href="#" class="delete-submit submit-button">Удалить</a>
                 </div>
             </div>
-            if (Model.ProductList[i].RetailPrice != null)
-            {
-                total += (float)Model.ProductList[i].RetailPrice * Model.ProductList[i].TempCount;
-            }
-            
         }
-                <div class="cart-summary">
-                    <p>Итого</p>
-                    <div class="total">
-                        <div class="price-total">@String.Format("{0:c}",total)</div>
-                        <button asp-page-handler="Update" class="confirm-submit submit-button">Обновить</button>
-                        <button type="submit" class="confirm-submit submit-button">Оформить заказ</button>
-                    </div>
-                </div>
+        <div class="cart-summary">
+            <p>Итого</p>
+            <div class="total">
+              <div class="price-total">8500 р.</div>
+              <a href="#" class="confirm-submit submit-button">Оформить заказ</a>
+            </div>
+          </div>
            }
         else
         {
@@ -81,6 +75,23 @@
           <p></p>
         </div>
       </form>
-      
-       
 
+@code {
+    
+    public List<ShoppingCart>? ShoppingCartList { get; set; } = new List<ShoppingCart>();
+    [Parameter]
+    public List<Product> ProductList { get; set; } = new List<Product>();
+
+    public void GetShoppingCartList()
+    {
+        if (_accessor.HttpContext?.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart) != null &&
+            _accessor.HttpContext?.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart).Count() > 0)
+        {
+            ShoppingCartList = _accessor.HttpContext?.Session.Get<List<ShoppingCart>>(WebConstants.SessionCart);
+        }
+        List<int?> prodInCart = ShoppingCartList.Select(i => i.ProductId).ToList();
+        ProductList = _context.Products.Where(u => prodInCart.Contains(u.Id)).ToList();
+    }
+
+    
+}

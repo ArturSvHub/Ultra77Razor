@@ -54,7 +54,7 @@ namespace Ultra77Razor.Pages
 			{
 				shoppingCartsList = HttpContext.Session.Get<List<ShoppingCart>>(WebConstants.SessionCart);
 			}
-			shoppingCartsList.Add(new ShoppingCart { ProductId = id });
+			shoppingCartsList.Add(new ShoppingCart { ProductId = id ,TempCount = Product!.TempCount});
 			HttpContext.Session.Set(WebConstants.SessionCart, shoppingCartsList);
 			return RedirectToPage("Index");
 		}

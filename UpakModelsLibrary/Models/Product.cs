@@ -32,5 +32,8 @@ namespace UpakModelsLibrary.Models
         [ForeignKey("CategoryId")]
 		[Required]
         public virtual Category? Category { get; set; }
+		[NotMapped]
+		[Range(1,10000)]
+        public int TempCount { get; set; }
 	}
 }

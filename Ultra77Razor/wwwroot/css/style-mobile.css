@@ -291,8 +291,10 @@
 
         .footer__links .footer__social {
             margin-top: 10%;
-            width: 100%;
+            max-width: 100%;
+            min-width: 50%;
         }
+    
 
         .footer__links .footer__links {
             text-align: center;
@@ -389,7 +391,7 @@
     }
 
     .imgcard p {
-        font-size: 2em;
+        font-size: xx-large;
     }
 }
 
@@ -420,6 +422,11 @@
         padding-right: 0;
         width: 100%;
     }
+    .footer__social-icon {
+        max-width: 35px;
+        max-height: 35px;
+        border-radius: 50%;
+    }
 
     .slider__wrapper {
         display: none;
@@ -438,5 +445,8 @@
         grid-template-columns: repeat(1, 1fr);
         gap: 1%;
         margin-bottom: 120%;
+    }
+    .footer__social span {
+        font-size: large;
     }
 }

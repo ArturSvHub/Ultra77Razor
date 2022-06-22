@@ -62,7 +62,7 @@ namespace Ultra77Razor.Areas.Admin.Pages.Product
 			}
 			else
 			{
-				if (files[0] != null)
+				if (files.Count!=0)
 				{
 					product.Image = await files[0].ImageToImageDataAsync();
 				}
