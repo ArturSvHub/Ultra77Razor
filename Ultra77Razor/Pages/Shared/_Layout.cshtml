@@ -10,8 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-     @await Html.PartialAsync("_Links")
-       
+    @await Html.PartialAsync("_Links")
 </head>
 <body class="body">
     <div class="wrapper">
@@ -69,28 +68,28 @@
                     <nav class="header__menu">
                         <ul class="header__list">
                             <li>
-                                <form method="post"><a asp-area="" asp-page="/Index"  class="header__link">Главная</a></form>
+                                <form method="post"><a asp-area="" asp-page="/Index" class="header__link">Главная</a></form>
                             </li>
                             <li>
-                               <form method="post"><a asp-area="" asp-page="/Services" class="header__link">Услуги</a></form>
+                                <form method="post"><a asp-area="" asp-page="/Services" class="header__link">Услуги</a></form>
                             </li>
                             <!--<li>
                              <form method="post"><a asp-area="" asp-page="/Wiki" class="header__link">О продукции</a></form>
                             </li>-->
                             <li>
-                               <form method="post"><a asp-area="" asp-page="/Providers" class="header__link">Поставщикам</a></form>
+                                <form method="post"><a asp-area="" asp-page="/Providers" class="header__link">Поставщикам</a></form>
                             </li>
                             <li>
-                               <form method="post"><a asp-area="" asp-page="/About" class="header__link">О компании</a></form>
+                                <form method="post"><a asp-area="" asp-page="/About" class="header__link">О компании</a></form>
                             </li>
                             <li>
-                               <form method="post"><a asp-area="" asp-page="/Contacts" class="header__link">Контакты</a></form>
+                                <form method="post"><a asp-area="" asp-page="/Contacts" class="header__link">Контакты</a></form>
                             </li>
                         </ul>
                     </nav>
                 </div>
             </div>
-           
+
         </header>
         <div class="content">
             @RenderBody()
@@ -101,12 +100,12 @@
                 <p>Группа компаний Ультра</p>
                 <div class="footer__links">
                     @*<ul>*@
-                       <form method="post"><a asp-area="" asp-page="/Index">Главная</a></form>
-                       <form method="post"><a asp-area="" asp-page="/Services">Услуги</a></form>
-                        <!--<asp-page="./Home" asp-action="Wiki">О продукции</a></form>-->
-                       <form method="post"><a asp-area="" asp-page="/Providers">Поставщикам</a></form>
-                       <form method="post"><a asp-area="" asp-page="/About">О компании</a></form>
-                       <form method="post"><a asp-area="" asp-page="/Contacts">Контакты</a></form>
+                    <form method="post"><a asp-area="" asp-page="/Index">Главная</a></form>
+                    <form method="post"><a asp-area="" asp-page="/Services">Услуги</a></form>
+                    <!--<asp-page="./Home" asp-action="Wiki">О продукции</a></form>-->
+                    <form method="post"><a asp-area="" asp-page="/Providers">Поставщикам</a></form>
+                    <form method="post"><a asp-area="" asp-page="/About">О компании</a></form>
+                    <form method="post"><a asp-area="" asp-page="/Contacts">Контакты</a></form>
                     @*</ul>*@
                 </div>
 
@@ -138,10 +137,10 @@
                 <div class="footer__copy">
                     <a href="#"><i>&copy;</i>2022 Sveshnikov Artur </a>
                 </div>
-                </div>
+            </div>
         </footer>
     </div>
-        @await RenderSectionAsync("Scripts", required: false)
-        @await Html.PartialAsync("_Scripts")    
+    @await RenderSectionAsync("Scripts", required: false)
+    @await Html.PartialAsync("_Scripts")
 </body>
 </html>

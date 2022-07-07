@@ -26,12 +26,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\js\slider.js" />
+    <None Include="wwwroot\scss\auth\auth.scss" />
+    <None Include="wwwroot\scss\card\card.scss" />
+    <None Include="wwwroot\scss\form\formstyles.scss" />
+    <None Include="wwwroot\scss\slider-style.scss" />
+    <None Include="wwwroot\scss\style-mobile.scss" />
+    <None Include="wwwroot\scss\style.scss" />
+    <None Include="wwwroot\scss\tabs\tabs.scss" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
   </ItemGroup>
