@@ -73,7 +73,7 @@ namespace Ultra77Razor.Pages.Cart
 			List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
 			foreach (var item in ProductList)
 			{
-				shoppingCartList.Add(new ShoppingCart{ProductId = item.Id,TempCount = item.TempCount});
+				shoppingCartList.Add(new ShoppingCart { ProductId = item.Id, TempCount = item.TempCount });
 			}
 			HttpContext.Session.Set(WebConstants.SessionCart,shoppingCartList);
 			return RedirectToPage("Index");
