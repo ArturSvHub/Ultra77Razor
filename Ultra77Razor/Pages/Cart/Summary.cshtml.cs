@@ -28,10 +28,7 @@ namespace Ultra77Razor.Pages.Cart
 			_environment = environment;
 			_emailSender = emailSender;
 		}
-
-		[BindProperty]
-
-		public ProductUserVM ProductUserVM { get; set; }
+		public ProductUserVM? ProductUserVM { get; set; }
 		[BindProperty]
 		public List<Product> ProductList { get; set; }
 
@@ -49,9 +46,9 @@ namespace Ultra77Razor.Pages.Cart
 			List<int?> prodInCart = shoppingCartList.Select(i => i.ProductId).ToList();
 			ProductList =_context.Products!.Where(u => prodInCart.Contains(u.Id)).ToList();
 
-			ProductUserVM = new()
+			ProductUserVM = new ProductUserVM()
 			{
-				ApplicationUser = await _context.UltrapackUsers.FirstOrDefaultAsync(u => u.Id == claim.Value),
+				ApplicationUser = _context.UltrapackUsers.FirstOrDefault(u => u.Id == claim.Value),
 				ProductList = ProductList
 			};
 			return Page();
