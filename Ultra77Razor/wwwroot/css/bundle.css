@@ -1483,6 +1483,31 @@ input::-webkit-inner-spin-button {
     font-size: large;
   }
 }
+.auth-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-line {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-footer {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Собственно сам слайдер */
 .slider {
   max-width: 100%;
