@@ -1486,11 +1486,16 @@ input::-webkit-inner-spin-button {
 .auth-wrapper {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .auth-header {
   display: flex;
   flex-direction: column;
+  text-align: center;
+}
+.auth-header h3 {
+  align-self: center;
 }
 
 .auth-main {
@@ -1500,7 +1505,19 @@ input::-webkit-inner-spin-button {
 
 .auth-line {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.auth-line div {
+  width: 50%;
+}
+.auth-line:first-child {
+  width: 50%;
+  justify-self: start;
+}
+.auth-line:last-child {
+  width: 50%;
+  justify-self: flex-end;
 }
 
 .auth-footer {

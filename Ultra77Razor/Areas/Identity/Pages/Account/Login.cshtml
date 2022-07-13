@@ -82,18 +82,33 @@
 <div class="auth-wrapper">
     <div class="auth-header">
         <h1>Вход в личный кабинет</h1>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     </div>
     <div class="auth-main">
         <h3>Заполните данные для входа в личный кабинет</h3>
-        <div class="auth-line">
 
+
+
+        <div class="auth-line">
+            <label asp-for="Input.Email" class="form-label"></label>
+            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+        </div>
+        <div class="auth-line">
+            <div> <label asp-for="Input.Password" class="form-label"></label></div>
+            <div> <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" /></div>
+        </div>
+        <div class="auth-line checkbox">
+            <div>
+
+
+                <label asp-for="Input.RememberMe" class="form-label">
+                    <input class="form-check-input" asp-for="Input.RememberMe" />
+                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                </label>
+            </div>
         </div>
     </div>
-    <div class="auth-line">
-
-    </div>
     <div class="auth-footer">
-
     </div>
 </div>
 

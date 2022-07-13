@@ -1,10 +1,15 @@
 .auth-wrapper{
     display:flex;
     flex-direction:column;
+    text-align:center;
 }
 .auth-header {
     display: flex;
     flex-direction: column;
+    text-align: center;
+    h3{
+        align-self:center;
+    }
 }
 .auth-main {
     display: flex;
@@ -12,7 +17,20 @@
 }
 .auth-line {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content:space-between;
+    div{
+        width:50%;
+    }
+    &:first-child {
+        width: 50%;
+        justify-self: start;
+    }
+
+    &:last-child {
+        width: 50%;
+        justify-self:flex-end;
+    }
 }
 .auth-footer {
     display: flex;
