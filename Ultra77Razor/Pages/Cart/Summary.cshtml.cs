@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -16,6 +17,7 @@ using UpakUtilitiesLibrary.Utility.Extentions;
 
 namespace Ultra77Razor.Pages.Cart
 {
+	[Authorize]
 	public class SummaryModel : PageModel
 	{
 		private readonly MssqlContext _context;
@@ -28,7 +30,7 @@ namespace Ultra77Razor.Pages.Cart
 			_environment = environment;
 			_emailSender = emailSender;
 		}
-		public ProductUserVM? ProductUserVM { get; set; }
+		public UltrapackUser AppUser { get; set; } = new();
 		[BindProperty]
 		public List<Product> ProductList { get; set; }
 
@@ -45,16 +47,11 @@ namespace Ultra77Razor.Pages.Cart
 			}
 			List<int?> prodInCart = shoppingCartList.Select(i => i.ProductId).ToList();
 			ProductList =_context.Products!.Where(u => prodInCart.Contains(u.Id)).ToList();
-
-			ProductUserVM = new ProductUserVM()
-			{
-				ApplicationUser = _context.UltrapackUsers.FirstOrDefault(u => u.Id == claim.Value),
-				ProductList = ProductList
-			};
+			UltrapackUser applicationUser = _context.UltrapackUsers.FirstOrDefault(u => u.Id == claim.Value);
 			return Page();
 		}
 
-		public async Task<IActionResult> OnPostAsync(ProductUserVM productUserVM)
+		public async Task<IActionResult> OnPostAsync()
 		{
 			var claimsIdentity = User.Identity as ClaimsIdentity;
 			var claim = claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier);
@@ -70,14 +67,14 @@ namespace Ultra77Razor.Pages.Cart
 				HtmlBody = sr.ReadToEnd();
 			}
 			StringBuilder productListSB = new StringBuilder();
-			foreach (var item in productUserVM.ProductList)
+			foreach (var item in ProductList)
 			{
 				productListSB.Append($" - {item.Name} <span style='font-size:14px;' (ID: {item.Id})</span></br>");
 			}
 			string messageBody = string.Format(HtmlBody,
-				ProductUserVM.ApplicationUser?.FullName,
-				ProductUserVM.ApplicationUser?.Email,
-				ProductUserVM.ApplicationUser?.PhoneNumber,
+				AppUser.FullName,
+				AppUser.Email,
+				AppUser.PhoneNumber,
 				productListSB.ToString()
 				);
 
@@ -86,15 +83,15 @@ namespace Ultra77Razor.Pages.Cart
 			OrderHeader orderHeader = new OrderHeader()
 			{
 				UltrapackUserId = claim.Value,
-				FullName = ProductUserVM.ApplicationUser?.FullName,
-				Email = ProductUserVM.ApplicationUser?.Email,
-				PhoneNumber = ProductUserVM.ApplicationUser?.PhoneNumber,
+				FullName = AppUser.FullName,
+				Email = AppUser.Email,
+				PhoneNumber = AppUser.PhoneNumber,
 				OrderDate = DateTime.Now
 			};
 			await _context.OrderHeaders.AddAsync(orderHeader);
-			_context.SaveChanges();
+			await _context.SaveChangesAsync();
 
-			foreach (var prod in ProductUserVM.ProductList)
+			foreach (var prod in ProductList)
 			{
 				OrderDetails orderDetails = new OrderDetails()
 				{

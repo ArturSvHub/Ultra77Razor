@@ -14,7 +14,8 @@ namespace Ultra77Razor.Pages.Cart
 {
 	public class IndexModel : PageModel
 	{
-		[BindProperty] public List<Product>? ProductList { get; set; } = new();
+		[BindProperty]
+		public List<Product>? ProductList { get; set; } = new();
         private readonly IWebHostEnvironment _environment;
         private readonly IEmailSender _emailSender;
 		private readonly MssqlContext _context;

@@ -32,20 +32,20 @@
                                         <label>Имя</label>
                                     </div>
                                     <div class="col-9">
-                                        <input asp-for="ProductUserVM.ApplicationUser.FullName" type="text" class="form-control" />
-                                        <span asp-validation-for="ProductUserVM.ApplicationUser.FullName" class="text-danger"></span>
+                                        <input asp-for="AppUser.FullName" type="text" class="form-control" />
+                                        <span asp-validation-for="AppUser.FullName" class="text-danger"></span>
 
                                     </div>
                                 </div>
-                                @if (Model.ProductUserVM.ApplicationUser?.PhoneNumber != null)
+                                @if (Model.AppUser.PhoneNumber != null)
                                 {
                                     <div class="row my-1">
                                         <div class="col-3">
                                             <label>Phone</label>
                                         </div>
                                         <div class="col-9">
-                                            <input asp-for="ProductUserVM.ApplicationUser.PhoneNumber" type="text" class="form-control" />
-                                            <span asp-validation-for="ProductUserVM.ApplicationUser.PhoneNumber" class="text-danger"></span>
+                                            <input asp-for="AppUser.PhoneNumber" type="text" class="form-control" />
+                                            <span asp-validation-for="AppUser.PhoneNumber" class="text-danger"></span>
                                         </div>
                                     </div>
                                 }
@@ -54,8 +54,8 @@
                                         <label>Email</label>
                                     </div>
                                     <div class="col-9">
-                                        <input asp-for="ProductUserVM.ApplicationUser.Email" type="text" class="form-control" />
-                                        <span asp-validation-for="ProductUserVM.ApplicationUser.Email" class="text-danger"></span>
+                                        <input asp-for="AppUser.Email" type="text" class="form-control" />
+                                        <span asp-validation-for="AppUser.Email" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
