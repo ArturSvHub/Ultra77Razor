@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     @await Html.PartialAsync("_Links")
+    <base href="~/"/>
 </head>
 <body class="body">
     <div class="wrapper">
@@ -105,7 +106,7 @@
                     @*</ul>*@
                 </div>
 
-                <div class="footer__social">
+@*                <div class="footer__social">
 
                     <span>Присоединяйтесь</span>
 
@@ -123,7 +124,7 @@
                             <a href=""><img src="~/img/instagram.png" alt="inst"></a>
                         </div>
                     </div>
-                </div>
+                </div>*@
 
                 <div class="footer__logo">
                     <a href="" class="header__logo">
@@ -131,7 +132,7 @@
                     </a>
                 </div>
                 <div class="footer__copy">
-                    <a href="#"><i>&copy;</i>2022 Sveshnikov Artur </a>
+                    <a href="#"><i>&copy;</i>2022 LLC Ultra Group </a>
                 </div>
             </div>
         </footer>

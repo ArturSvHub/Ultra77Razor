@@ -6,7 +6,7 @@ using UpakDataAccessLibrary.DataContext;
 using UpakModelsLibrary.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("UpakGkultraConnextion") ?? throw new InvalidOperationException("Connection string 'MssqlContextConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("UpakGkultra2Connextion") ?? throw new InvalidOperationException("Connection string 'MssqlContextConnection' not found.");
 builder.Services.AddDbContext<MssqlContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
@@ -45,4 +45,5 @@ app.UseAuthorization();
 app.UseSession();
 app.MapRazorPages();
 app.MapBlazorHub();
+app.MapFallbackToPage("/_Host");
 app.Run();

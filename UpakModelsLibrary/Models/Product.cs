@@ -35,5 +35,7 @@ namespace UpakModelsLibrary.Models
 		[NotMapped]
 		[Range(1,10000)]
         public int TempCount { get; set; }
+		public List<ProductOption>? ProductOptions { get; set; } = new();
+
 	}
 }
