@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpakModelsLibrary", "UpakMo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpakUtilitiesLibrary", "UpakUtilitiesLibrary\UpakUtilitiesLibrary.csproj", "{01BDF23E-0297-4CD2-ACA3-C6FE25E59583}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upak77", "Upak77\Upak77.csproj", "{961DE22B-D086-48A5-814A-7A5178D009B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{01BDF23E-0297-4CD2-ACA3-C6FE25E59583}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01BDF23E-0297-4CD2-ACA3-C6FE25E59583}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01BDF23E-0297-4CD2-ACA3-C6FE25E59583}.Release|Any CPU.Build.0 = Release|Any CPU
+		{961DE22B-D086-48A5-814A-7A5178D009B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{961DE22B-D086-48A5-814A-7A5178D009B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{961DE22B-D086-48A5-814A-7A5178D009B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{961DE22B-D086-48A5-814A-7A5178D009B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
