@@ -226,6 +226,21 @@ namespace UpakDataAccessLibrary.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ProductProductOption", b =>
+                {
+                    b.Property<int>("ProductOptionsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductOptionsId", "ProductsId");
+
+                    b.HasIndex("ProductsId");
+
+                    b.ToTable("ProductProductOption");
+                });
+
             modelBuilder.Entity("UpakModelsLibrary.Models.Address", b =>
                 {
                     b.Property<int>("Id")
@@ -288,8 +303,8 @@ namespace UpakDataAccessLibrary.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -298,6 +313,28 @@ namespace UpakDataAccessLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("UpakModelsLibrary.Models.OptionDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductOptionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductOptionId");
+
+                    b.ToTable("OptionDetails");
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.OrderDetails", b =>
@@ -378,18 +415,18 @@ namespace UpakDataAccessLibrary.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("PurchasePrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double?>("PurchasePrice")
+                        .HasColumnType("float");
 
-                    b.Property<decimal?>("RetailPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double?>("RetailPrice")
+                        .HasColumnType("float");
 
                     b.Property<string>("ShortDesc")
                         .HasColumnType("nvarchar(max)");
@@ -401,12 +438,31 @@ namespace UpakDataAccessLibrary.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("UpakModelsLibrary.Models.ProductOption", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductOptions");
+                });
+
             modelBuilder.Entity("UpakModelsLibrary.Models.UltrapackUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("UltrapackUser");
@@ -463,6 +519,32 @@ namespace UpakDataAccessLibrary.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ProductProductOption", b =>
+                {
+                    b.HasOne("UpakModelsLibrary.Models.ProductOption", null)
+                        .WithMany()
+                        .HasForeignKey("ProductOptionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UpakModelsLibrary.Models.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("UpakModelsLibrary.Models.OptionDetail", b =>
+                {
+                    b.HasOne("UpakModelsLibrary.Models.ProductOption", "ProductOption")
+                        .WithMany("OptionDetails")
+                        .HasForeignKey("ProductOptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductOption");
+                });
+
             modelBuilder.Entity("UpakModelsLibrary.Models.OrderDetails", b =>
                 {
                     b.HasOne("UpakModelsLibrary.Models.OrderHeader", "OrderHeader")
@@ -507,6 +589,11 @@ namespace UpakDataAccessLibrary.Migrations
             modelBuilder.Entity("UpakModelsLibrary.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("UpakModelsLibrary.Models.ProductOption", b =>
+                {
+                    b.Navigation("OptionDetails");
                 });
 #pragma warning restore 612, 618
         }

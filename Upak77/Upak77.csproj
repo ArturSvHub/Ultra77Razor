@@ -1,0 +1,295 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\js\site.js" />
+    <Content Remove="wwwroot\js\slider.js" />
+    <Content Remove="wwwroot\scss\auth\auth.scss" />
+    <Content Remove="wwwroot\scss\card\card.scss" />
+    <Content Remove="wwwroot\scss\form\formstyles.scss" />
+    <Content Remove="wwwroot\scss\slider-style.scss" />
+    <Content Remove="wwwroot\scss\style-mobile.scss" />
+    <Content Remove="wwwroot\scss\style.scss" />
+    <Content Remove="wwwroot\scss\tabs\tabs.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\all.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\bundle.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\bundle.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\bundle.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\dashlite.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\dashlite.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\editors\quill.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\editors\quill.rtl.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\editors\summernote.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\editors\summernote.rtl.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\editors\tinymce.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\editors\tinymce.rtl.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\libs\bootstrap-icons.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\libs\fontawesome-icons.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\libs\jstree.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\libs\themify-icons.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\site.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\skins\theme-blue.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\skins\theme-egyptian.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\skins\theme-green.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\skins\theme-purple.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\skins\theme-red.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\theme.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-01u.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-02.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-03.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-04.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-05.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-06.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-07.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-08.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-09.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-10u.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-11.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-12.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-13.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-14u.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\about\about-15.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\favicon.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\account-secure.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\bills.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\card-credit.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\card-debit.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\card-secure.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\code-scan.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\codes.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\connect-secure.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\customize.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\devices.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\doc-checked.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\emails.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\excel.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-doc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-excel.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-media.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-pdf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-code-alt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-code.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-doc-alt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-doc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-media-alt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-media.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-movie-alt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-movie.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-music-alt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-music.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-pdf-alt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-pdf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-ppt-alt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-ppt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-sheet-alt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-sheet.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-text-alt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-text.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-zip-alt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-type-zip.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-word.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\file-zip.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\folder-alt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\folder-secure-alt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\folder-secure.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\folder-shared-alt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\folder-shared.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\folder.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\help-desk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\id-back.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\id-front.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\invoice.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\kyc-dv.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\kyc-nid.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\kyc-pp.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\loop.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\password-secure.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\plan-s1.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\plan-s2.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\plan-s3.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\product-cc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\product-ee.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\product-ig.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\product-pp.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\product-sc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\profile.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\recheck.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\reports.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\settings.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\support-account.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\support-general.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\support-payment.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\support-secure.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\support.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\sync.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\icons\zip.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\index.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\jsTree\32px-dark.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\jsTree\32px.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\jsTree\40px-dark.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\jsTree\40px.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\jsTree\throbber-dark.gif" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\jsTree\throbber.gif" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\logo-dark-small.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\logo-dark-small2x.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\logo-dark.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\logo-dark2x.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\logo-small.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\logo-small2x.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\logo.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\admin\logo2x.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\ajax-loader.gif" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\cards\g.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\cards\k.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\cards\lpet.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\cards\lpp.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\cards\m.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\cards\p.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\cards\plenka-192x176.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\cards\pp.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\cards\pv.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\cards\sk.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\cards\str.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\cards\v.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\facebook.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\feeback.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\gamburger100.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\gamburger50.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\instagram.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\logo.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\menu-close100.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\menu-close50.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\services\home-delivery.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\services\icon-storage-stacks.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\services\service\down.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\services\service\handshake.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\services\service\place.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\services\service\security.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\services\service\warehouse.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\services\shipping.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\slide1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\slide2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\slide3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\slide4.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\telegram.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\vk.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\whatsapp.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\app.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\bundle.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\scripts.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\site.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\slider.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\tabs.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\LICENSE" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.min.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\LICENSE.txt" />
+    <_ContentIncludedByDefault Remove="wwwroot\scss\auth\auth.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\scss\card\card.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\scss\cart\cart.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\scss\form\formstyles.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\scss\slider-style.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\scss\style-mobile.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\scss\style.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\scss\tabs\tabs.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\templates\Inquiry.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UpakDataAccessLibrary\UpakDataAccessLibrary.csproj" />
+    <ProjectReference Include="..\UpakModelsLibrary\UpakModelsLibrary.csproj" />
+    <ProjectReference Include="..\UpakUtilitiesLibrary\UpakUtilitiesLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\" />
+    <Folder Include="wwwroot\img\admin\flags\" />
+    <Folder Include="wwwroot\img\category\" />
+    <Folder Include="wwwroot\img\product\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\slider.js" />
+    <None Include="wwwroot\scss\auth\auth.scss" />
+    <None Include="wwwroot\scss\card\card.scss" />
+    <None Include="wwwroot\scss\form\formstyles.scss" />
+    <None Include="wwwroot\scss\slider-style.scss" />
+    <None Include="wwwroot\scss\style-mobile.scss" />
+    <None Include="wwwroot\scss\style.scss" />
+    <None Include="wwwroot\scss\tabs\tabs.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\favicon.ico">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\patio.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

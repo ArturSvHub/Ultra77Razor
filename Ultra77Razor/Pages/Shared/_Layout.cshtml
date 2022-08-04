@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     @await Html.PartialAsync("_Links")
+    <base href="~/"/>
 </head>
 <body class="body">
     <div class="wrapper">
@@ -73,9 +74,6 @@
                             <li>
                                 <form method="post"><a asp-area="" asp-page="/Services" class="header__link">Услуги</a></form>
                             </li>
-                            <!--<li>
-                             <form method="post"><a asp-area="" asp-page="/Wiki" class="header__link">О продукции</a></form>
-                            </li>-->
                             <li>
                                 <form method="post"><a asp-area="" asp-page="/Providers" class="header__link">Поставщикам</a></form>
                             </li>
@@ -102,14 +100,13 @@
                     @*<ul>*@
                     <form method="post"><a asp-area="" asp-page="/Index">Главная</a></form>
                     <form method="post"><a asp-area="" asp-page="/Services">Услуги</a></form>
-                    <!--<asp-page="./Home" asp-action="Wiki">О продукции</a></form>-->
                     <form method="post"><a asp-area="" asp-page="/Providers">Поставщикам</a></form>
                     <form method="post"><a asp-area="" asp-page="/About">О компании</a></form>
                     <form method="post"><a asp-area="" asp-page="/Contacts">Контакты</a></form>
                     @*</ul>*@
                 </div>
 
-                <div class="footer__social">
+@*                <div class="footer__social">
 
                     <span>Присоединяйтесь</span>
 
@@ -127,7 +124,7 @@
                             <a href=""><img src="~/img/instagram.png" alt="inst"></a>
                         </div>
                     </div>
-                </div>
+                </div>*@
 
                 <div class="footer__logo">
                     <a href="" class="header__logo">
@@ -135,7 +132,7 @@
                     </a>
                 </div>
                 <div class="footer__copy">
-                    <a href="#"><i>&copy;</i>2022 Sveshnikov Artur </a>
+                    <a href="#"><i>&copy;</i>2022 LLC Ultra Group </a>
                 </div>
             </div>
         </footer>

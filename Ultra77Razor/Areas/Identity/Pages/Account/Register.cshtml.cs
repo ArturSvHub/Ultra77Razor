@@ -79,7 +79,7 @@ namespace Ultra77Razor.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage ="Email должен быть введён")]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -88,8 +88,8 @@ namespace Ultra77Razor.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "Длина {0} должна быть не менее {2} и не более {1} символов.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Пароль должен быть введён")]
+            [StringLength(100, ErrorMessage = "Длина пароля должна быть не менее {2} и не более {1} символов.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Пароль")]
             public string Password { get; set; }
@@ -104,7 +104,8 @@ namespace Ultra77Razor.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Display(Name = "Имя")]
-			public string FullName { get; set; }
+            [Required(ErrorMessage = "Ваше имя должно быть введено")]
+            public string FullName { get; set; }
 
 		}
 
