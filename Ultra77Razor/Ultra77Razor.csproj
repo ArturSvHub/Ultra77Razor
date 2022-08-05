@@ -64,6 +64,7 @@
     <Folder Include="wwwroot\img\admin\flags\" />
     <Folder Include="wwwroot\img\category\" />
     <Folder Include="wwwroot\img\product\" />
+    <Folder Include="Новая папка\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

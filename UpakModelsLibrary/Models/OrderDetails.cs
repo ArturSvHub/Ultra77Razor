@@ -15,12 +15,12 @@ namespace UpakModelsLibrary.Models
 		[Required]
 		public int OrderHeaderId { get; set; }
 		[ForeignKey("OrderHeaderId")]
-		public OrderHeader OrderHeader { get; set; }
+		public OrderHeader? OrderHeader { get; set; }
 
 		[Required]
 		public int ProductId { get; set; }
 		[ForeignKey("ProductId")]
-		public Product Product { get; set; }
+		public Product? Product { get; set; }
 
 	}
 }
