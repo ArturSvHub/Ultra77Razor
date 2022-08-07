@@ -4,6 +4,7 @@
 @using Ultra77Razor.Components
 @model Ultra77Razor.Pages.Cart.IndexModel
 
+
 <form method="post" class="cart-wrapper">
         <div class="cart-header">
           <a asp-page="./Index" class="head-submit">
@@ -16,7 +17,9 @@
             <div class="triangle triangle-right"></div>
           </a>
         </div>
-        <div class="cart-content">
+
+        
+       <div class="cart-content">
             @if(Model.ProductList?.Count()>0)
             {
                 float total = 0.0f;
@@ -32,6 +35,7 @@
                     <div class="cart-product-image">
                         <img src="@Model.ProductList[i].Image!.DataArrayToImageUrl()" alt="">
                     </div>
+
                     <div class="number-wrapper">
                         <div class="number cart-number">
                             <div class="number-input">
@@ -52,8 +56,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="price-one" id="priceOne">@String.Format("{0:c}",Model.ProductList[i].RetailPrice)</div>
-                    <div class="price-percount"id="pricePerCount">@String.Format("{0:c}",Model.ProductList[i].RetailPrice*Model.ProductList[i].TempCount)</div>
+                    <div class="price-one" id="priceOne"><component type="typeof(CartPriceOne)" render-mode="ServerPrerendered" param-PriceCount="@String.Format("{0:c}",Model.ProductList[i].RetailPrice)"/></div>
+                    <div class="price-percount"id="pricePerCount"><component type="typeof(CartPricePerCount)" render-mode="ServerPrerendered" param-PricePerCount="@String.Format("{0:c}",Model.ProductList[i].RetailPrice*Model.ProductList[i].TempCount)"/></div>
                     <a asp-page-handler="Delete" class="delete-submit submit-button">Удалить</a>
                 </div>
             </div>

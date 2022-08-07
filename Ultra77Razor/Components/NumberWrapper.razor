@@ -1,0 +1,27 @@
+﻿@using UpakUtilitiesLibrary.Services
+
+<div class="number-wrapper">
+    <div class="number cart-number">
+        <div class="number-input">
+            <input @onchange="OnChangeCallBack" id="inputNumber" type="number" min="1" />
+        </div>
+        <div class="number-label">
+            <p>ШТ.</p>
+        </div>
+        <div class="number-buttons">
+            <button class="number-minus" type="button"
+                    onclick="stepUpFromChild">
+                <P>+</P>
+            </button>
+            <button class="number-plus" type="button"
+                    onclick="stepDownFromChild">
+                <p>-</p>
+            </button>
+        </div>
+    </div>
+</div>
+@code {
+
+    [Parameter]
+    public EventCallback<ChangeEventArgs> OnChangeCallBack { get; set; }
+}
