@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UpakDataAccessLibrary.DataContext;
 
@@ -11,9 +12,10 @@ using UpakDataAccessLibrary.DataContext;
 namespace UpakDataAccessLibrary.Migrations
 {
     [DbContext(typeof(MssqlContext))]
-    partial class MssqlContextModelSnapshot : ModelSnapshot
+    [Migration("20220805110128_changedOrders")]
+    partial class changedOrders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,7 +240,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasIndex("ProductsId");
 
-                    b.ToTable("ProductProductOption", (string)null);
+                    b.ToTable("ProductProductOption");
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.Address", b =>
@@ -289,7 +291,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Addresses", (string)null);
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.Category", b =>
@@ -312,7 +314,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.OptionDetail", b =>
@@ -334,7 +336,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasIndex("ProductOptionId");
 
-                    b.ToTable("OptionDetails", (string)null);
+                    b.ToTable("OptionDetails");
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.OrderDetails", b =>
@@ -357,7 +359,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails", (string)null);
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.OrderHeader", b =>
@@ -387,7 +389,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasIndex("UltrapackUserId");
 
-                    b.ToTable("OrderHeaders", (string)null);
+                    b.ToTable("OrderHeaders");
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.Product", b =>
@@ -433,7 +435,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.ProductOption", b =>
@@ -453,7 +455,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductOptions", (string)null);
+                    b.ToTable("ProductOptions");
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.UltrapackUser", b =>
