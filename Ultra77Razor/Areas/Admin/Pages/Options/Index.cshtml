@@ -1,13 +1,12 @@
 ﻿@page
-@model Ultra77Razor.Areas.Admin.Pages.Category.IndexModel
+@model Ultra77Razor.Areas.Admin.Pages.Options.IndexModel
 @{
-    ViewData["Title"] = "Категории";
+     ViewData["Title"] = "Характеристики";
 }
-
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">Категории товаров</h2>
+            <h2 class="text-primary">Характеристики товаров</h2>
         </div>
         <div class="col-6">
             <a asp-area="Admin" asp-page="Create" class="btn btn-primary">
@@ -16,7 +15,7 @@
         </div>
     </div>
 
-    @if (Model.CatList.Count() > 0)
+    @if (Model.ProductOptions.Count() > 0)
     {
             <h6 style="margin-top:50px">Категории</h6>
             <table class="table table-bordered table-striped" style="width:100%">
@@ -31,7 +30,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.CatList)
+                    @foreach (var item in Model.ProductOptions)
                     {
                         <tr>
                             <td width="30%">@item.Name</td>
@@ -39,10 +38,10 @@
                             <td class="text-center">
                                 <div class="w-75 btn-group" role="group">
                                     <a asp-area="Admin" asp-route-Id="@item.Id" asp-page="Edit" class="btn btn-primary">
-                                        Изменить Характеристику
+                                        Изменить категорию
                                     </a>
                                     <a asp-area="Admin"asp-route-Id="@item.Id" asp-page="Delete" class="btn btn-danger">
-                                        Удалить Характеристику
+                                        Удалить категорию
                                     </a>
                                 </div>
                             </td>
