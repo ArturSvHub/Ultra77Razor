@@ -12,6 +12,7 @@ using UpakModelsLibrary.Models;
 using UpakModelsLibrary.Models.ViewModels;
 
 using UpakUtilitiesLibrary;
+using UpakUtilitiesLibrary.Services;
 using UpakUtilitiesLibrary.Utility.Extentions;
 
 namespace Ultra77Razor.Pages.Cart
@@ -23,15 +24,22 @@ namespace Ultra77Razor.Pages.Cart
 		public UltrapackUser AppUser { get; set; } = new();
 		[BindProperty]
 		public List<Product>? ProductList { get; set; } = new();
-        private readonly IWebHostEnvironment _environment;
+		[BindProperty]
+		public CartService CartService { get; set; } = new();
+		private readonly IWebHostEnvironment _environment;
         private readonly IEmailSender _emailSender;
 		private readonly MssqlContext _context;
+		private readonly CartService _cartService;
 
-		public IndexModel(IWebHostEnvironment environment, IEmailSender emailSender, MssqlContext context)
+		public IndexModel(IWebHostEnvironment environment, 
+							IEmailSender emailSender, 
+							MssqlContext context, 
+							CartService cartService)
 		{
 			_environment = environment;
 			_emailSender = emailSender;
 			_context = context;
+			_cartService = cartService;
 		}
 
 		public async Task<IActionResult> OnGetAsync()
@@ -148,6 +156,14 @@ namespace Ultra77Razor.Pages.Cart
 			}
 			HttpContext.Session.Set(WebConstants.SessionCart,shoppingCartList);
 			return RedirectToPage("Index");
+		}
+		private void stepUp()
+		{
+
+		}
+		private void stepDown()
+		{
+
 		}
 
 	}

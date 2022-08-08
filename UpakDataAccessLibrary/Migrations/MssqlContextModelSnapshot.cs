@@ -238,7 +238,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasIndex("ProductsId");
 
-                    b.ToTable("ProductProductOption");
+                    b.ToTable("ProductProductOption", (string)null);
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.Address", b =>
@@ -289,7 +289,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.Category", b =>
@@ -312,7 +312,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.OptionDetail", b =>
@@ -334,7 +334,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasIndex("ProductOptionId");
 
-                    b.ToTable("OptionDetails");
+                    b.ToTable("OptionDetails", (string)null);
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.OrderDetails", b =>
@@ -357,7 +357,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails");
+                    b.ToTable("OrderDetails", (string)null);
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.OrderHeader", b =>
@@ -387,7 +387,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasIndex("UltrapackUserId");
 
-                    b.ToTable("OrderHeaders");
+                    b.ToTable("OrderHeaders", (string)null);
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.Product", b =>
@@ -433,7 +433,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.ProductOption", b =>
@@ -453,7 +453,7 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductOptions");
+                    b.ToTable("ProductOptions", (string)null);
                 });
 
             modelBuilder.Entity("UpakModelsLibrary.Models.UltrapackUser", b =>

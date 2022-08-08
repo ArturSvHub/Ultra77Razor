@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using UpakUtilitiesLibrary.Utility.EmailServices;
 using UpakDataAccessLibrary.DataContext;
 using UpakModelsLibrary.Models;
+using UpakUtilitiesLibrary.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("UpakGkultra2Connextion") ?? throw new InvalidOperationException("Connection string 'MssqlContextConnection' not found.");
@@ -20,6 +21,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
 	.AddDefaultUI()
 	.AddEntityFrameworkStores<MssqlContext>();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.AddScoped<CartService>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession(opts =>
@@ -30,6 +32,7 @@ builder.Services.AddSession(opts =>
 });
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
