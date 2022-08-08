@@ -16,6 +16,13 @@
             <div class="triangle triangle-right"></div>
           </a>
         </div>
+    @if (Model.AppUser != null)
+    {
+        <div>User: @Model.AppUser.FullName</div>
+        <div>Email: @Model.AppUser.Email</div>
+    }
+    
+
         <div class="cart-content">
             @if(Model.ProductList?.Count()>0)
             {

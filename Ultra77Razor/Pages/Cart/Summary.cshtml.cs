@@ -69,7 +69,7 @@ namespace Ultra77Razor.Pages.Cart
 			StringBuilder productListSB = new StringBuilder();
 			foreach (var item in ProductList)
 			{
-				productListSB.Append($" - {item.Name} <span style='font-size:14px;' (ID: {item.Id})</span></br>");
+				productListSB.Append($" - {item.Name} <span style='font-size:14px;' (ID: {item.Id})</span><span style='font-size:14px;>{item.TempCount}</span></br>");
 			}
 			string messageBody = string.Format(HtmlBody,
 				AppUser.FullName,
