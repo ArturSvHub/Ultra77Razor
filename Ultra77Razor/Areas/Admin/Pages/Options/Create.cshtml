@@ -1,4 +1,6 @@
 ﻿@page
+@using Ultra77Razor.Components
+@using UpakModelsLibrary.Models
 @model Ultra77Razor.Areas.Admin.Pages.Options.CreateModel
 @{
 
@@ -11,7 +13,7 @@
             <div class="col-8">
                 <div class="form-group row">
                     <div class="col-4">
-                        <label asp-for="ProductOption.Name"></label>
+                        <label asp-for="ProductOption.Name">Название</label>
                     </div>
                     <div class="col-8">
                         <input asp-for="ProductOption.Name" class="form-control" />
@@ -21,7 +23,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-4">
-                        <label asp-for="ProductOption.Description"></label>
+                        <label asp-for="ProductOption.Description">Описание</label>
                     </div>
                     <div class="col-8">
                         <textarea asp-for="ProductOption.Description" class="form-control summernote"></textarea>
@@ -29,24 +31,35 @@
                     </div>
                 </div>
             </div>
-            
             <div class="form-group row">
-                <div class="col-4">
-                    image
-                </div>
-                <div class="col-8">
-                    <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+                <div class="col-8 offset-4 row">
+
+
+                    @*<div class="col-4">
+
+                        <button type="button" class="btn btn-success w-100"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Добавить варианты характеристики
+                        </button>
+                        
+                        <component type=@typeof(ModalAddOptionDetails) render-mode="ServerPrerendered"
+                        param-Options="@Model.OptionDetails" param-OnClickCallBack="@(()=>{Model.OptionDetails.Append(new OptionDetail());})" 
+                        />
+
+                    </div>*@
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="ProductOption.Products"></label>
+                    <label asp-for="ProductOption.Products">
+                        Выберите товар, для которого применить
+                        характеристику
+                    </label>
                 </div>
                 <div class="col-8">
-                    <select asp-for="ProductOption.Products" class="form-select"
+                    <select asp-for="ProductOption.Products" class="form-control" multiple
                             asp-items="Model.ProductOptionSelectedList">
-                        <option disabled selected>Выберите товар</option>
                     </select>
                 </div>
             </div>
@@ -69,6 +82,6 @@
 
 @section Scripts{
     @{
-    <partial name="_ValidationScriptsPartial" />
+        <partial name="_ValidationScriptsPartial" />
     }
-}
+    }

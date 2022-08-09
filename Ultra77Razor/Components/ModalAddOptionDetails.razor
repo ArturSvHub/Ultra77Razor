@@ -1,0 +1,39 @@
+﻿@using UpakModelsLibrary.Models
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Варианты характеристики</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @foreach(var item in Options)
+                    {
+                            <div class="mb-3">
+                                <label for="detail-name" class="col-form-label">Вариант:</label>
+                                <input type="text" @oninput=@(e=>item.Name=e.Value.ToString()) class="form-control" id="detail-name">
+                            </div>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-secondary" @onclick="OnClickCallBack">Ещё</button>
+                    <button type="button" class="btn btn-primary">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public List<OptionDetail> Options { get; set; }
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallBack{ get; set; }
+    [Parameter]
+    public EventCallback<ChangeEventArgs> OnInputCallBack { get; set; }
+    
+}
