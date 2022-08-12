@@ -475,11 +475,17 @@ h3 {
     flex-direction: column;
     justify-content: center;
 }
-
+.number-change:hover
+{
+    border:solid 1px;
+}
+.carousel-about{
+    height:400px;
+}
 .swiper {
     width: 100%;
     height: 100%;
-    user-select: none;
+    user-select: none;https://mdbcdn.b-cdn.net/img/new/standard/nature/181.webp
 }
 
 .swiper-slide {

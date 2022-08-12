@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using System.Security.Claims;
 using System.Text;
 
 using UpakDataAccessLibrary.DataContext;
+
 using UpakModelsLibrary.Models;
 using UpakModelsLibrary.Models.ViewModels;
 
@@ -17,37 +19,33 @@ using UpakUtilitiesLibrary.Utility.Extentions;
 
 namespace Ultra77Razor.Pages.Cart
 {
+	[Authorize]
 	[ValidateAntiForgeryToken]
 	public class IndexModel : PageModel
 	{
 		[BindProperty]
-		public UltrapackUser AppUser { get; set; } = new();
+		public UltrapackUser AppUser { get; set; }
 		[BindProperty]
-		public List<Product>? ProductList { get; set; } = new();
-		[BindProperty]
-		public CartService CartService { get; set; } = new();
-		private readonly IWebHostEnvironment _environment;
-        private readonly IEmailSender _emailSender;
-		private readonly MssqlContext _context;
-		private readonly CartService _cartService;
+		public List<Product>? ProductList { get; set; }
 
-		public IndexModel(IWebHostEnvironment environment, 
-							IEmailSender emailSender, 
-							MssqlContext context, 
+		private readonly IWebHostEnvironment _environment;
+		private readonly IEmailSender _emailSender;
+		private readonly MssqlContext _context;
+
+		public IndexModel(IWebHostEnvironment environment,
+							IEmailSender emailSender,
+							MssqlContext context,
 							CartService cartService)
 		{
 			_environment = environment;
 			_emailSender = emailSender;
 			_context = context;
-			_cartService = cartService;
 		}
 
 		public async Task<IActionResult> OnGetAsync()
-        {
-			var claimsIdentity = (ClaimsIdentity)User.Identity;
-			var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-
-
+		{
+			ProductList = new();
+			AppUser = await _context.UltrapackUsers.SingleAsync(u => u.UserName == User.Identity.Name);
 			List<ShoppingCart>? shoppingCartList = new List<ShoppingCart>();
 			if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart) != null &&
 				HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart).Count() > 0)
@@ -64,26 +62,32 @@ namespace Ultra77Razor.Pages.Cart
 				ProductList.Add(prodTemp);
 			}
 
-			AppUser =_context.UltrapackUsers?.FirstOrDefault(u => u.Id == claim.Value);
-
 			return Page();
 		}
 
 
-
-        public async Task<IActionResult> OnPostAsync()
-        {
-			var claimsIdentity = (ClaimsIdentity)User.Identity;
-			var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-			AppUser = _context.UltrapackUsers?.FirstOrDefault(u => u.Id == claim.Value);
+		
+		public async Task<IActionResult> OnPostAsync()
+		{
+			AppUser = await _context.UltrapackUsers.SingleAsync(u => u.UserName == User.Identity.Name);
+			var userId = AppUser.Id;
 			List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
-			
 			foreach (var item in ProductList)
-	        {
-		        shoppingCartList.Add(new ShoppingCart { ProductId = item.Id, TempCount = item.TempCount });
-				
+			{
+				shoppingCartList.Add(new ShoppingCart { ProductId = item.Id, TempCount = item.TempCount });
+
 			}
-	        HttpContext.Session.Set(WebConstants.SessionCart, shoppingCartList);
+			//ProductList.Clear();
+			//List<int?> prodInCart =shoppingCartList.Select(i => i.ProductId).ToList();
+			//List<Product> prodListTemp = await _context.Products.Where(u => prodInCart.Contains(u.Id)).ToListAsync();
+
+			//foreach (var item in shoppingCartList)
+			//{
+			//	Product prodTemp = prodListTemp.FirstOrDefault(u => u.Id == item.ProductId);
+			//	prodTemp.TempCount = item.TempCount;
+			//	ProductList.Add(prodTemp);
+			//}
+			HttpContext.Session.Set(WebConstants.SessionCart, shoppingCartList);
 
 			var PathToTemplate = _environment.WebRootPath + Path.DirectorySeparatorChar.ToString() +
 				"templates" + Path.DirectorySeparatorChar.ToString() +
@@ -100,7 +104,7 @@ namespace Ultra77Razor.Pages.Cart
 				productListSB.Append($" - {item.Name} <span style='font-size:14px;' (ID: {item.Id})</span><span style='font-size:14px;'>{item.TempCount}</span></br>");
 			}
 			string messageBody = string.Format(HtmlBody,
-				
+
 				AppUser.FullName,
 				AppUser.Email,
 				AppUser.PhoneNumber,
@@ -111,7 +115,7 @@ namespace Ultra77Razor.Pages.Cart
 
 			OrderHeader orderHeader = new OrderHeader()
 			{
-				UltrapackUserId = claim.Value,
+				UltrapackUserId = userId,
 				FullName = AppUser.FullName,
 				Email = AppUser.Email,
 				PhoneNumber = AppUser.PhoneNumber,
@@ -131,8 +135,10 @@ namespace Ultra77Razor.Pages.Cart
 			}
 			await _context.SaveChangesAsync();
 
+
 			return RedirectToPage("InquiryConfirm");
-        }
+
+		}
 
 
 		public IActionResult OnPostDeleteAsync(int id)
@@ -154,7 +160,7 @@ namespace Ultra77Razor.Pages.Cart
 			{
 				shoppingCartList.Add(new ShoppingCart { ProductId = item.Id, TempCount = item.TempCount });
 			}
-			HttpContext.Session.Set(WebConstants.SessionCart,shoppingCartList);
+			HttpContext.Session.Set(WebConstants.SessionCart, shoppingCartList);
 			return RedirectToPage("Index");
 		}
 		private void stepUp()

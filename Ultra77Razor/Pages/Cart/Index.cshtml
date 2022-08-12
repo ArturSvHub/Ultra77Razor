@@ -6,8 +6,9 @@
 
 
 <form method="post" class="cart-wrapper">
+     <input type="hidden" asp-for="@Model.AppUser.Id"/>
         <div class="cart-header">
-          <a asp-page="./Index" class="head-submit">
+          <a asp-area="" asp-page="/Index" class="head-submit">
             <div class="triangle triangle-left"></div>
             <p>На главную</p>
           </a>
@@ -28,9 +29,11 @@
             @if(Model.ProductList?.Count()>0)
             {
                 float total = 0.0f;
-        @for (int i=0;i<Model.ProductList.Count;i++)
+                int i;
+        @for (int j=0;j<Model.ProductList.Count;j++)
         {
-            <input type="hidden" asp-for="ProductList[i].Id"/>
+                i = j;
+                <input type="hidden" asp-for="@Model.ProductList[i].Id"/>
             <div class="cart-product">
 
                 <div class="product-dictionary">
@@ -44,25 +47,25 @@
                     <div class="number-wrapper">
                         <div class="number cart-number">
                             <div class="number-input">
-                                <input asp-for="@Model.ProductList[i].TempCount" id="inputNumber" type="number" min="1"/>
+                                <input asp-for="@Model.ProductList[i].TempCount" id="inputNumber" class="input_quantity" type="number" min="1"/>
                             </div>
                             <div class="number-label">
                                 <p>ШТ.</p>
                             </div>
                             <div class="number-buttons">
-                                <button class="number-minus" type="button"
-                                        onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepUp();">
+                                <button class="number-minus number-change" id="ch1" type="button"
+                                onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepDown(); ">
                                     <P>+</P>
                                 </button>
-                                <button class="number-plus" type="button"
+                                <button class="number-plus number-change" id="ch1" type="button"
                                         onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepDown(); ">
                                     <p>-</p>
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div class="price-one" id="priceOne"><component type="typeof(CartPriceOne)" render-mode="ServerPrerendered" param-PriceCount="@String.Format("{0:c}",Model.ProductList[i].RetailPrice)"/></div>
-                    <div class="price-percount"id="pricePerCount"><component type="typeof(CartPricePerCount)" render-mode="ServerPrerendered" param-PricePerCount="@String.Format("{0:c}",Model.ProductList[i].RetailPrice*Model.ProductList[i].TempCount)"/></div>
+                    <div class="price-one" id="priceOne">@String.Format("{0:c}",Model.ProductList[i].RetailPrice)</div>
+                    <div class="price-percount"id="pricePerCount">@String.Format("{0:c}",Model.ProductList[i].RetailPrice*Model.ProductList[i].TempCount)</div>
                     <a asp-page-handler="Delete" class="delete-submit submit-button">Удалить</a>
                 </div>
             </div>
@@ -90,6 +93,26 @@
           <p></p>
         </div>
       </form>
+      <script>
+          $(document).ready(function(){
+    $('.input_quantity').on('change keyup', function() {
+        console.log('nice');
+    }); 
+    });
+
+
+          $("input[type=number]").bind('keyup input', function(){
+        var currentValue = parseInt(document.getElementsByClassName('input_quantity').value);
+         document.getElementsByClassName('input_quantity').value = currentValue + 1;
+         console.log('++');
+        });
+
+     let func = function() {
+         var currentValue = parseInt(document.getElementsByClassName('input_quantity').value);
+         document.getElementsByClassName('input_quantity').value = currentValue + 1;
+         console.log('++');
+        }
+      </script>
       
        
 

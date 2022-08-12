@@ -1,3 +1,5 @@
+using Blazored.SessionStorage;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +9,7 @@ using UpakDataAccessLibrary.DataContext;
 using UpakModelsLibrary.Models;
 
 using UpakUtilitiesLibrary;
+using UpakUtilitiesLibrary.Services;
 using UpakUtilitiesLibrary.Utility.Extentions;
 
 namespace Ultra77Razor.Pages
@@ -14,10 +17,15 @@ namespace Ultra77Razor.Pages
     public class ProductModel : PageModel
     {
 		private readonly MssqlContext _context;
+		private readonly CartService _cartService;
+		private readonly ISessionStorageService _sessionStorage;
 
-		public ProductModel(MssqlContext context)
+		public ProductModel(MssqlContext context,CartService cartService,
+			ISessionStorageService sessionStorage)
 		{
 			_context = context;
+			_cartService = cartService;
+			_sessionStorage = sessionStorage;
 		}
 
 		[BindProperty]
@@ -46,7 +54,7 @@ namespace Ultra77Razor.Pages
 			}
 			return Page();
 		}
-		public IActionResult OnPostAsync(int id)
+		public async Task<IActionResult> OnPostAsync(int id)
 		{
 			List<ShoppingCart> shoppingCartsList = new();
 			if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart) != null &&
@@ -56,6 +64,7 @@ namespace Ultra77Razor.Pages
 			}
 			shoppingCartsList.Add(new ShoppingCart { ProductId = id ,TempCount = Product!.TempCount});
 			HttpContext.Session.Set(WebConstants.SessionCart, shoppingCartsList);
+
 			return RedirectToPage("Index");
 		}
 

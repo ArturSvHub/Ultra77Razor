@@ -5,11 +5,14 @@ using UpakUtilitiesLibrary.Utility.EmailServices;
 using UpakDataAccessLibrary.DataContext;
 using UpakModelsLibrary.Models;
 using UpakUtilitiesLibrary.Services;
+using Blazored.SessionStorage;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("UpakGkultra2Connextion") ?? throw new InvalidOperationException("Connection string 'MssqlContextConnection' not found.");
 builder.Services.AddDbContext<MssqlContext>(options =>
     options.UseSqlServer(connectionString));
+
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
 	options.SignIn.RequireConfirmedAccount = true;
 	options.Password.RequiredLength = 5;
@@ -20,10 +23,14 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
 	.AddDefaultTokenProviders()
 	.AddDefaultUI()
 	.AddEntityFrameworkStores<MssqlContext>();
+
+builder.Services.AddOptions();
+builder.Services.AddAuthorizationCore();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddScoped<CartService>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddBlazoredSessionStorage();
 builder.Services.AddSession(opts =>
 {
 	opts.IdleTimeout = TimeSpan.FromMinutes(10);

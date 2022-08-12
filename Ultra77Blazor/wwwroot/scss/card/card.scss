@@ -1,0 +1,188 @@
+$main-color: #b3b3b3;
+$acent-color: #ce2874;
+$second-color: #5593dd;
+
+
+.imgcard {
+    font-size: xx-large;
+    hyphens: none;
+    align-self: center;
+    width: 50%;
+
+    p {
+        text-align: center;
+        font-size: 100%;
+        font-weight: bold;
+    }
+
+    img {
+        margin-top: 10%;
+        width: 100%;
+    }
+}
+
+.navcard {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+.number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    padding: 0;
+    margin: 0;
+}
+
+.number-input {
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 200px;
+
+    input[type="number"] {
+        border: $main-color solid 1px;
+        width: 30px;
+        background-color: #eee;
+        padding: 0;
+        margin: 0;
+        height: 70px;
+        line-height: 70px;
+        text-indent: 35px;
+        width: 100%;
+        font-size: 30px;
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.number-label {
+    width: 40%;
+    height: 70px;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: $main-color;
+
+    p {
+        color: #fff;
+        padding-top: 15%;
+        font-size: 30px;
+        text-align: center;
+        align-self: center;
+    }
+}
+
+.number-buttons {
+    min-height: 100%;
+    max-height: 70px;
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.number-minus,
+.number-plus {
+    border: none;
+    width: 50px;
+    height: 35px;
+    border: $main-color solid 1px;
+    border-radius: 1px;
+    margin: 0;
+    padding: 0;
+
+    p {
+        display: inline-block;
+        font-size: 20px;
+    }
+}
+
+.number-minus:hover,
+.number-plus:hover {
+    background-color: $main-color;
+    color: #fff;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: end;
+    flex-direction: row;
+    width: 100%;
+}
+
+.nav-button {
+    display: flex;
+    align-items: center;
+    margin: 0 5%;
+    height: 100%;
+    a{
+        display: flex;
+        align-items: center;
+        p{
+            color: #fff;
+            margin: 0;
+            text-align: center;
+        }
+    }
+    }
+
+.aboutproduct {
+    p {
+
+        text-align: center;
+        margin: 0;
+    }
+
+}
+
+
+.product-maincard {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.number-wrapper{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
+    flex-grow: 3;
+    min-width: none;
+    max-width: 100%;
+}
+.product-dictionary 
+{
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1;
+    p{
+        margin: 0;
+        font-size:x-large;
+        text-align: end;
+    }
+}
+
