@@ -1,8 +1,6 @@
-[
+﻿[
   {
     "outputFile": "wwwroot/css/bundle.css",
-    "inputFile": "wwwroot/css/bundle.scss",
-    "sourceMap": false,
-    "useNodeSass": false
+    "inputFile": "wwwroot/scss/bundle.scss"
   }
 ]

@@ -1,8 +1,0 @@
-[
-  {
-    "outputFileName": "wwwroot/css/bundle.min.css",
-    "inputFiles": [
-      "wwwroot/css/bundle.css"
-    ]
-  }
-]

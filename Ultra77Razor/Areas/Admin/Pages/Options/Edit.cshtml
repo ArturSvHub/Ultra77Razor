@@ -1,4 +1,57 @@
 ﻿@page
 @model Ultra77Razor.Areas.Admin.Pages.Options.EditModel
-@{
-}
+
+<form method="post">
+
+    <input asp-for="@Model.Option.Id" hidden />
+    <div class="border p-3">
+        <div class="form-group row">
+            <h2 class="text-info p-lg-3">Изменить категорию</h2>
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="@Model.Option.Name"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="@Model.Option.Name" class="form-control" />
+                <span asp-validation-for="@Model.Option.Name" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <div class="col-4">
+                <label asp-for="@Model.Option.Description"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="@Model.Option.Description" class="form-control" />
+                <span asp-validation-for="@Model.Option.Description" class="text-danger"></span>
+            </div>
+        </div>
+         <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Option.Products">
+                        Выберите товар, для которого применить
+                        характеристику
+                    </label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="Option.Products" class="form-control" multiple
+                            asp-items="Model.ProductOptionSelectedList">
+                    </select>
+                </div>
+            </div>
+        <div class="form-group row">
+            <div class="col-8 offset-4 row">
+
+                <div class="col">
+                    <input type="submit" class="btn btn-info w-100" value="Изменить" />
+                </div>
+                <div class="col">
+                    <a asp-page="Index" class="btn btn-success w-100">
+                        Назад
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

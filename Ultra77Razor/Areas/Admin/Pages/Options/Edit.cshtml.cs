@@ -22,8 +22,6 @@ namespace Ultra77Razor.Areas.Admin.Pages.Options
 		public ProductOption Option { get; set; } = new();
 		[BindProperty]
 		public IEnumerable<SelectListItem>? ProductOptionSelectedList { get; set; }
-		[BindProperty]
-		public List<OptionDetail> OptionDetails { get; set; } = new();
 		public async Task<ActionResult> OnGet(int? id)
 		{
 			Option =await _context.ProductOptions.FindAsync(id);
@@ -34,9 +32,13 @@ namespace Ultra77Razor.Areas.Admin.Pages.Options
 					Text = i.Name,
 					Value = i.Id.ToString()
 				});
-				OptionDetails = await _context.OptionDetails.Include(o => o.ProductOption).Where(o => o.ProductOptionId == Option.Id).ToListAsync();
+				
 			}
 				return Page();
+		}
+		public void OnPost()
+		{
+
 		}
 	}
 }

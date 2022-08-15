@@ -27,14 +27,12 @@
 
   <ItemGroup>
     <Content Remove="Areas\Admin\Pages\Options.cshtml" />
-    <Content Remove="bundleconfig.json" />
     <Content Remove="compilerconfig.json" />
     <Content Remove="Components\NavItem.razor" />
     <Content Remove="Pages\_Imports.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="bundleconfig.json" />
     <None Include="compilerconfig.json" />
     <None Include="Components\NavItem.razor" />
     <None Include="Pages\_Imports.razor" />

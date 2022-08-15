@@ -22,10 +22,10 @@
                 <thead>
                     <tr>
                         <th>
-                            Название категории
+                            Название характеристики
                         </th>
                         <th>
-                            Описание категории
+                            Товары
                         </th>
                     </tr>
                 </thead>
@@ -34,14 +34,19 @@
                     {
                         <tr>
                             <td width="30%">@item.Name</td>
-                            <td width="20%">@item.Description</td>
+                            <td width="20%">
+                               @foreach (var prod in item.Products!)
+                               {
+                                   <div>@prod.Name</div>
+                               }
+                            </td>
                             <td class="text-center">
                                 <div class="w-75 btn-group" role="group">
                                     <a asp-area="Admin" asp-route-Id="@item.Id" asp-page="Edit" class="btn btn-primary">
-                                        Изменить категорию
+                                        Изменить характеристику
                                     </a>
                                     <a asp-area="Admin"asp-route-Id="@item.Id" asp-page="Delete" class="btn btn-danger">
-                                        Удалить категорию
+                                        Удалить характеристику
                                     </a>
                                 </div>
                             </td>
