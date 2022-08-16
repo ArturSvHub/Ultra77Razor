@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 using UpakDataAccessLibrary.DataContext;
 
@@ -11,38 +12,33 @@ namespace Ultra77Razor.Areas.Admin.Pages.Options
     public class CreateModel : PageModel
     {
         private readonly MssqlContext _context;
-
+		List<UpakModelsLibrary.Models.Product> products;
 		public CreateModel(MssqlContext context)
 		{
 			_context = context;
 		}
 		[BindProperty]
-		public ProductOption ProductOption { get; set; } = new();
+		public ProductOption ProductOption { get; set; }
 		[BindProperty]
-		public IEnumerable<SelectListItem>? ProductOptionSelectedList { get; set; }
-		[BindProperty]
-		public List<OptionDetail> OptionDetails { get; set; }= new();
+		public List<UpakModelsLibrary.Models.Product> Products { get; set; }
+
 		public void OnGet()
         {
-			ProductOptionSelectedList =_context.Products?.Select(i => new SelectListItem
-			{
-				Text = i.Name,
-				Value = i.Id.ToString()
-			});
+			ProductOption = new ProductOption();
+			Products = _context.Products.ToList();
+			products = Products;
 		}
-		public async Task<ActionResult> OnPostAsync()
+		public async Task<IActionResult> OnPostAsync()
 		{
-			await _context.AddAsync(ProductOption);
-			await _context.SaveChangesAsync();
-			if (OptionDetails.Count > 0)
+			foreach (var item in Products)
 			{
-				foreach(var item in OptionDetails)
+				if(item.IsChecked==true)
 				{
-					await _context.AddAsync(item);
-					await _context.SaveChangesAsync();
+					ProductOption.Products.Add(item);
 				}
 			}
-
+			await _context.AddAsync(ProductOption);
+			await _context.SaveChangesAsync();
 			return RedirectToPage("Index");
 		}
     }
