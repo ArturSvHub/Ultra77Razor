@@ -12,7 +12,7 @@ namespace Ultra77Razor.Areas.Admin.Pages.Options
     public class CreateModel : PageModel
     {
         private readonly MssqlContext _context;
-		List<UpakModelsLibrary.Models.Product> products;
+		public List<UpakModelsLibrary.Models.Product> products;
 		public CreateModel(MssqlContext context)
 		{
 			_context = context;
@@ -26,15 +26,15 @@ namespace Ultra77Razor.Areas.Admin.Pages.Options
         {
 			ProductOption = new ProductOption();
 			Products = _context.Products.ToList();
-			products = Products;
 		}
 		public async Task<IActionResult> OnPostAsync()
 		{
+			var prods = await _context.Products.ToListAsync();
 			foreach (var item in Products)
 			{
 				if(item.IsChecked==true)
 				{
-					ProductOption.Products.Add(item);
+					ProductOption.Products.Add(prods.FirstOrDefault(p=>p.Id==item.Id));
 				}
 			}
 			await _context.AddAsync(ProductOption);

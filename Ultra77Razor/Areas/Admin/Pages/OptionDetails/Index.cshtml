@@ -1,7 +1,7 @@
 ﻿@page
-@model Ultra77Razor.Areas.Admin.Pages.Options.IndexModel
+@model Ultra77Razor.Areas.Admin.Pages.OptionDetails.IndexModel
 @{
-     ViewData["Title"] = "Характеристики";
+    ViewData["Title"] = "Детали";
 }
 <div class="container p-3">
     <div class="row pt-4">
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    @if (Model.ProductOptions.Count() > 0)
+    @if (Model.Option!=null || Model.Option.OptionDetails.Count() > 0)
     {
             <h6 style="margin-top:50px">Категории</h6>
             <table class="table table-bordered table-striped" style="width:100%">
@@ -30,15 +30,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.ProductOptions)
+                    @foreach (var item in Model.Option.OptionDetails)
                     {
                         <tr>
                             <td width="30%">@item.Name</td>
                             <td width="20%">
-                               @foreach (var prod in item.Products!)
-                               {
-                                   <div>@prod.Name</div>
-                               }
+                               
                             </td>
                             <td class="text-center">
                                 <div class="w-75 btn-group" role="group">

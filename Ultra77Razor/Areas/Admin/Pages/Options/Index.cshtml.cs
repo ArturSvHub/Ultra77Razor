@@ -17,14 +17,21 @@ namespace Ultra77Razor.Areas.Admin.Pages.Options
 			_context = context;
 		}
 		[BindProperty]
-		public List<ProductOption> ProductOptions { get; set; } = new();
+		public List<ProductOption> ProductOptions { get; set; }
 		[BindProperty]
-		public List<OptionDetail> OptionDetails { get; set; } = new();
+		public List<OptionDetail> OptionDetails { get; set; }
 		public async Task<ActionResult> OnGetAsync()
         {
-			ProductOptions =await _context.ProductOptions.ToListAsync();
-			OptionDetails = await _context.OptionDetails.ToListAsync();
+			ProductOptions =await _context.ProductOptions.Include(p=>p.Products).ToListAsync();
+			OptionDetails = await _context.OptionDetails.Include(p => p.ProductOption).ToListAsync();
 			return Page();
         }
-    }
+		public async Task<ActionResult> OnPostDeleteAsync(int id)
+		{
+			var option =await _context.ProductOptions.FindAsync(id); 
+			_context.Remove(option);
+			await _context.SaveChangesAsync();
+			return RedirectToPage("Index");
+		}
+	}
 }
