@@ -9,7 +9,7 @@
             <h2 class="text-primary">Характеристики товаров</h2>
         </div>
         <div class="col-6">
-            <a asp-area="Admin" asp-page="Create" class="btn btn-primary">
+            <a asp-area="Admin" asp-page="Upsert" class="btn btn-primary">
                 Добавить
             </a>
         </div>
@@ -17,7 +17,6 @@
 
     @if (Model.Option!=null || Model.Option.OptionDetails.Count() > 0)
     {
-            <h6 style="margin-top:50px">Категории</h6>
             <table class="table table-bordered table-striped" style="width:100%">
                 <thead>
                     <tr>
@@ -29,13 +28,12 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="margin-top:20px;">
                     @foreach (var item in Model.Option.OptionDetails)
                     {
                         <tr>
-                            <td width="30%">@item.Name</td>
-                            <td width="20%">
-                               
+                            <td width="20%">@item.Name</td>
+                            <td width="30%">
                             </td>
                             <td class="text-center">
                                 <div class="w-75 btn-group" role="group">

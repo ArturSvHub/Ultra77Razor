@@ -56,7 +56,7 @@
                         <div><label>@Model.Option.OptionDetails[i].Name </label></div>
                     }
                     <br />
-                    <a asp-page="OptionDetails/Index" asp-route-id="@Model.Option.Id">Подробнее</a>
+                    <a asp-area="Admin" asp-page="/OptionDetails/Index" asp-route-id="@Model.Option.Id">Подробнее</a>
                 </div>
 @*            }*@
 
