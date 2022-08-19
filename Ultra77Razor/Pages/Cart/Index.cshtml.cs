@@ -58,7 +58,7 @@ namespace Ultra77Razor.Pages.Cart
 			foreach (var item in shoppingCartList)
 			{
 				Product prodTemp = prodListTemp.FirstOrDefault(u => u.Id == item.ProductId);
-				prodTemp.TempCount = item.TempCount;
+				prodTemp.TempCount = item.TempCount.GetValueOrDefault();
 				ProductList.Add(prodTemp);
 			}
 

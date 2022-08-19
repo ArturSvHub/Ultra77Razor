@@ -26,11 +26,21 @@
           </div>
         </div>
         <div class="nav-buttons">
-            <a class="submit nav-button " href="#" ><p>Комплектация</p></a>
+            @*<a class="submit nav-button " href="#" ><p>Комплектация</p></a>*@
             <button class="submit nav-button" type="submit"><p>Добавить</p></button>
         </div>
       </div>
       <div class="aboutproduct cardside">
         @Html.Raw(Model.Product.Description)
+        <br/>
+        <div class="row">
+            @if(Model.Options is not null||Model.Options.Count>0)
+            {
+                foreach (var item in Model.Options)
+                {
+                    
+                }
+            }
         </div>
+        
 </form>

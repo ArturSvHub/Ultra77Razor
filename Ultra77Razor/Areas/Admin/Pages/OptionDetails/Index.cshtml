@@ -6,10 +6,10 @@
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">Характеристики товаров</h2>
+            <h2 class="text-primary">Детали</h2>
         </div>
         <div class="col-6">
-            <a asp-area="Admin" asp-page="Upsert" class="btn btn-primary">
+            <a asp-area="Admin" asp-page="Create" class="btn btn-primary">
                 Добавить
             </a>
         </div>
@@ -21,10 +21,10 @@
                 <thead>
                     <tr>
                         <th>
-                            Название характеристики
+                            Название детали
                         </th>
                         <th>
-                            Товары
+                        Название характеристики
                         </th>
                     </tr>
                 </thead>
@@ -33,15 +33,16 @@
                     {
                         <tr>
                             <td width="20%">@item.Name</td>
-                            <td width="30%">
+                        <td width="30%">
+                            @Model.Option.Name
                             </td>
                             <td class="text-center">
                                 <div class="w-75 btn-group" role="group">
                                     <a asp-area="Admin" asp-route-Id="@item.Id" asp-page="Edit" class="btn btn-primary">
-                                        Изменить характеристику
+                                        Изменить деталь
                                     </a>
-                                    <form method="post" asp-page-handler="Delete">
-                                        <button type="submit" class="btn btn-danger">Удалить характеристику</button>
+                                    <form method="post" asp-page-handler="Delete" asp-route-id="@item.Id">
+                                        <button type="submit" class="btn btn-danger">Удалить деталь</button>
                                     <input type="hidden" name="id" value="@item.Id"/>
                                 </form>
                                 </div>

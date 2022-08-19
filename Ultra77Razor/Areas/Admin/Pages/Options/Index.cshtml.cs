@@ -31,7 +31,7 @@ namespace Ultra77Razor.Areas.Admin.Pages.Options
 			var option =await _context.ProductOptions.FindAsync(id); 
 			_context.Remove(option);
 			await _context.SaveChangesAsync();
-			return RedirectToPage("Index");
+			return RedirectToPage("./Index");
 		}
 	}
 }

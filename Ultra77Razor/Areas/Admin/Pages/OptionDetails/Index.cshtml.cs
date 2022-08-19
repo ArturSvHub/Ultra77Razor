@@ -30,5 +30,16 @@ namespace Ultra77Razor.Areas.Admin.Pages.OptionDetails
 				return NotFound();
 			}
         }
+        public async Task<IActionResult> OnPostDelete(int? id)
+		{
+			if(id is not null)
+			{
+				var detail = _context.OptionDetails.FirstOrDefault(o => o.Id == id);
+				_context.OptionDetails.Remove(detail);
+				await _context.SaveChangesAsync();
+			}	
+			return Redirect("./Options/Index");
+		}
+
     }
 }

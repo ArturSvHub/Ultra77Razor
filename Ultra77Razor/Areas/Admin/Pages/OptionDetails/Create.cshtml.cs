@@ -24,7 +24,7 @@ namespace Ultra77Razor.Areas.Admin.Pages.OptionDetails
         public async Task<IActionResult> OnGetAsync()
         {
             Detail = new OptionDetail();
-            OptionSelectedList = _context.Categories?.Select(i => new SelectListItem
+            OptionSelectedList = _context.ProductOptions?.Select(i => new SelectListItem
             {
                 Text = i.Name,
                 Value = i.Id.ToString()
@@ -35,7 +35,7 @@ namespace Ultra77Razor.Areas.Admin.Pages.OptionDetails
         {
             await _context.AddAsync(Detail);
             await _context.SaveChangesAsync();
-            return RedirectToPage("Index");
+            return Redirect("/Admin/Options/Index");
         }
     }
 }

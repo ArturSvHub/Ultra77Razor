@@ -1,7 +1,7 @@
 ﻿@page
 @model Ultra77Razor.Areas.Admin.Pages.OptionDetails.CreateModel
 @{
-    var title = "Добавить товар";
+    var title = "Добавить вариант характеристики";
 }
 <form method="post">
     <div class="border p-3">
@@ -27,7 +27,7 @@
                     <div class="col-8">
                         <select asp-for="Detail.ProductOptionId" class="form-select"
                                 asp-items="Model.OptionSelectedList">
-                            <option disabled selected>Выберите категорию</option>
+                            <option disabled selected>Выберите характеристику</option>
                         </select>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                     <div class="col-8 offset-4 row">
 
                         <div class="col">
-                            <input type="submit" onclick="return validateInput()" class="btn btn-primary w-100" value="Создать" />
+                            <input type="submit" class="btn btn-primary w-100" value="Создать" />
                         </div>
                         <div class="col">
                             <a asp-page="Index" class="btn btn-success w-100">
