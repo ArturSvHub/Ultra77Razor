@@ -6,113 +6,126 @@
 
 
 <form method="post" class="cart-wrapper">
-     <input type="hidden" asp-for="@Model.AppUser.Id"/>
-        <div class="cart-header">
-          <a asp-area="" asp-page="/Index" class="head-submit">
+    <input type="hidden" asp-for="@Model.AppUser.Id" />
+    <div class="cart-header">
+        <a asp-area="" asp-page="/Index" class="head-submit">
             <div class="triangle triangle-left"></div>
             <p>На главную</p>
-          </a>
-          <h3>Ваша корзина</h3>
-          <a href='javascript:history.go(-1)' class="head-submit">
-              <p>Вернуться</p>
+        </a>
+        <h3>Ваша корзина</h3>
+        <a href='javascript:history.go(-1)' class="head-submit">
+            <p>Вернуться</p>
             <div class="triangle triangle-right"></div>
-          </a>
-        </div>
+        </a>
+    </div>
     @if (Model.AppUser != null)
     {
         <div>User: @Model.AppUser.FullName</div>
         <div>Email: @Model.AppUser.Email</div>
     }
-    
 
-        <div class="cart-content">
-            @if(Model.ProductList?.Count()>0)
-            {
-                float total = 0.0f;
-                int i;
-        @for (int j=0;j<Model.ProductList.Count;j++)
+
+    <div class="cart-content">
+        @if (Model.ProductList?.Count() > 0)
         {
+            float total = 0.0f;
+            int i;
+            @for (int j = 0; j < Model.ProductList.Count; j++)
+            {
                 i = j;
-                <input type="hidden" asp-for="@Model.ProductList[i].Id"/>
-            <div class="cart-product">
 
-                <div class="product-dictionary">
-                    <p>@Model.ProductList[i].Name</p>
-                </div>
-                <div class="cart-card">
-                    <div class="cart-product-image">
-                        <img src="@Model.ProductList[i].Image!.DataArrayToImageUrl()" alt="">
+                <div class="cart-product">
+
+                    <div class="product-dictionary">
+                        <p>@Model.ProductList[i].Name</p>
                     </div>
-
-                    <div class="number-wrapper">
-                        <div class="number cart-number">
-                            <div class="number-input">
-                                <input asp-for="@Model.ProductList[i].TempCount" id="inputNumber" class="input_quantity" type="number" min="1"/>
+                    <div class="cart-card">
+                        <input type="hidden" asp-for="@Model.ProductList[i].Id" />
+                        @if (@Model.ProductList[i].Image is not null)
+                        {
+                            <div class="cart-product-image">
+                                <img src="@Model.ProductList[i].Image.DataArrayToImageUrl()" alt="">
                             </div>
-                            <div class="number-label">
-                                <p>ШТ.</p>
+                        }
+                        <div class="cart-options-wrapper">
+                        @foreach (var x in Model.ProductOptions[i])
+                                {
+                                <div class="cart-options-line">
+                                    <div class="cart-options-col">@x.Key</div>
+                                    <div class="cart-options-col">@x.Value</div>
                             </div>
-                            <div class="number-buttons">
-                                <button class="number-minus number-change" id="ch1" type="button"
-                                onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepDown(); ">
-                                    <P>+</P>
-                                </button>
-                                <button class="number-plus number-change" id="ch1" type="button"
-                                        onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepDown(); ">
-                                    <p>-</p>
-                                </button>
+                            }
+                        </div>
+                        <div class="number-wrapper">
+                            <div class="number cart-number">
+                                <div class="number-input">
+                                    <input asp-for="@Model.ProductList[i].TempCount" id="inputNumber" class="input_quantity" type="number" min="1" />
+                                </div>
+                                <div class="number-label">
+                                    <p>ШТ.</p>
+                                </div>
+                                <div class="number-buttons">
+                                    <button class="number-minus" type="button"
+                                    onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepUp();">
+                                        <P>+</P>
+                                    </button>
+                                    <button class="number-plus" type="button"
+                                    onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepDown(); ">
+                                        <p>-</p>
+                                    </button>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="price-one" id="priceOne">@String.Format("{0:c}",Model.ProductList[i].RetailPrice)</div>
+                        <div class="price-percount" id="pricePerCount">@String.Format("{0:c}",Model.ProductList[i].RetailPrice*Model.ProductList[i].TempCount)</div>
+                        <button asp-page-handler="Delete" asp-route-id="@Model.ProductList[i].Id" class="submit delete-submit submit-button">Удалить</button>
                     </div>
-                    <div class="price-one" id="priceOne">@String.Format("{0:c}",Model.ProductList[i].RetailPrice)</div>
-                    <div class="price-percount"id="pricePerCount">@String.Format("{0:c}",Model.ProductList[i].RetailPrice*Model.ProductList[i].TempCount)</div>
-                    <a asp-page-handler="Delete" class="delete-submit submit-button">Удалить</a>
+                </div>
+                if (Model.ProductList[i].RetailPrice != null)
+                {
+                    total += (float)Model.ProductList[i].RetailPrice * Model.ProductList[i].TempCount;
+                }
+
+            }
+            <div class="cart-summary">
+                <p>Итого</p>
+                <div class="total">
+                    <div class="price-total">@String.Format("{0:c}",total)</div>
+                    <button asp-page-handler="Update" class="submit">Обновить</button>
+                    <button type="submit" class="submit">Оформить заказ</button>
                 </div>
             </div>
-            if (Model.ProductList[i].RetailPrice != null)
-            {
-                total += (float)Model.ProductList[i].RetailPrice * Model.ProductList[i].TempCount;
-            }
-            
         }
-                <div class="cart-summary">
-                    <p>Итого</p>
-                    <div class="total">
-                        <div class="price-total">@String.Format("{0:c}",total)</div>
-                        <button asp-page-handler="Update" class="submit">Обновить</button>
-                        <button type="submit" class="submit">Оформить заказ</button>
-                    </div>
-                </div>
-           }
         else
         {
             <p>Корзина пуста</p>
         }
-        </div>
-        <div class="cart-footer">
-          <p></p>
-        </div>
-      </form>
-      <script>
-          $(document).ready(function(){
-    $('.input_quantity').on('change keyup', function() {
-        console.log('nice');
-    }); 
+    </div>
+    <div class="cart-footer">
+        <p></p>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        $('.input_quantity').on('change keyup', function () {
+            console.log('nice');
+        });
     });
 
 
-          $("input[type=number]").bind('keyup input', function(){
+    $("input[type=number]").bind('keyup input', function () {
         var currentValue = parseInt(document.getElementsByClassName('input_quantity').value);
-         document.getElementsByClassName('input_quantity').value = currentValue + 1;
-         console.log('++');
-        });
+        document.getElementsByClassName('input_quantity').value = currentValue + 1;
+        console.log('++');
+    });
 
-     let func = function() {
-         var currentValue = parseInt(document.getElementsByClassName('input_quantity').value);
-         document.getElementsByClassName('input_quantity').value = currentValue + 1;
-         console.log('++');
-        }
-      </script>
-      
-       
+    let func = function () {
+        var currentValue = parseInt(document.getElementsByClassName('input_quantity').value);
+        document.getElementsByClassName('input_quantity').value = currentValue + 1;
+        console.log('++');
+    }
+</script>
+
+
 

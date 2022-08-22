@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpakModelsLibrary", "UpakMo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpakUtilitiesLibrary", "UpakUtilitiesLibrary\UpakUtilitiesLibrary.csproj", "{01BDF23E-0297-4CD2-ACA3-C6FE25E59583}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ultra77Blazor", "Ultra77Blazor\Ultra77Blazor.csproj", "{BB5757B0-B124-402C-A640-FD25167E3C4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ultra77Blazor", "Ultra77Blazor\Ultra77Blazor.csproj", "{BB5757B0-B124-402C-A640-FD25167E3C4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

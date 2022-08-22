@@ -2,7 +2,10 @@ using Blazored.SessionStorage;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+
+using System.Collections.Generic;
 
 using UpakDataAccessLibrary.DataContext;
 
@@ -36,7 +39,13 @@ namespace Ultra77Razor.Pages
 		public List<ProductOption?> Options { get; set; }
 		[BindProperty]
 		public Dictionary<string,string> SelectedOptions { get; set; }
-		public async Task<IActionResult> OnGetAsync(int id)
+		[BindProperty]
+		public List<string> Keys { get; set; }
+        [BindProperty]
+        public List<string> Values { get; set; }
+		[BindProperty]
+        public List<List<SelectListItem>> ListItems { get; set; }
+        public async Task<IActionResult> OnGetAsync(int id)
         {
 			SelectedOptions = new();
 			List<ShoppingCart>? shoppingCartsList = new();
@@ -58,26 +67,45 @@ namespace Ultra77Razor.Pages
 				}
 			}
 
+			Keys = new();Values = new();
+
 			var tempProd = await _context.Products.Include(o => o.ProductOptions).ThenInclude(d => d.OptionDetails).FirstOrDefaultAsync(p => p.Id == id);
 			Options = tempProd.ProductOptions;
+            ListItems = new List<List<SelectListItem>>();
+			foreach (var item in Options)
+			{
+				ListItems.Add(new List<SelectListItem>());
+			}
+				for (int i=0;i<Options.Count;i++)
+            {
+                Values.Add("");
+				for(int j = 0; j < Options[i].OptionDetails.Count;j++)
+				{
+					ListItems[i].Add(new SelectListItem { Value = Options[i].OptionDetails[j].Name, Text = Options[i].OptionDetails[j].Name });
+				}
+            }
+
 			
-			
-			
+
             return Page();
 		}
 		public async Task<IActionResult> OnPostAsync(int id)
 		{
-			List<ShoppingCart> shoppingCartsList = new();
+            var tempProd = await _context.Products.Include(o => o.ProductOptions).ThenInclude(d => d.OptionDetails).FirstOrDefaultAsync(p => p.Id == id);
+			SelectedOptions.Clear();
+            for (int i=0;i<tempProd.ProductOptions.Count;i++)
+            {
+				Keys.Add(tempProd.ProductOptions[i].Name);
+				SelectedOptions.Add(Keys[i], Values[i]);
+            }
+            List<ShoppingCart> shoppingCartsList = new();
 			if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart) != null &&
 				HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart).Count() > 0)
 			{
 				shoppingCartsList = HttpContext.Session.Get<List<ShoppingCart>>(WebConstants.SessionCart);
 			}
-			shoppingCartsList.Add(new ShoppingCart { ProductId = id ,TempCount = Product!.TempCount});
-			if(Options is not null||Options.Count>0)
-			{
-				
-			}
+			shoppingCartsList.Add(new ShoppingCart { ProductId = id ,TempCount = Product!.TempCount,ProductOptions=SelectedOptions});
+			
 			HttpContext.Session.Set(WebConstants.SessionCart, shoppingCartsList);
 
             return RedirectToPage("Index");

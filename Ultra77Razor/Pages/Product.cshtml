@@ -36,8 +36,40 @@
         <div class="row">
             @if(Model.Options is not null||Model.Options.Count>0)
             {
-                foreach (var item in Model.Options)
+                for (int i=0;i<Model.Options.Count;i++)
                 {
+@*                    if (Model.Options[i] is not null && Model.Options[i].OptionDetails is not null && Model.Options[i].OptionDetails.Count == 1)
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <label  for="select-product">@Model.Options[i].Name</label>
+                            </div>
+                            <div class="col">
+                                <input asp-for="Values[i]" class="form-control" readonly disabled id="@Model.Options[i].OptionDetails[0].Name" name="@Model.Options[i].OptionDetails[0].Name" value="@Model.Options[i].OptionDetails[0].Name" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="select-product">@Model.Options[i].Name</label>
+                            </div>
+                            <div class="col">
+                                <select asp-for="Values[i]" class="form-select" disabled readonly>
+                                    <option selected value="@Model.Options[i].OptionDetails[0].Name">@Model.Options[i].OptionDetails[0].Name</option>
+                            </select>
+                            </div>
+                        </div>
+                    }*@
+                    if (Model.Options[i] is not null && Model.Options[i].OptionDetails is not null && Model.Options[i].OptionDetails.Count >= 1)
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <label for="select-product">@Model.Options[i].Name</label>
+                            </div>
+                            <div class="col">
+                                <select asp-for="Values[i]" class="form-select" asp-items="@Model.ListItems[i]"></select>
+                            </div>
+                        </div>
+                    }
                     
                 }
             }
