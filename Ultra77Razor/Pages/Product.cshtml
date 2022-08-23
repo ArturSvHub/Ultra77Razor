@@ -3,17 +3,17 @@
 @model Ultra77Razor.Pages.ProductModel
 
  <form method="post" class="product-maincard">
-     <input asp-for="@Model.Product.Id" hidden />
+     <input asp-for="@Model.TheProduct.Id" hidden />
      <div  class="imgcard cardside">
-        <p>@Model.Product.Name</p>
-        <img src="@Model.Product.Image.DataArrayToImageUrl()" alt="">
-        <p>@string.Format("{0:c0}",Model.Product.RetailPrice)</p>
+        <p>@Model.TheProduct.Name</p>
+        <img src="@Model.TheProduct.Image.DataArrayToImageUrl()" alt="">
+        <p>@string.Format("{0:c0}",Model.TheProduct.RetailPrice)</p>
         </div>
       <div class="navcard cardside">
         <div class="number">
           <div class="number-input">
-              <input type="number" min="1" value="1" asp-for="@Model.Product.TempCount"/>
-              <span asp-validation-for="@Model.Product.TempCount" class="text-danger"></span>
+              <input type="number" min="1" value="1" asp-for="@Model.TheProduct.TempCount"/>
+              <span asp-validation-for="@Model.TheProduct.TempCount" class="text-danger"></span>
           </div>
           <div class="number-label">
             <p>ШТ.</p>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="aboutproduct cardside">
-        @Html.Raw(Model.Product.Description)
+        @Html.Raw(Model.TheProduct.Description)
         <br/>
         <div class="row">
             @if(Model.Options is not null||Model.Options.Count>0)

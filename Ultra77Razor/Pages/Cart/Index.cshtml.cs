@@ -23,7 +23,7 @@ namespace Ultra77Razor.Pages.Cart
 		[BindProperty]
 		public UltrapackUser AppUser { get; set; }
 		[BindProperty]
-		public List<Product>? ProductList { get; set; }
+		public List<UpakModelsLibrary.Models.Product>? ProductList { get; set; }
 		[BindProperty]
 		public List<Dictionary<string, string>> ProductOptions { get; set; }
 

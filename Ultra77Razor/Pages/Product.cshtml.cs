@@ -1,23 +1,17 @@
 using Blazored.SessionStorage;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-
-using System.Collections.Generic;
-
 using UpakDataAccessLibrary.DataContext;
-
 using UpakModelsLibrary.Models;
-
 using UpakUtilitiesLibrary;
 using UpakUtilitiesLibrary.Services;
 using UpakUtilitiesLibrary.Utility.Extentions;
 
 namespace Ultra77Razor.Pages
 {
-    public class ProductModel : PageModel
+	public class ProductModel : PageModel
     {
 		private readonly MssqlContext _context;
 		private readonly CartService _cartService;
@@ -32,7 +26,7 @@ namespace Ultra77Razor.Pages
 		}
 
 		[BindProperty]
-		public Product? Product { get; set; }
+		public Product? TheProduct { get; set; }
         [BindProperty]
         public bool ExistsInCart { get; set; } = false;
 		[BindProperty]
@@ -54,8 +48,7 @@ namespace Ultra77Razor.Pages
 			{
 				shoppingCartsList = HttpContext.Session.Get<List<ShoppingCart>>(WebConstants.SessionCart);
 			}
-
-			Product = await _context.Products!.Include(u => u.Category)
+			TheProduct = await _context.Products!.Include(u => u.Category)
 			.FirstOrDefaultAsync(c => c.Id == id);
 				ExistsInCart = false;
 
@@ -104,7 +97,7 @@ namespace Ultra77Razor.Pages
 			{
 				shoppingCartsList = HttpContext.Session.Get<List<ShoppingCart>>(WebConstants.SessionCart);
 			}
-			shoppingCartsList.Add(new ShoppingCart { ProductId = id ,TempCount = Product!.TempCount,ProductOptions=SelectedOptions});
+			shoppingCartsList.Add(new ShoppingCart { ProductId = id ,TempCount = TheProduct!.TempCount,ProductOptions=SelectedOptions});
 			
 			HttpContext.Session.Set(WebConstants.SessionCart, shoppingCartsList);
 
