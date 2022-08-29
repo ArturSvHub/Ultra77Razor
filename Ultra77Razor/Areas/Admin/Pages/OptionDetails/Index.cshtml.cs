@@ -8,9 +8,9 @@ using UpakModelsLibrary.Models;
 
 namespace Ultra77Razor.Areas.Admin.Pages.OptionDetails
 {
-    public class IndexModel : PageModel
-    {
-        private readonly MssqlContext _context;
+	public class IndexModel : PageModel
+	{
+		private readonly MssqlContext _context;
 
 		public IndexModel(MssqlContext context)
 		{
@@ -19,7 +19,7 @@ namespace Ultra77Razor.Areas.Admin.Pages.OptionDetails
 		[BindProperty]
 		public ProductOption Option { get; set; }
 		public async Task<IActionResult> OnGetAsync(int? id)
-        {
+		{
 			if(id!=null)
 			{
 				Option = await _context.ProductOptions.Include(o => o.OptionDetails).FirstOrDefaultAsync(d => d.Id == id);
@@ -29,6 +29,6 @@ namespace Ultra77Razor.Areas.Admin.Pages.OptionDetails
 			{
 				return NotFound();
 			}
-        }
-    }
+		}
+	}
 }
