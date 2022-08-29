@@ -57,7 +57,7 @@ namespace Ultra77Razor.Pages.Cart
 
 			foreach (var item in shoppingCartList)
 			{
-                ProductOptions.Add(item.ProductOptions);
+				ProductOptions.Add(item.ProductOptions);
 				Product prodTemp = prodListTemp.FirstOrDefault(u => u.Id == item.ProductId);
 				prodTemp.TempCount = item.TempCount.GetValueOrDefault();
 				ProductList.Add(prodTemp);
@@ -91,11 +91,11 @@ namespace Ultra77Razor.Pages.Cart
 			}
 			
 			StringBuilder productListSB = new StringBuilder();
-            for (int i = 0; i < ProductList.Count; i++)
-            {
+			for (int i = 0; i < ProductList.Count; i++)
+			{
 				var dict = ProductOptions[i];
 				productListSB.Append($" - {ProductList[i].Name} <span style='font-size:14px;' (ID: {ProductList[i].Id})</span>" +
-                    $"<span style='font-size:14px;'>{ProductList[i].TempCount}</span></br><span style='font-size:14px;'></span></br>");
+					$"<span style='font-size:14px;'>{ProductList[i].TempCount}</span></br><span style='font-size:14px;'></span></br>");
 			}
 			string messageBody = string.Format(HtmlBody,
 
