@@ -33,7 +33,17 @@
                     @foreach (var item in Model.ProductOptions)
                     {
                         <tr>
-                            <td width="30%">@item.Name</td>
+                        <td width="30%">
+                            <div style="font-weight:700;">@item.Name</div>
+                            @if(item.OptionDetails.Count>0)
+                            {
+                                @foreach (var detail in item.OptionDetails)
+                                {
+                                    <div>@detail.Name</div>
+                                }
+                            }
+                            
+                            </td>
                             <td width="20%">
                                @foreach (var prod in item.Products!)
                                {

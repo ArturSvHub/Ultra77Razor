@@ -80,7 +80,7 @@ namespace UpakUtilitiesLibrary.Services
 				foreach (var item in ShoppingCartList)
 				{
 					Product? prodTemp = prodListTemp.FirstOrDefault(u => u.Id == item.ProductId);
-					prodTemp.TempCount = item.TempCount;
+					prodTemp.TempCount = item.TempCount.GetValueOrDefault();
 					ProductList?.Add(prodTemp);
 				}
 			}

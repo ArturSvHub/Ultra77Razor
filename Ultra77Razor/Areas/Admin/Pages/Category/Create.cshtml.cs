@@ -22,7 +22,7 @@ namespace Ultra77Razor.Areas.Admin.Pages.Category
 		{
 
 		}
-		public async Task<IActionResult> OnPost()
+		public async Task<IActionResult> OnPostAsync()
 		{
 			var files = HttpContext.Request.Form.Files;
 			Category.Image = await files[0].ImageToImageDataAsync();
