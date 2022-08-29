@@ -3,55 +3,69 @@
 @using UpakUtilitiesLibrary.Utility.Extentions
 @using Microsoft.AspNetCore.Components
 
-<EditForm method="post" Model="model" class="product-maincard">
+<EditForm Model="@thisShopProduct" method="post" class="product-maincard">
      <div  class="imgcard cardside">
-        <p>@TheProduct.Name</p>
-        <img src="@TheProduct.Image.DataArrayToImageUrl()" alt="">
-        <p>@string.Format("{0:c0}",TheProduct.RetailPrice)</p>
+        <p>@Product.Name</p>
+        <img src="@Product.Image?.DataArrayToImageUrl()" alt="">
+        @if(retailprice!=0)
+        {
+            <p>@retailprice</p>
+        }
         </div>
       <div class="navcard cardside">
         <div class="number">
           <div class="number-input">
-              <InputNumber min="1" @bind-Value="TheProduct.TempCount"/>
-              <span asp-validation-for="@TheProduct.TempCount" class="text-danger"></span>
+
+                    <input type="number" value="@countThisProducts" />
+                
+              <span class="text-danger"></span>
           </div>
           <div class="number-label">
             <p>ШТ.</p>
           </div>
           <div class="number-buttons">
-            <button class="number-minus" type="button"
-              onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepUp();"><P>+</P></button>
-            <button class="number-plus" type="button"
-              onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepDown(); "><p>-</p></button>
+
+                <button @onclick="StepUp" class="number-plus">+</button>
+                <button @onclick="StepDown" class="number-minus">-</button>
           </div>
         </div>
         <div class="nav-buttons">
-            @*<a class="submit nav-button " href="#" ><p>Комплектация</p></a>*@
+            <a class="submit nav-button " href="#" ><p>Комплектация</p></a>
             <button class="submit nav-button" type="submit"><p>Добавить</p></button>
         </div>
       </div>
       <div class="aboutproduct cardside">
-        @TheProduct.Description
+        @Product.Description
+        </div>
         <br/>
         <div class="row">
-            @if(Options is not null||Options.Count>0)
-            {
-                for (int i=0;i<Options.Count;i++)
-                {
-                    if (Options[i] is not null && Options[i].OptionDetails is not null && Options[i].OptionDetails.Count >= 1)
-                    {
+
                         <div class="row">
                             <div class="col">
-                                <label for="select-product">@Options[i].Name</label>
+                                <label for="select-product">Выберите</label>
                             </div>
                             <div class="col">
-                                <InputSelect @bind-Value="Values[i]" class="form-select" asp-items="@ListItems[i]"></InputSelect>
+                                <select id="select-product">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
                             </div>
                         </div>
-                    }
-                    
-                }
-            }
-        </div>
-        </div>
+     </div>
+        
 </EditForm>
+
+@code{
+    private void StepUp()
+    {
+        countThisProducts++;
+    }
+    private void StepDown()
+    {
+        if (countThisProducts++ > 1)
+        {
+            countThisProducts--;
+        }
+    }
+}

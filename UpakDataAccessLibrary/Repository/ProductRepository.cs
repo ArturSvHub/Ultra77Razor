@@ -208,6 +208,54 @@ namespace UpakDataAccessLibrary.Repository
             }
         }
 
+        public Product GetProductWithDetailsById(int id)
+        {
+            try
+            {
+                Product? product = _context.Products!
+                    .Include(o=>o.ProductOptions!)
+                    .ThenInclude(d=>d.OptionDetails)
+                    .FirstOrDefault(p => p.Id == id);
+                if (product != null)
+                {
+                    return product;
+                }
+                else
+                {
+                    throw new ArgumentNullException();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<Product> GetProductWithDetailsByIdAsync(int id)
+        {
+            try
+            {
+                Product? product = await _context.Products!
+                     .Include(o => o.ProductOptions!)
+                    .ThenInclude(d => d.OptionDetails)
+                    .FirstOrDefaultAsync(p => p.Id == id);
+                if (product != null)
+                {
+                    return product;
+                }
+                else
+                {
+                    throw new ArgumentNullException();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public void UpdateProduct(Product product)
         {
             try

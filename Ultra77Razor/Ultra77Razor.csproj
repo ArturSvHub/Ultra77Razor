@@ -29,13 +29,11 @@
     <Content Remove="Areas\Admin\Pages\Options.cshtml" />
     <Content Remove="compilerconfig.json" />
     <Content Remove="Components\NavItem.razor" />
-    <Content Remove="Pages\_Imports.razor" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
     <None Include="Components\NavItem.razor" />
-    <None Include="Pages\_Imports.razor" />
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\js\slider.js" />
     <None Include="wwwroot\scss\auth\auth.scss" />

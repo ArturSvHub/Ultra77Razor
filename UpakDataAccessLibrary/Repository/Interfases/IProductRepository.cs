@@ -20,6 +20,8 @@ namespace UpakDataAccessLibrary.Repository.Interfases
         public Task<Product> GetProductByIdAsync(int id);
         public Product GetProductWithCategoryById(int id);
         public Task<Product> GetProductWithCategoryByIdAsync(int id);
+        public Product GetProductWithDetailsById(int id);
+        public Task<Product> GetProductWithDetailsByIdAsync(int id);
         public void DeleteProduct(int id);
         public Task DeleteProductAsync(int id);
     }

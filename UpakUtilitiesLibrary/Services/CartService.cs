@@ -28,8 +28,8 @@ namespace UpakUtilitiesLibrary.Services
 	{
 		public int CountOfProducts { get; set; }
 		public UltrapackUser AppUser { get; set; } = new();
-        public List<ShoppingCart> ShoppingCartList { get; set; }
-        public List<Product>? ProductList { get; set; }
+		public List<ShoppingCart> ShoppingCartList { get; set; }
+		public List<Product>? ProductList { get; set; }
 		public string ClaimValue { get; private set; }
 		private readonly IWebHostEnvironment _environment;
 		private readonly IEmailSender _emailSender;
@@ -38,19 +38,19 @@ namespace UpakUtilitiesLibrary.Services
 		private readonly ISessionStorageService _sessionStorage;
 		private readonly AuthenticationStateProvider _authenticationStateProvider;
 
-        public CartService(IWebHostEnvironment environment, 
-            IEmailSender emailSender, MssqlContext context, NavigationManager navigationManager,
+		public CartService(IWebHostEnvironment environment, 
+			IEmailSender emailSender, MssqlContext context, NavigationManager navigationManager,
 			ISessionStorageService sessionStorage, AuthenticationStateProvider authenticationStateProvider)
-        {
-            _environment = environment;
-            _emailSender = emailSender;
-            _context = context;
-            _navigationManager = navigationManager;
+		{
+			_environment = environment;
+			_emailSender = emailSender;
+			_context = context;
+			_navigationManager = navigationManager;
 			_sessionStorage = sessionStorage;
 			_authenticationStateProvider = authenticationStateProvider;
-        }
+		}
 		public async Task OnInitializedAsync()
-        {
+		{
 			
 
 			var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
@@ -70,10 +70,10 @@ namespace UpakUtilitiesLibrary.Services
 			
 		}
 		public async Task OnAfterRenderingAsync()
-        {
-            ShoppingCartList =await GetShoppingCartList();
+		{
+			ShoppingCartList =await GetShoppingCartList();
 			if(ShoppingCartList == null && ShoppingCartList.Count > 0)
-            {
+			{
 				List<int?> prodInCart = ShoppingCartList.Select(i => i.ProductId).ToList();
 				List<Product> prodListTemp = await _context.Products!.Where(u => prodInCart.Contains(u.Id)).ToListAsync();
 
@@ -84,10 +84,10 @@ namespace UpakUtilitiesLibrary.Services
 					ProductList?.Add(prodTemp);
 				}
 			}
-            
-        }
-        public async Task OnSubmitAsync()
-        {
+			
+		}
+		public async Task OnSubmitAsync()
+		{
 
 			foreach (var item in ProductList)
 			{
@@ -164,24 +164,24 @@ namespace UpakUtilitiesLibrary.Services
 
 		//----------------------------------------
 		private async Task GetUserClaimValue()
-        {
+		{
 			
 		}
 		
 		private async Task<List<ShoppingCart>> GetShoppingCartList()
-        {
+		{
 			if(ShoppingCartList!=null&&ShoppingCartList.Count>0)
-            {
+			{
 				var varList = await _sessionStorage.GetFromStorage<List<ShoppingCart>>(WebConstants.SessionCart);
 
 				return varList;
-            }
-            else
-            {
+			}
+			else
+			{
 				return new List<ShoppingCart>();
 			}
-            
-        }
+			
+		}
 
 	}
 }
