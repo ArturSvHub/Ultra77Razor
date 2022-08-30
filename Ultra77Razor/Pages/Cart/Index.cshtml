@@ -106,26 +106,6 @@
         <p></p>
     </div>
 </form>
-<script>
-    $(document).ready(function () {
-        $('.input_quantity').on('change keyup', function () {
-            console.log('nice');
-        });
-    });
-
-
-    $("input[type=number]").bind('keyup input', function () {
-        var currentValue = parseInt(document.getElementsByClassName('input_quantity').value);
-        document.getElementsByClassName('input_quantity').value = currentValue + 1;
-        console.log('++');
-    });
-
-    let func = function () {
-        var currentValue = parseInt(document.getElementsByClassName('input_quantity').value);
-        document.getElementsByClassName('input_quantity').value = currentValue + 1;
-        console.log('++');
-    }
-</script>
 
 
 

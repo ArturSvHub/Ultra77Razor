@@ -41,26 +41,26 @@ namespace Ultra77Razor.Pages
         {
             Product = await ProductRepository!.GetProductWithDetailsByIdAsync(Id);
             retailprice = ((decimal?)Product.RetailPrice) ?? 0;
-            countThisProducts = 1;
         }
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if(firstRender)
+            if (firstRender)
             {
-                isConnected=true;
+                isConnected = true;
                 await LoadStateAsync();
+
+                //if(ShoppingCartsList is not null && ShoppingCartsList.Count>0)
+                //{
+                //    thisShopProduct = ShoppingCartsList.FirstOrDefault(s=>s.ProductId==Id);
+                //    countThisProducts = thisShopProduct?.TempCount;
+                //}
+                //else
+                //{
+                //    countThisProducts = 1;
+                //}
                 StateHasChanged();
-                if(ShoppingCartsList is not null && ShoppingCartsList.Count>0)
-                {
-                    thisShopProduct = ShoppingCartsList.FirstOrDefault(s=>s.ProductId==Id);
-                    countThisProducts = thisShopProduct.TempCount;
-                }
-                else
-                {
-                    countThisProducts = 1;
-                }
             }
+            await base.OnAfterRenderAsync(firstRender);
         }
-       
     }
 }

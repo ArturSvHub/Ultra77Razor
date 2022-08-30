@@ -314,6 +314,47 @@ h3 {
   content: "•";
 }
 
+.providers {
+  font-size: 1.5em;
+}
+
+.providers h4 {
+  font-size: 2em;
+  text-align: center;
+}
+
+.providers p::before {
+  content: "";
+  padding-right: 3ch;
+}
+
+.providers ul {
+  text-align: center;
+  padding: 2% 0 0 0;
+  font-weight: bold;
+}
+
+.providers ul li {
+  text-align: start;
+  padding-top: 1%;
+  font-weight: normal;
+}
+
+.providers ul li span {
+  font-weight: bold;
+}
+
+.providers-ul-1 li::before {
+  content: "-";
+  border-radius: 1ch;
+  padding-inline: 1ch;
+}
+
+.providers-after {
+  text-align: center;
+  font-weight: bold;
+}
+
 .footer,
 .footer a {
   text-transform: uppercase;
@@ -890,6 +931,44 @@ h3 {
   }
 }
 @media (max-width: 960px) and (max-width: 767px) {
+  .providers {
+    font-size: 1.5em;
+  }
+
+  .providers h4 {
+    font-size: 1.7em;
+    text-align: center;
+  }
+
+  .providers p::before {
+    content: "";
+    padding-right: 3ch;
+  }
+
+  .providers ul {
+    text-align: center;
+    padding: 3% 0 0 0;
+  }
+
+  .providers ul li {
+    text-align: justify;
+    padding-top: 1%;
+  }
+
+  .providers ul li span {
+    font-weight: bold;
+  }
+
+  .providers-ul-1 li::before {
+    content: "-";
+    border-radius: 1ch;
+    padding-inline: 1ch;
+  }
+
+  .providers-after {
+    text-align: center;
+  }
+
   .footer__links li {
     margin-block: 1%;
   }

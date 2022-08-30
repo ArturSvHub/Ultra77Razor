@@ -25,7 +25,7 @@ namespace Ultra77Razor.Pages.Cart
 		[BindProperty]
 		public List<UpakModelsLibrary.Models.Product>? ProductList { get; set; }
 		[BindProperty]
-		public List<Dictionary<string, string>> ProductOptions { get; set; }
+		public List<Dictionary<string, string>> ProductOptions { get; set; } = new();
 
 		private readonly IWebHostEnvironment _environment;
 		private readonly IEmailSender _emailSender;
@@ -51,9 +51,9 @@ namespace Ultra77Razor.Pages.Cart
 			{
 				shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WebConstants.SessionCart);
 			}
-			List<int?> prodInCart = shoppingCartList.Select(i => i.ProductId).ToList();
-			ProductOptions = new();
-			List<Product> prodListTemp = await _context.Products.Where(u => prodInCart.Contains(u.Id)).ToListAsync();
+
+            List<int?> prodInCart = shoppingCartList.Select(i => i.ProductId).ToList();
+            List<Product> prodListTemp = await _context.Products!.Where(u => prodInCart.Contains(u.Id)).ToListAsync();
 
 			foreach (var item in shoppingCartList)
 			{
@@ -70,17 +70,25 @@ namespace Ultra77Razor.Pages.Cart
 		
 		public async Task<IActionResult> OnPostAsync()
 		{
-			AppUser = await _context.UltrapackUsers.SingleAsync(u => u.UserName == User.Identity.Name);
+			AppUser = await _context.UltrapackUsers!.SingleAsync(u => u.UserName == User.Identity!.Name);
 			var userId = AppUser.Id;
 			List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
-			for (int i=0;i<ProductList.Count;i++)
-			{
-				shoppingCartList.Add(new ShoppingCart { ProductId = ProductList[i].Id, TempCount = ProductList[i].TempCount });
-
-			}
-			HttpContext.Session.Set(WebConstants.SessionCart, shoppingCartList);
-
-			var PathToTemplate = _environment.WebRootPath + Path.DirectorySeparatorChar.ToString() +
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart) != null &&
+                HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart).Count() > 0)
+            {
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WebConstants.SessionCart);
+            }
+            List<int?> prodInCart = shoppingCartList.Select(i => i.ProductId).ToList();
+            List<Product> prodListTemp = await _context.Products!.Where(u => prodInCart.Contains(u.Id)).ToListAsync();
+			ProductList.Clear();
+            foreach (var item in shoppingCartList)
+            {
+                ProductOptions.Add(item.ProductOptions);
+                Product prodTemp = prodListTemp.FirstOrDefault(u => u.Id == item.ProductId);
+                prodTemp.TempCount = item.TempCount.GetValueOrDefault();
+                ProductList.Add(prodTemp);
+            }
+            var PathToTemplate = _environment.WebRootPath + Path.DirectorySeparatorChar.ToString() +
 				"templates" + Path.DirectorySeparatorChar.ToString() +
 				"inquiry.html";
 			var subject = "Новый заказ";
@@ -91,11 +99,20 @@ namespace Ultra77Razor.Pages.Cart
 			}
 			
 			StringBuilder productListSB = new StringBuilder();
+			StringBuilder optionsSB = new StringBuilder();
 			for (int i = 0; i < ProductList.Count; i++)
 			{
-				var dict = ProductOptions[i];
-				productListSB.Append($" - {ProductList[i].Name} <span style='font-size:14px;' (ID: {ProductList[i].Id})</span>" +
-					$"<span style='font-size:14px;'>{ProductList[i].TempCount}</span></br><span style='font-size:14px;'></span></br>");
+				if(shoppingCartList[i] is not null && shoppingCartList[i].ProductOptions is not null)
+				{
+                    foreach (var item in shoppingCartList[i].ProductOptions)
+                    {
+                        optionsSB.Append($"<p>{item.Key} - {item.Value}</p>");
+                    }
+                }
+				
+				productListSB.Append($"<span style='font-size:14px;'>Id - {ProductList[i].Id}; Название - {ProductList[i].Name}; к-во - {ProductList[i].TempCount} шт; </span>" +
+					$"</br><span style='font-size:14px;'>Характеристики - {optionsSB}</span></br></br>");
+				optionsSB.Clear();
 			}
 			string messageBody = string.Format(HtmlBody,
 
@@ -150,9 +167,19 @@ namespace Ultra77Razor.Pages.Cart
 		public IActionResult OnPostUpdateAsync()
 		{
 			List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
-			foreach (var item in ProductList)
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart) != null &&
+                HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstants.SessionCart).Count() > 0)
+            {
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WebConstants.SessionCart);
+            }
+			foreach (var item in shoppingCartList)
 			{
-				shoppingCartList.Add(new ShoppingCart { ProductId = item.Id, TempCount = item.TempCount });
+                ProductOptions.Add(item.ProductOptions);
+            }
+			shoppingCartList.Clear();
+            for (int i=0;i<ProductList.Count;i++)
+			{
+				shoppingCartList.Add(new ShoppingCart { ProductId = ProductList[i].Id, TempCount = ProductList[i].TempCount, ProductOptions = ProductOptions[i] });
 			}
 			HttpContext.Session.Set(WebConstants.SessionCart, shoppingCartList);
 			return RedirectToPage("Index");
