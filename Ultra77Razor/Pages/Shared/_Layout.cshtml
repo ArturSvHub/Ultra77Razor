@@ -10,8 +10,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-     @await Html.PartialAsync("_Links")
-       
+
+    @await Html.PartialAsync("_Favicon");
+    @await Html.PartialAsync("_Links")
 </head>
 <body class="body">
     <div class="wrapper">
@@ -43,7 +44,13 @@
                         </a>
                     </div>
                     <div class="header__info-second">
-                        <div class="header__info-text right">Рабочее время офиса в Москве 10.00 - 19.00.  Доставка по всей России.</div>
+                        <partial name="_LoginPartial" />
+                        @if (User.IsInRole(WebConstants.AdminRole))
+                        {
+                            <a asp-area="Identity" asp-page="/Account/Register">Создать Администратора</a>
+                            <a asp-area="Admin" asp-page="Index">Перейти в админ-панель</a>
+                        }
+                        <div class="header__info-text right">Рабочее время офиса в Москве 10.00 - 19.00. Доставка по всей России.</div>
                         <div class="header__info-number right"><a href="tel:+79299633918">+7(929)9633918</a></div>
                     </div>
                 </div>
@@ -63,33 +70,25 @@
                     <nav class="header__menu">
                         <ul class="header__list">
                             <li>
-                                <a asp-page="Index" class="header__link">Главная</a>
+                                <form method="post"><a asp-area="" asp-page="/Index" class="header__link">Главная</a></form>
                             </li>
                             <li>
-                                <a asp-page="Services" class="header__link">Услуги</a>
-                            </li>
-                            <!--<li>
-                              <a asp-page="Wiki" class="header__link">О продукции</a>
-                            </li>-->
-                            <li>
-                                <a asp-page="Providers" class="header__link">Поставщикам</a>
+                                <form method="post"><a asp-area="" asp-page="/Services" class="header__link">Услуги</a></form>
                             </li>
                             <li>
-                                <a asp-page="About" class="header__link">О компании</a>
+                                <form method="post"><a asp-area="" asp-page="/Providers" class="header__link">Поставщикам</a></form>
                             </li>
                             <li>
-                                <a asp-page="Contacts" class="header__link">Контакты</a>
+                                <form method="post"><a asp-area="" asp-page="/About" class="header__link">О компании</a></form>
+                            </li>
+                            <li>
+                                <form method="post"><a asp-area="" asp-page="/Contacts" class="header__link">Контакты</a></form>
                             </li>
                         </ul>
                     </nav>
                 </div>
             </div>
-           <partial name="_LoginPartial" />
-            @if (User.IsInRole(WebConstants.AdminRole))
-            {
-                <a asp-area="Identity" asp-page="/Account/Register">Создать Администратора</a>
-                <a asp-area="Admin" asp-page="Index">Перейти в админ-панель</a>
-            }
+
         </header>
         <div class="content">
             @RenderBody()
@@ -99,48 +98,24 @@
             <div class="footer__wrapper">
                 <p>Группа компаний Ультра</p>
                 <div class="footer__links">
-                    @*<ul>*@
-                        <a asp-page="Index">Главная</a>
-                        <a asp-page="Services">Услуги</a>
-                        <!--<asp-page="Home" asp-action="Wiki">О продукции</a>-->
-                        <a asp-page="Providers">Поставщикам</a>
-                        <a asp-page="About">О компании</a></>
-                        <a asp-page="Contacts">Контакты</a>
-                    @*</ul>*@
+                    <form method="post"><a asp-area="" asp-page="/Index">Главная</a></form>
+                    <form method="post"><a asp-area="" asp-page="/Services">Услуги</a></form>
+                    <form method="post"><a asp-area="" asp-page="/Providers">Поставщикам</a></form>
+                    <form method="post"><a asp-area="" asp-page="/About">О компании</a></form>
+                    <form method="post"><a asp-area="" asp-page="/Contacts">Контакты</a></form>
                 </div>
-
-                <div class="footer__social">
-
-                    <span>Присоединяйтесь</span>
-
-                    <div class="footer__social-icons">
-                        <div class="footer__social-icon">
-                            <a href=""><img src="~/img/vk.png" alt="vk"></a>
-                        </div>
-                        <div class="footer__social-icon">
-                            <a href=""><img src="~/img/whatsapp.png" alt="what"></a>
-                        </div>
-                        <div class="footer__social-icon">
-                            <a href=""><img src="~/img/telegram.png" alt="tele"></a>
-                        </div>
-                        <div class="footer__social-icon">
-                            <a href=""><img src="~/img/instagram.png" alt="inst"></a>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="footer__logo">
                     <a href="" class="header__logo">
                         <img src="~/img/logo.png" alt="">
                     </a>
                 </div>
                 <div class="footer__copy">
-                    <a href="#"><i>&copy;</i>2022 Sveshnikov Artur </a>
+                    <a href="#"><i>&copy;</i>2022 LLC Ultra Group </a>
                 </div>
-                </div>
+            </div>
         </footer>
     </div>
-        @await RenderSectionAsync("Scripts", required: false)
-        @await Html.PartialAsync("_Scripts")    
+    @await RenderSectionAsync("Scripts", required: false)
+    @await Html.PartialAsync("_Scripts")
 </body>
 </html>

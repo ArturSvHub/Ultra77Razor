@@ -7,8 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Blazored.SessionStorage" Version="2.2.0" />
     <PackageReference Include="MailKit" Version="3.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UpakDataAccessLibrary\UpakDataAccessLibrary.csproj" />
+    <ProjectReference Include="..\UpakModelsLibrary\UpakModelsLibrary.csproj" />
   </ItemGroup>
 
 </Project>

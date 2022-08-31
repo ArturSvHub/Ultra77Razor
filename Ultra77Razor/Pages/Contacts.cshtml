@@ -1,10 +1,10 @@
 ﻿@page
 @model Ultra77Razor.Pages.ContactsModel
 @{
-    ViewData["Title"] = "Contacts";
+    ViewData["Title"] = "Контакты";
 }
-<div class="content__description">
-        <div class="col-md">
+<div class="content__description row">
+        <div class="col-md col-sm-6">
           <ul class="about__ul"><span>Как работают наши менеджеры?</span>
             <li>Вы звоните нам / Отправляете заявку на нашу почту zakaz@upak77.ru</li>
             <li>Менеджер в течении короткого времени связывается с Вами, даёт полную консультацию по выбранному
@@ -15,41 +15,41 @@
             <li>Оповещаем Вас о готовности заказа / Осуществляем Вам доставку</li>
           </ul>
         </div>
-        <div class="col-md">
-          <h4>Так-же вы можете написать нам ниже на форму обратной связи:</h4>
-          <form action="" method="post">
+        <div class="col-md col-sm-6">
+          <h4>Так-же вы можете написать нам ниже, на форме обратной связи:</h4>
+        <form method="post">
             <div class="mb-3">
-              <label for="nameFormControlInput" class="form-label">Как вас зовут?</label>
-              <input type="email" class="form-control" id="nameFormControlInput" name="username"
-                placeholder="Евгений Сергеевич">
+              <label asp-for="EmailModel.FromTitle" class="form-label">Как вас зовут?</label>
+              <input asp-for="EmailModel.FromTitle" type="text" class="form-control"
+                placeholder="Евгений Сергеевич" required min-length="5">
             </div>
             <span class="error"></span>
             <div class="mb-3">
-              <label for="emailControlInput" class="form-label">Ваш Email адрес</label>
-              <input type="email" class="form-control" id="emailControlInput" name="usermail"
-                placeholder="zakaz@upak77.ru">
+              <label for="EmailModel.From" class="form-label">Ваш Email адрес</label>
+              <input asp-for="EmailModel.From" type="email" class="form-control" 
+                placeholder="zakaz@upak77.ru" required>
             </div>
             <span class="error"></span>
             <div class="mb-3">
-              <label for="phoneFormControlInput" class="form-label">Номер вашего телефона</label>
-              <input type="tel" class="form-control" id="phoneFormControlInput" name="usertel"
-                placeholder="+79261112233">
+              <label for="EmailModel.FromPhone" class="form-label">Номер вашего телефона</label>
+                <input asp-for="EmailModel.FromPhone" type="tel" pattern="[\+]\d{11}" class="form-control"
+                placeholder="+79261112233" required>
             </div>
             <span class="error"></span>
             <div class="mb-3">
-              <label for="subjectDataList" class="form-label">Укажите тему письма: </label>
-              <select class="form-select" aria-label="Default select example" name="subject" id="subjectDataList"
+              <label for="EmailModel.Subject" class="form-label">Укажите тему письма: </label>
+              <select asp-for="EmailModel.Subject" class="form-select"
                 placeholder="Заказ?...">
                 <span class="error"></span>
-                <option selected label="Заказ" value="order">Заказ</option>
-                <option label="Есть вопрос" value="question">Есть вопрос</option>
-                <option label="Перезвоните мне" value="callme">Перезвоните мне</option>
-                <option label="Другое..." value="other">Другое...</option>
+                <option selected label="Заказ" value="Заказ">Заказ</option>
+                <option label="Есть вопрос" value="Есть вопрос">Есть вопрос</option>
+                <option label="Перезвоните мне" value="Перезвоните мне">Перезвоните мне</option>
+                <option label="Другое..." value="Другое...">Другое...</option>
               </select>
             </div>
               <div class="mb-3">
-                <label for="areaFormControlTextarea" class="form-label">Опишите ваш вопрос тут</label>
-                <textarea class="form-control" name="textmess" id="areaFormControlTextarea" rows="3"></textarea>
+                <label asp-for="EmailModel.EmailTextBody" class="form-label">Опишите ваш вопрос тут</label>
+                <textarea asp-for="EmailModel.EmailTextBody" class="form-control" rows="3" required min-length="10"></textarea>
               </div>
               <span class="error"></span>
               <label for="send_mess" class="form-label">
@@ -58,8 +58,5 @@
                 </div>
           </form>
         </div>
-        <div class="ymap">
-          <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A92556ad82b8decfc1dea020ae4c776cc4f518a1bfaee5bc2c983017c4405873c&amp;
-                width=1080&amp;height=500&amp;lang=ru_RU&amp;scroll=true"></script>
-        </div>
+    @await Html.PartialAsync("_YandexMap");
       </div>

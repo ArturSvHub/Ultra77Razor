@@ -1,0 +1,73 @@
+﻿@page
+@model Ultra77Razor.Areas.Admin.Pages.Options.IndexModel
+@{
+     ViewData["Title"] = "Характеристики";
+}
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Характеристики товаров</h2>
+        </div>
+        <div class="col-6">
+            <a asp-area="Admin" asp-page="Create" class="btn btn-primary">
+                Добавить
+            </a>
+        </div>
+    </div>
+
+    @if (Model.ProductOptions.Count() > 0)
+    {
+            <h6 style="margin-top:50px">Категории</h6>
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Название характеристики
+                        </th>
+                        <th>
+                            Товары
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ProductOptions)
+                    {
+                        <tr>
+                        <td width="30%">
+                            <div style="font-weight:700;">@item.Name</div>
+                            @if(item.OptionDetails.Count>0)
+                            {
+                                @foreach (var detail in item.OptionDetails)
+                                {
+                                    <div>@detail.Name</div>
+                                }
+                            }
+                            
+                            </td>
+                            <td width="20%">
+                               @foreach (var prod in item.Products!)
+                               {
+                                   <div>@prod.Name</div>
+                               }
+                            </td>
+                            <td class="text-center">
+                                <div class="w-75 btn-group" role="group">
+                                    <a asp-area="Admin" asp-route-Id="@item.Id" asp-page="Edit" class="btn btn-primary">
+                                        Изменить характеристику
+                                    </a>
+                                    <form method="post" asp-page-handler="Delete">
+                                        <button type="submit" class="btn btn-danger">Удалить характеристику</button>
+                                    <input type="hidden" name="id" value="@item.Id"/>
+                                </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    }
+    else
+    {
+        <p>Нет категорий</p>
+    }
+</div>

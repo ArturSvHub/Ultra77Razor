@@ -1,0 +1,59 @@
+﻿@page
+@model Ultra77Razor.Areas.Admin.Pages.OptionDetails.IndexModel
+@{
+    ViewData["Title"] = "Детали";
+}
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Детали</h2>
+        </div>
+        <div class="col-6">
+            <a asp-area="Admin" asp-page="Create" class="btn btn-primary">
+                Добавить
+            </a>
+        </div>
+    </div>
+
+    @if (Model.Option!=null || Model.Option.OptionDetails.Count() > 0)
+    {
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Название детали
+                        </th>
+                        <th>
+                        Название характеристики
+                        </th>
+                    </tr>
+                </thead>
+                <tbody style="margin-top:20px;">
+                    @foreach (var item in Model.Option.OptionDetails)
+                    {
+                        <tr>
+                            <td width="20%">@item.Name</td>
+                        <td width="30%">
+                            @Model.Option.Name
+                            </td>
+                            <td class="text-center">
+                                <div class="w-75 btn-group" role="group">
+                                    <a asp-area="Admin" asp-route-Id="@item.Id" asp-page="Edit" class="btn btn-primary">
+                                        Изменить деталь
+                                    </a>
+                                    <form method="post" asp-page-handler="Delete" asp-route-id="@item.Id">
+                                        <button type="submit" class="btn btn-danger">Удалить деталь</button>
+                                    <input type="hidden" name="id" value="@item.Id"/>
+                                </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    }
+    else
+    {
+        <p>Нет категорий</p>
+    }
+</div>

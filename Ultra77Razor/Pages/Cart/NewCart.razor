@@ -1,0 +1,91 @@
+﻿@page "/newcart"
+@using Microsoft.AspNetCore.Components.Routing
+@using UpakUtilitiesLibrary.Utility.Extentions
+
+<form method="post" class="cart-wrapper">
+        <div class="cart-header">
+          <NavLink href="index" class="head-submit">
+            <div class="triangle triangle-left"></div>
+            <p>На главную</p>
+          </NavLink>
+          <h3>Ваша корзина</h3>
+          <a href='javascript:history.go(-1)' class="head-submit">
+              <p>Вернуться</p>
+            <div class="triangle triangle-right"></div>
+          </a>
+        </div>
+    @if (CartServiceItem.AppUser != null)
+    {
+        <div>User: @CartServiceItem.AppUser.FullName</div>
+        <div>Email: @CartServiceItem.AppUser.Email</div>
+    }
+    
+
+        <div class="cart-content">
+            @if(CartServiceItem.ProductList?.Count()>0)
+            {
+                float total = 0.0f;
+        @for (int i=0;i<CartServiceItem.ProductList.Count;i++)
+        {
+            <input type="hidden" asp-for="ProductList[i].Id"/>
+            <div class="cart-product">
+
+                <div class="product-dictionary">
+                    <p>@CartServiceItem.ProductList[i].Name</p>
+                </div>
+                <div class="cart-card">
+                    <div class="cart-product-image">
+                        <img src="@CartServiceItem.ProductList[i].Image!.DataArrayToImageUrl()" alt="">
+                    </div>
+
+                    <div class="number-wrapper">
+                        <div class="number cart-number">
+                            <div class="number-input">
+                                <input asp-for="@CartServiceItem.ProductList[i].TempCount" id="inputNumber" type="number" min="1"/>
+                            </div>
+                            <div class="number-label">
+                                <p>ШТ.</p>
+                            </div>
+                            <div class="number-buttons">
+                                <button class="number-minus" type="button"
+                                        onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepUp();">
+                                    <P>+</P>
+                                </button>
+                                <button class="number-plus" type="button"
+                                        onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepDown(); ">
+                                    <p>-</p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="price-one" id="priceOne">@String.Format("{0:c}",CartServiceItem.ProductList[i].RetailPrice)</div>
+                    <div class="price-percount"id="pricePerCount">@String.Format("{0:c}",CartServiceItem.ProductList[i].RetailPrice*CartServiceItem.ProductList[i].TempCount)</div>
+                    <a asp-page-handler="Delete" class="delete-submit submit-button">Удалить</a>
+                </div>
+            </div>
+            @if (CartServiceItem.ProductList[i].RetailPrice != null)
+            {
+                total += (float)CartServiceItem.ProductList[i].RetailPrice * CartServiceItem.ProductList[i].TempCount;
+            }
+            
+        }
+                <div class="cart-summary">
+                    <p>Итого</p>
+                    <div class="total">
+                        <div class="price-total">@String.Format("{0:c}",total)</div>
+                        <button type="submit" class="submit" onclick="@CartServiceItem.OnSubmitAsync()">Оформить заказ</button>
+                    </div>
+                </div>
+           }
+        else
+        {
+            <p>Корзина пуста</p>
+        }
+        </div>
+        <div class="cart-footer">
+          <p></p>
+        </div>
+      </form>
+      
+       
+

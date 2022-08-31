@@ -5,8 +5,14 @@ namespace Ultra77Razor.Pages
 {
     public class AboutModel : PageModel
     {
-        public void OnGet()
+        [BindProperty]
+        public List<int> imgCounts { get; set; } = new();
+		public void OnGet()
         {
+            for(int i = 0; i < 12; i++)
+			{
+                imgCounts.Add(i+1);
+			}
         }
     }
 }

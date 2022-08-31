@@ -1,0 +1,69 @@
+﻿@page
+@using Ultra77Razor.Components
+@using UpakModelsLibrary.Models
+@model Ultra77Razor.Areas.Admin.Pages.Options.CreateModel
+@{
+
+}
+<form method="post" enctype="multipart/form-data">
+    <div class="border p-3">
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="ProductOption.Name">Название</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="ProductOption.Name" class="form-control" />
+                        <span asp-validation-for="ProductOption.Name" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="ProductOption.Description">Описание</label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="ProductOption.Description" class="form-control summernote"></textarea>
+                        <span asp-validation-for="ProductOption.Description" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-8 offset-4 row">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-8">
+                    @for (int i = 0; i < Model.Products.Count; i++)
+                    {
+                        <input type="hidden" asp-for="Products[i].Id" />
+                        <label asp-for="Products[i].IsChecked">@Model.Products[i].Name</label>
+                        <input asp-for="Products[i].IsChecked" vvalue="@Model.Products[i].IsChecked"/>
+
+                    }
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-8 offset-4 row">
+
+                    <div class="col">
+                        <input type="submit" class="btn btn-primary w-100" value="Создать" />
+                    </div>
+                    <div class="col">
+                        <a asp-page="Index" class="btn btn-success w-100">
+                            Назад
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    }

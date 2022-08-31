@@ -26,12 +26,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Areas\Admin\Pages\Options.cshtml" />
+    <Content Remove="compilerconfig.json" />
+    <Content Remove="Components\NavItem.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="Components\NavItem.razor" />
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\js\slider.js" />
+    <None Include="wwwroot\scss\auth\auth.scss" />
+    <None Include="wwwroot\scss\card\card.scss" />
+    <None Include="wwwroot\scss\form\formstyles.scss" />
+    <None Include="wwwroot\scss\slider-style.scss" />
+    <None Include="wwwroot\scss\style-mobile.scss" />
+    <None Include="wwwroot\scss\style.scss" />
+    <None Include="wwwroot\scss\tabs\tabs.scss" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
   </ItemGroup>
@@ -49,5 +68,23 @@
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Admin\Pages\Options.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Admin\Pages\Options.cshtml" />
+    <_ContentIncludedByDefault Remove="Components\NavItem.razor" />
+    <_ContentIncludedByDefault Remove="Pages\_Imports.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\_Imports.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\NavItem.razor" />
+  </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿@page
 @model Ultra77Razor.Areas.Admin.Pages.Category.IndexModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Категории";
 }
 
 <div class="container p-3">
@@ -39,10 +39,10 @@
                             <td class="text-center">
                                 <div class="w-75 btn-group" role="group">
                                     <a asp-area="Admin" asp-route-Id="@item.Id" asp-page="Edit" class="btn btn-primary">
-                                        Изменить категорию
+                                        Изменить Характеристику
                                     </a>
                                     <a asp-area="Admin"asp-route-Id="@item.Id" asp-page="Delete" class="btn btn-danger">
-                                        Удалить категорию
+                                        Удалить Характеристику
                                     </a>
                                 </div>
                             </td>

@@ -1,79 +1,111 @@
 ﻿@page
 @using UpakUtilitiesLibrary.Utility.Extentions
+@using System.ComponentModel
+@using Ultra77Razor.Components
 @model Ultra77Razor.Pages.Cart.IndexModel
-@if(Model.ProductList?.Count()>0)
+
+
+<form method="post" class="cart-wrapper">
+    <input type="hidden" asp-for="@Model.AppUser.Id" />
+    <div class="cart-header">
+        <a asp-area="" asp-page="/Index" class="head-submit">
+            <div class="triangle triangle-left"></div>
+            <p>На главную</p>
+        </a>
+        <h3>Ваша корзина</h3>
+        <a href='javascript:history.go(-1)' class="head-submit">
+            <p>Вернуться</p>
+            <div class="triangle triangle-right"></div>
+        </a>
+    </div>
+    @if (Model.AppUser != null)
     {
-    <form method="post">
-    <br />
-    <div class="backgroundWhiteBorder">
-        <div class="container row">
-            <div class="col -8">
-                <div class="card mt-4">
-                    <div class="card-header bg-dark text-light ml-0 row container">
-                        <div class="col-6">
-                            <i class="fa fa-shopping-cart"></i> &nbsp;
-                            Shopping Cart
-                        </div>
-                        <div class="col-6 text-right">
-                            <a asp-area="Home" asp-page="Index" class="btn btn-outline-info btn-sm">Продолжить</a>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class=" d-none d-lg-block">
-                            <div class="row" style="color:#821f3d">
-                                <div class="col-lg-2">
-                                </div>
-                                <div class="col-12 col-lg-7">
-                                    Product Details
-                                </div>
-                                <div class="col-12 col-lg-2">
-                                    Price per sqft
-                                </div>
-                                <div class="col-6 col-sm-4 col-lg-1">
-                                </div>
-                            </div>
-                        </div>
+        <div>User: @Model.AppUser.FullName</div>
+        <div>Email: @Model.AppUser.Email</div>
+    }
 
-                        <hr />
-                        @foreach(var obj in Model.ProductList)
+
+    <div class="cart-content">
+        @if (Model.ProductList?.Count() > 0)
+        {
+            float total = 0.0f;
+            int i;
+            @for (int j = 0; j < Model.ProductList.Count; j++)
+            {
+                i = j;
+
+                <div class="cart-product">
+
+                    <div class="product-dictionary">
+                        <p>@Model.ProductList[i].Name</p>
+                    </div>
+                    <div class="cart-card">
+                        <input type="hidden" asp-for="@Model.ProductList[i].Id" />
+                        @if (@Model.ProductList[i].Image is not null)
                         {
-                        <div class="row h-100">
-                            <div class="col-4 col-md-2 text-center py-2">
-                                <img src="@obj.Image?.DataArrayToImageUrl()" class="rounded" width="100%" />
+                            <div class="cart-product-image">
+                                <img src="@Model.ProductList[i].Image.DataArrayToImageUrl()" alt="">
                             </div>
-                            <div class="col-8 col-lg-7">
-                                <h5>@obj.Name</h5>
-                                <div style="font-size:11px;">@obj.ShortDesc</div>
-                            </div>
-                            <div class="col-3 col-lg-2 pt-lg-4" style="font-size:11px;">
-                                <span style="font-size:17px;"> @obj.RetailPrice руб.</span> шт.
-
-                            </div>
-                            <div class="col-2 col-lg-1 p-0 pt-lg-4 text-center">
-                                <button type="submit" asp-page-handler="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger">
-                                    Удалить
-                                </button>
-                            </div>
-                        </div>
-                        <hr />
                         }
-                    </div>
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col-6 col-md-3 offset-md-9">
-                                <button type="submit" class="btn btn-success">
-                                    <span>Далее</span>
-                                </button>
+                        <div class="cart-options-wrapper">
+                        @foreach (var x in Model.ProductOptions[i])
+                                {
+                                <div class="cart-options-line">
+                                    <div class="cart-options-col">@x.Key</div>
+                                    <div class="cart-options-col">@x.Value</div>
+                            </div>
+                            }
+                        </div>
+                        <div class="number-wrapper">
+                            <div class="number cart-number">
+                                <div class="number-input">
+                                    <input asp-for="@Model.ProductList[i].TempCount" id="inputNumber" class="input_quantity" type="number" min="1" />
+                                </div>
+                                <div class="number-label">
+                                    <p>ШТ.</p>
+                                </div>
+                                <div class="number-buttons">
+                                    <button class="number-minus" type="button"
+                                    onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepUp();">
+                                        <P>+</P>
+                                    </button>
+                                    <button class="number-plus" type="button"
+                                    onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepDown(); ">
+                                        <p>-</p>
+                                    </button>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="price-one" id="priceOne">@String.Format("{0:c}",Model.ProductList[i].RetailPrice)</div>
+                        <div class="price-percount" id="pricePerCount">@String.Format("{0:c}",Model.ProductList[i].RetailPrice*Model.ProductList[i].TempCount)</div>
+                        <button asp-page-handler="Delete" asp-route-id="@Model.ProductList[i].Id" class="submit delete-submit submit-button">Удалить</button>
                     </div>
                 </div>
+                if (Model.ProductList[i].RetailPrice != null)
+                {
+                    total += (float)Model.ProductList[i].RetailPrice * Model.ProductList[i].TempCount;
+                }
+
+            }
+            <div class="cart-summary">
+                <p>Итого</p>
+                <div class="total">
+                    <div class="price-total">@String.Format("{0:c}",total)</div>
+                    <button asp-page-handler="Update" class="submit">Обновить</button>
+                    <button type="submit" class="submit">Оформить заказ</button>
+                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <p>Корзина пуста</p>
+        }
+    </div>
+    <div class="cart-footer">
+        <p></p>
     </div>
 </form>
-}
-else
-{
-    <p>Корзина пуста</p>
-}
+
+
+

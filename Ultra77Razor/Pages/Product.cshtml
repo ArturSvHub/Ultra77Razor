@@ -1,57 +1,78 @@
-﻿@page
+﻿@page "{id}"
 @using UpakUtilitiesLibrary.Utility.Extentions
 @model Ultra77Razor.Pages.ProductModel
-<div class="">
-    <form method="post" >
-      <input asp-for="@Model.Product.Id" hidden />
-        <div class="container backgroundWhite pt-4"  >
-            <div class="card" style="border:1px solid #000000; ">
-                <div class="card-header bg-dark text-light ml-0 row container" style="border-radius: 0px;">
-                    <div class="col-12 col-md-6">
-                        <h1 class="text-white">@Model.Product.Name</h1>
-                    </div>
-                    <div class="col-12 col-md-6 text-md-right">
-                        <h1 class="text-warning" >@string.Format("{0:c0}",Model.Product.RetailPrice) - шт</h1>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="container rounded p-2">
-                        <div class="row">
-                            <div class="col-12 col-lg-4 p-1 text-center">
-                                <img src="@Model.Product.Image.DataArrayToImageUrl()" class="rounded" />
-                            </div>
-                            <div class="col-12 col-lg-8">
-                                <div class="row pl-3">
 
-                                    <div class="col-12">
-                                        <span class="p-3 border" style="background-color:lavenderblush">@Model.Product.Category.Name</span>
-                                        <h3 class="text-success"></h3>
-
-                                        <p class="text-secondary">@Html.Raw(Model.Product.Description)</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer bg-dark">
-                    <div class="row">
-                        <div class="col-12 col-md-6 pb-1 ">
-                            <a asp-action="Index" class="btn btn-success btn-square btn-lg" style="height:50px;">Вернуться</a>
-                        </div>
-                        <div class="col-12 col-md-6 ">
-                           @if(Model.ExistsInCart)
-                           {
-                               <a asp-action="RemoveFromCart" asp-route-id="@Model.Product.Id" class="btn btn-success btn-square btn-lg" style="height:50px;">Удалить из корзины</a>
-                           }else
-                           {
-                            <button type="submit" asp-route-id="@Model.Product.Id" class="btn btn-info btn-lg" style="height:50px;">Добавить в корзину</button>
-                           }
-                        </div>
-                    </div>
-                </div>
-            </div>
+ <form method="post" class="product-maincard">
+     <input asp-for="@Model.TheProduct.Id" hidden />
+     <div  class="imgcard cardside">
+        <p>@Model.TheProduct.Name</p>
+        <img src="@Model.TheProduct.Image.DataArrayToImageUrl()" alt="">
+        <p>@string.Format("{0:c0}",Model.TheProduct.RetailPrice)</p>
         </div>
-    </form>
-</div>
+      <div class="navcard cardside">
+        <div class="number">
+          <div class="number-input">
+              <input type="number" min="1" value="1" asp-for="@Model.TheProduct.TempCount"/>
+              <span asp-validation-for="@Model.TheProduct.TempCount" class="text-danger"></span>
+          </div>
+          <div class="number-label">
+            <p>ШТ.</p>
+          </div>
+          <div class="number-buttons">
+            <button class="number-minus" type="button"
+              onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepUp();"><P>+</P></button>
+            <button class="number-plus" type="button"
+              onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepDown(); "><p>-</p></button>
+          </div>
+        </div>
+        <div class="nav-buttons">
+            @*<a class="submit nav-button " href="#" ><p>Комплектация</p></a>*@
+            <button class="submit nav-button" type="submit"><p>Добавить</p></button>
+        </div>
+      </div>
+      <div class="aboutproduct cardside">
+        @Html.Raw(Model.TheProduct.Description)
+        <br/>
+        <div class="row">
+            @if(Model.Options is not null||Model.Options.Count>0)
+            {
+                for (int i=0;i<Model.Options.Count;i++)
+                {
+@*                    if (Model.Options[i] is not null && Model.Options[i].OptionDetails is not null && Model.Options[i].OptionDetails.Count == 1)
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <label  for="select-product">@Model.Options[i].Name</label>
+                            </div>
+                            <div class="col">
+                                <input asp-for="Values[i]" class="form-control" readonly disabled id="@Model.Options[i].OptionDetails[0].Name" name="@Model.Options[i].OptionDetails[0].Name" value="@Model.Options[i].OptionDetails[0].Name" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="select-product">@Model.Options[i].Name</label>
+                            </div>
+                            <div class="col">
+                                <select asp-for="Values[i]" class="form-select" disabled readonly>
+                                    <option selected value="@Model.Options[i].OptionDetails[0].Name">@Model.Options[i].OptionDetails[0].Name</option>
+                            </select>
+                            </div>
+                        </div>
+                    }*@
+                    if (Model.Options[i] is not null && Model.Options[i].OptionDetails is not null && Model.Options[i].OptionDetails.Count >= 1)
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <label for="select-product">@Model.Options[i].Name</label>
+                            </div>
+                            <div class="col">
+                                <select asp-for="Values[i]" class="form-select" asp-items="@Model.ListItems[i]"></select>
+                            </div>
+                        </div>
+                    }
+                    
+                }
+            }
+        </div>
+        
+</form>
