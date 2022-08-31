@@ -88,11 +88,11 @@
         <div class="auth-main">
             <h3>Заполните данные для входа в личный кабинет</h3>
 
-            <div class="auth-line">
+            <div class="auth-line form-group">
                 <div> <label asp-for="Input.Email" class="form-label"></label></div>
                 <div> <input asp-for="Input.Email" class="form-control auth-input" autocomplete="username" aria-required="true" /></div>
             </div>
-            <div class="auth-line">
+            <div class="auth-line form-group">
                 <div> <label asp-for="Input.Password" class="form-label">Пароль</label></div>
                 <div> <input asp-for="Input.Password" class="form-control auth-input" autocomplete="current-password" aria-required="true" /></div>
             </div>
@@ -100,7 +100,6 @@
 
                 <label asp-for="Input.RememberMe" class="form-label">
 
-                    @*@Html.DisplayNameFor(m => m.Input.RememberMe)*@
                 </label>
                 <input class="form-check-input" asp-for="Input.RememberMe" />
             </div>

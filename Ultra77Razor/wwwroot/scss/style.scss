@@ -91,10 +91,12 @@ header {
 
 .header__info-first,
 .header__info-second {
+    height:100%;
     padding-bottom: 20px;
     margin-right: 20px;
     flex-direction: column;
     display: flex;
+    justify-content:space-between;
     z-index: 3;
 }
 
@@ -129,33 +131,32 @@ header {
 
 
 .header__info-text {
-    margin-top: 15%;
-    text-align: center;
-    display: block;
+    padding: 0;
+    margin: 0;
     font-size: 20px;
-    flex-grow: 1;
+    justify-self:end;
 }
 
 .header__info-number {
     font-size: 38px;
     display: block;
-    justify-self: end;
+    justify-self:end;
+
 }
 
-.header__info-number p {
+.header__info-text p {
     margin: 0;
 }
 
 .left {
-    text-align: end;
-    align-self: flex-end;
-    justify-self: end;
+    text-align:end;
 }
 
 .right {
-    text-align: start;
-    align-self: flex-start;
+}
+.login-partial {
     justify-self: start;
+    align-self: end;
 }
 
 .header__body {
@@ -174,7 +175,7 @@ header {
 
 .header__menu {
     font-size: 1em;
-    font-weight: 180%;
+    font-weight: bold;
     padding: 0;
     width: 100%;
     height: 100%;
@@ -223,7 +224,10 @@ header {
     color: black;
     border-bottom: 5pt solid $acent-color;
 }
-
+.header__link,
+.footer__link{
+    white-space:nowrap;
+}
 .slider__text {
     display: none;
 }
@@ -449,7 +453,7 @@ h3 {
 }
 
 .footer__links-elements-item ul {
-    padding: 0 auto;
+    padding: 0;
 }
 
 .footer__form {

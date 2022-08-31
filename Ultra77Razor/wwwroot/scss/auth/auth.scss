@@ -1,15 +1,16 @@
-.auth-wrapper{
-    display:flex;
-    flex-direction:column;
-    text-align:center;
-    width:50%;
+.auth-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 70%;
 }
+
 .auth-header {
     display: flex;
     flex-direction: column;
     text-align: center;
-    
 }
+
 .auth-main {
     font-size: xx-large;
     display: flex;
@@ -20,44 +21,38 @@
         align-self: center;
     }
 }
+
 .auth-line {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-top:15px;
+    margin-top: 15px;
+
     div {
-        width:50%;
-    }
+        width: 80%;
 
-    &:first-child {
-        width: 30%;
-        justify-self: start;
-    }
-
-    &:last-child {
-        input{
-            margin-right:20%;
+        input {
+            width: 100%;
+            margin: 0;
+            padding: 2% 0 2% 0;
+            text-align: center;
         }
-
     }
-    &:hover{
-
-    }
-
 }
 
 .auth-line-checkbox {
-    width:100%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     margin-top: 25px;
-    align-self:center;
-    justify-content:center;
-    label{
+    align-self: center;
+    justify-content: center;
+
+    label {
         padding: 0 5%;
     }
-    
 }
+
 .hr-shelf {
     margin: 30px auto 30px;
     padding: 0;
@@ -67,10 +62,12 @@
     box-shadow: 0 20px 20px -20px #333;
     width: 100%;
 }
+
 .auth-footer {
     display: flex;
     flex-direction: column;
 }
+
 .auth-footer-links {
     display: flex;
     flex-direction: column;
@@ -80,16 +77,60 @@
         font-size: xx-large;
         margin: 20px auto -10px auto;
     }
-    p:hover{
-        color:hotpink;
+
+    p:hover {
+        color: hotpink;
     }
 }
-.auth-input{
-    width:100%;
-    height:100%;
-    font-size:0.8em;
+
+.auth-input {
+    width: 100%;
+    height: 100%;
+    font-size: 0.8em;
 }
-.auth-button{
-    width:45%;
-    align-self:center;
+
+.auth-button {
+    width: 45%;
+    align-self: center;
+}
+
+@media (max-width: 960px) {
+    .auth-wrapper {
+        width: 90%;
+    }
+
+    .auth-line {
+        height: 100%;
+
+        div {
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .auth-wrapper {
+        width: 100%;
+    }
+
+    .auth-line {
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+
+        div {
+            width: 100%;
+        }
+
+        .auth-input {
+            width: 100%;
+            font-size: 1em;
+            margin: 0;
+        }
+    }
+}
+
+@media (max-width: 600px) {
 }

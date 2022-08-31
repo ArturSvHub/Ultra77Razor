@@ -40,46 +40,56 @@
                         <p>@Model.ProductList[i].Name</p>
                     </div>
                     <div class="cart-card">
-                        <input type="hidden" asp-for="@Model.ProductList[i].Id" />
-                        @if (@Model.ProductList[i].Image is not null)
-                        {
-                            <div class="cart-product-image">
-                                <img src="@Model.ProductList[i].Image.DataArrayToImageUrl()" alt="">
-                            </div>
-                        }
-                        <div class="cart-options-wrapper">
-                        @foreach (var x in Model.ProductOptions[i])
-                                {
-                                <div class="cart-options-line">
-                                    <div class="cart-options-col">@x.Key</div>
-                                    <div class="cart-options-col">@x.Value</div>
-                            </div>
+                        <div class="cart-card-header">
+                            <input type="hidden" asp-for="@Model.ProductList[i].Id" />
+                            @if (@Model.ProductList[i].Image is not null)
+                            {
+                                <a asp-area="" asp-route-id="@Model.ProductList[i].Id" asp-page="/Product" class="cart-product-image">
+                                    <img src="@Model.ProductList[i].Image.DataArrayToImageUrl()" alt="">
+                                </a>
                             }
-                        </div>
-                        <div class="number-wrapper">
-                            <div class="number cart-number">
-                                <div class="number-input">
-                                    <input asp-for="@Model.ProductList[i].TempCount" id="inputNumber" class="input_quantity" type="number" min="1" />
-                                </div>
-                                <div class="number-label">
-                                    <p>ШТ.</p>
-                                </div>
-                                <div class="number-buttons">
-                                    <button class="number-minus" type="button"
-                                    onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepUp();">
-                                        <P>+</P>
-                                    </button>
-                                    <button class="number-plus" type="button"
-                                    onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepDown(); ">
-                                        <p>-</p>
-                                    </button>
-                                </div>
+                            <div class="cart-card-options">
+                                @foreach (var x in Model.ProductOptions[i])
+                                {
+                                    <div class="cart-options-line">
+                                        <div class="cart-options-col">@x.Key</div>
+                                        <div class="cart-options-col">@x.Value</div>
+                                    </div>
+                                }
                             </div>
+                            <div class="number-wrapper">
+                                <div class="number cart-number">
+                                    <div class="number-input">
+                                        <input asp-for="@Model.ProductList[i].TempCount" id="inputNumber" class="input_quantity" type="number" min="1" />
+                                    </div>
+                                    <div class="number-label">
+                                        <p>ШТ.</p>
+                                    </div>
+                                    <div class="number-buttons">
+                                        <button class="number-minus" type="button"
+                                        onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepUp();">
+                                            <P>+</P>
+                                        </button>
+                                        <button class="number-plus" type="button"
+                                        onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepDown(); ">
+                                            <p>-</p>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="price-one" id="priceOne">@String.Format("{0:c}",Model.ProductList[i].RetailPrice)</div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="cart-card-about">
+                           
+                           
+
+                            
+                            @*<div class="price-percount" id="pricePerCount">@String.Format("{0:c}",Model.ProductList[i].RetailPrice*Model.ProductList[i].TempCount)</div>*@
+                            <button asp-page-handler="Delete" asp-route-id="@Model.ProductList[i].Id" class="submit delete-submit submit-button">Удалить</button>
                         </div>
 
-                        <div class="price-one" id="priceOne">@String.Format("{0:c}",Model.ProductList[i].RetailPrice)</div>
-                        <div class="price-percount" id="pricePerCount">@String.Format("{0:c}",Model.ProductList[i].RetailPrice*Model.ProductList[i].TempCount)</div>
-                        <button asp-page-handler="Delete" asp-route-id="@Model.ProductList[i].Id" class="submit delete-submit submit-button">Удалить</button>
                     </div>
                 </div>
                 if (Model.ProductList[i].RetailPrice != null)
@@ -89,9 +99,9 @@
 
             }
             <div class="cart-summary">
-                <p>Итого</p>
+                
                 <div class="total">
-                    <div class="price-total">@String.Format("{0:c}",total)</div>
+                    <div class="price-total"><p>Итого</p> @String.Format("{0:c}",total)</div>
                     <button asp-page-handler="Update" class="submit">Обновить</button>
                     <button type="submit" class="submit">Оформить заказ</button>
                 </div>

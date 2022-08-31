@@ -33,10 +33,10 @@
                         {
                             <a asp-page="Cart/Index" class="nav-link"><i class="fas fa-shopping-cart"></i>&nbsp;(0)</a>
                         }
-                        <div class="header__info-text left">
-                            <p>Рабочее время офиса в Екатеринбурге 9.00 - 18.00 по местному времени.</p>
+                        <div class="header__info-content">
+                            <div class="header__info-text left">Рабочее время офиса в Екатеринбурге 9.00 - 18.00 по местному времени.</div>
+                            <div class="header__info-number left"><a href="tel:+79222081799">+7(922)2081799</a></div>
                         </div>
-                        <div class="header__info-number left"><a href="tel:+79222081799">+7(922)2081799</a></div>
                     </div>
                     <div class="header__info-logo">
                         <a asp-area="" asp-page="./Index" class="header__logo">
@@ -44,14 +44,18 @@
                         </a>
                     </div>
                     <div class="header__info-second">
-                        <partial name="_LoginPartial" />
-                        @if (User.IsInRole(WebConstants.AdminRole))
-                        {
-                            <a asp-area="Identity" asp-page="/Account/Register">Создать Администратора</a>
-                            <a asp-area="Admin" asp-page="Index">Перейти в админ-панель</a>
-                        }
-                        <div class="header__info-text right">Рабочее время офиса в Москве 10.00 - 19.00. Доставка по всей России.</div>
-                        <div class="header__info-number right"><a href="tel:+79299633918">+7(929)9633918</a></div>
+                        <div class="login-partial right">
+                            <partial name="_LoginPartial" />
+                            @if (User.IsInRole(WebConstants.AdminRole))
+                            {
+                                <a asp-area="Identity" asp-page="/Account/Register">Создать Администратора</a>
+                                <a asp-area="Admin" asp-page="Index">Перейти в админ-панель</a>
+                            }
+                        </div>
+                        <div class="header__info-content">
+                            <div class="header__info-text right">Рабочее время офиса в Москве 10.00 - 19.00. Доставка по всей России.</div>
+                            <div class="header__info-number right"><a href="tel:+79299633918">+7(929)9633918</a></div>
+                        </div>
                     </div>
                 </div>
                 <div class="header__body">

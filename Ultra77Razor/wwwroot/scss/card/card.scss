@@ -2,7 +2,13 @@ $main-color: #b3b3b3;
 $acent-color: #ce2874;
 $second-color: #5593dd;
 
-
+.content form {
+    font-size: 1.5em;
+    text-align:justify;
+}
+.aboutproduct div {
+    margin-top: 1%;
+}
 .imgcard {
     font-size: xx-large;
     hyphens: none;
@@ -28,6 +34,7 @@ $second-color: #5593dd;
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-block:5%;
 }
 
 
@@ -169,8 +176,8 @@ input::-webkit-inner-spin-button {
     align-self: center;
     justify-self: center;
     flex-grow: 3;
-    min-width: none;
     max-width: 100%;
+    margin-right:5%;
 }
 .product-dictionary 
 {
@@ -184,5 +191,42 @@ input::-webkit-inner-spin-button {
         font-size:x-large;
         text-align: end;
     }
+}
+.cart-options-line{
+    display:flex;
+    white-space:nowrap;
+    div{
+        margin-left:5%;
+    }
+}
+@media (max-width: 960px) {
+    .content form {
+        width: 100%;
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 767px) {
+}
+
+@media (max-width: 600px) {
+    .navcard {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .nav-buttons {
+        margin-top:10%;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .content form{
+        width:100%;
+        font-size:1.5em;
+    }
+    
 }
 

@@ -171,7 +171,7 @@ namespace Ultra77Razor.Areas.Identity.Pages.Account
                         }
                         else
 						{
-                            return RedirectToAction("Index");
+                            return RedirectToAction("/Index");
 						}
                         return LocalRedirect(returnUrl);
                     }

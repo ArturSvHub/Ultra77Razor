@@ -40,16 +40,28 @@ $main-color: #b3b3b3;
 }
 
 .cart-card {
-    width: auto;
     display: flex;
+    flex-direction:column;
     justify-content: space-between;
     align-items: center;
 }
+.cart-card-header {
+    width: 100%;
+    display: flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.cart-card-about {
+    width: 100%;
+    display: flex;
+    align-items:center;
+    flex-wrap:wrap;
+}
 
 .cart-product-image {
-    min-width: 100px;
-    min-height: 100px;
-    width: 250px;
+    min-width: 25%;
+    min-height: 25%;
 
     img {
         width: 100%;
@@ -58,8 +70,7 @@ $main-color: #b3b3b3;
 }
 
 .price-one {
-    justify-self: stretch;
-    flex-grow: 1;
+    justify-self: end;
     font-size: x-large;
 }
 
@@ -123,13 +134,13 @@ $main-color: #b3b3b3;
 }
 
 .head-submit {
-    padding:0;
-    width:20%;
     display:flex;
+    align-items:center;
     color: $acent-color;
     font-size: xx-large;
-
+    white-space:nowrap;
     p {
+        padding-top: 15%;
         font-weight: bold;
     }
 }
@@ -139,9 +150,13 @@ $main-color: #b3b3b3;
     color: $second-color;
 }
 .triangle {
-    color:$second-color;
+    color: $second-color;
     width: 0;
     height: 0;
+
+    &:hover {
+        color: $acent-color;
+    }
 }
 
 .triangle-left {
@@ -156,6 +171,11 @@ $main-color: #b3b3b3;
     border-top: 10px solid transparent;
     border-left: 20px solid #D0D4DC;
     border-bottom: 10px solid transparent;
+}
+.number-wrapper{
+    display:flex;
+    justify-content:end;
+    margin-left:5%;
 }
 
 @media (max-width: 1200px) {
@@ -215,5 +235,48 @@ $main-color: #b3b3b3;
 
     .submit {
         font-size: large;
+    }
+}
+@media (max-width: 960px) 
+{
+    .cart-header {
+        flex-direction:row;
+        h3 {
+            padding-top:4%;
+            font-size: 1.5em;
+        }
+    }
+    .cart-card-header{
+        flex-direction:column;
+        align-items:center;
+    }
+    .cart-card-about{
+        justify-content:center;
+        
+    }
+    .number-wrapper,
+    .cart-card-options,
+    .cart-card-about {
+        margin-block: 5%;
+    }
+}
+@media (max-width: 767px)
+{
+
+} 
+@media (max-width: 600px)
+{
+    .cart-header {
+        flex-direction: column;
+        align-items:center;
+        h3 {
+            font-size: 1.5em;
+        }
+    }
+    .cart-product-image{
+        width:100%;
+    }
+    .cart-card {
+        flex-direction: column;
     }
 }
