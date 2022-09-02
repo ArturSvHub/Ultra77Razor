@@ -28,12 +28,10 @@
   <ItemGroup>
     <Content Remove="Areas\Admin\Pages\Options.cshtml" />
     <Content Remove="compilerconfig.json" />
-    <Content Remove="Components\NavItem.razor" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
-    <None Include="Components\NavItem.razor" />
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\js\slider.js" />
     <None Include="wwwroot\scss\auth\auth.scss" />
@@ -75,16 +73,6 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Areas\Admin\Pages\Options.cshtml" />
-    <_ContentIncludedByDefault Remove="Components\NavItem.razor" />
-    <_ContentIncludedByDefault Remove="Pages\_Imports.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\_Imports.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Components\NavItem.razor" />
   </ItemGroup>
 
 </Project>

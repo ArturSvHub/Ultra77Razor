@@ -1,14 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-using UpakUtilitiesLibrary.Utility.EmailServices;
+
 using UpakDataAccessLibrary.DataContext;
-using UpakModelsLibrary.Models;
-using UpakUtilitiesLibrary.Services;
-using Blazored.SessionStorage;
-using System.Text.Json;
-using UpakDataAccessLibrary.Repository.Interfases;
 using UpakDataAccessLibrary.Repository;
+using UpakDataAccessLibrary.Repository.Interfases;
+
+using UpakUtilitiesLibrary.Utility.EmailServices;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("UpakGkultra2Connextion") ?? throw new InvalidOperationException("Connection string 'MssqlContextConnection' not found.");
@@ -29,11 +27,9 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
 builder.Services.AddOptions();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
-builder.Services.AddScoped<CartService>();
 builder.Services.AddScoped<IProductRepository,ProductRepository>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddBlazoredSessionStorage();
 builder.Services.AddSession(opts =>
 {
 	opts.IdleTimeout = TimeSpan.FromMinutes(10);
@@ -41,7 +37,6 @@ builder.Services.AddSession(opts =>
 	opts.Cookie.IsEssential = true;
 });
 builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
@@ -57,6 +52,4 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
 app.MapRazorPages();
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
 app.Run();

@@ -3,15 +3,10 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-
 using System.Text;
-
 using UpakDataAccessLibrary.DataContext;
-
 using UpakModelsLibrary.Models;
-
 using UpakUtilitiesLibrary;
-using UpakUtilitiesLibrary.Services;
 using UpakUtilitiesLibrary.Utility.Extentions;
 
 namespace Ultra77Razor.Pages.Cart
@@ -33,8 +28,7 @@ namespace Ultra77Razor.Pages.Cart
 
 		public IndexModel(IWebHostEnvironment environment,
 							IEmailSender emailSender,
-							MssqlContext context,
-							CartService cartService)
+							MssqlContext context)
 		{
 			_environment = environment;
 			_emailSender = emailSender;

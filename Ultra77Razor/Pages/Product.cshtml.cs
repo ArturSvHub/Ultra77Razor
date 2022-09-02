@@ -1,12 +1,15 @@
 using Blazored.SessionStorage;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+
 using UpakDataAccessLibrary.DataContext;
+
 using UpakModelsLibrary.Models;
+
 using UpakUtilitiesLibrary;
-using UpakUtilitiesLibrary.Services;
 using UpakUtilitiesLibrary.Utility.Extentions;
 
 namespace Ultra77Razor.Pages
@@ -14,15 +17,10 @@ namespace Ultra77Razor.Pages
 	public class ProductModel : PageModel
 	{
 		private readonly MssqlContext _context;
-		private readonly CartService _cartService;
-		private readonly ISessionStorageService _sessionStorage;
 
-		public ProductModel(MssqlContext context,CartService cartService,
-			ISessionStorageService sessionStorage)
+		public ProductModel(MssqlContext context)
 		{
 			_context = context;
-			_cartService = cartService;
-			_sessionStorage = sessionStorage;
 		}
 
 		[BindProperty]
