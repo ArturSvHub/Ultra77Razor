@@ -1,14 +1,19 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
+using System.Data;
+
 using UpakDataAccessLibrary.DataContext;
 
 using UpakModelsLibrary.Models;
+using UpakUtilitiesLibrary;
 
 namespace Ultra77Razor.Areas.Admin.Pages.OptionDetails
 {
-	public class IndexModel : PageModel
+    [Authorize(Roles = WebConstants.AdminRole)]
+    public class IndexModel : PageModel
 	{
 		private readonly MssqlContext _context;
 

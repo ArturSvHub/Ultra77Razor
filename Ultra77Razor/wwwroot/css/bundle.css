@@ -1006,6 +1006,16 @@ h3 {
   }
 }
 @media (max-width: 960px) and (max-width: 600px) {
+  p, ol, li {
+    font-size: 1em;
+  }
+
+  .content__description,
+.content__description-list,
+.about__ul li {
+    font-size: 1em;
+  }
+
   .header__info {
     align-items: center;
   }

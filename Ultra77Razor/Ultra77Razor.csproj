@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <TypeScriptTarget>ES6</TypeScriptTarget>
@@ -14,6 +14,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ErrorReport>none</ErrorReport>
     <TypeScriptJSXEmit>none</TypeScriptJSXEmit>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -24,7 +25,10 @@
     <NoWarn>1701;1702;TS1381;TS1005</NoWarn>
     <Optimize>True</Optimize>
   </PropertyGroup>
-
+	<PropertyGroup>
+		<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+	</PropertyGroup>
+	
   <ItemGroup>
     <Content Remove="Areas\Admin\Pages\Options.cshtml" />
     <Content Remove="compilerconfig.json" />
@@ -57,12 +61,6 @@
     <ProjectReference Include="..\UpakDataAccessLibrary\UpakDataAccessLibrary.csproj" />
     <ProjectReference Include="..\UpakModelsLibrary\UpakModelsLibrary.csproj" />
     <ProjectReference Include="..\UpakUtilitiesLibrary\UpakUtilitiesLibrary.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\img\admin\flags\" />
-    <Folder Include="wwwroot\img\category\" />
-    <Folder Include="wwwroot\img\product\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

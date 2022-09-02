@@ -4,9 +4,13 @@ using UpakModelsLibrary.Models;
 
 using UpakDataAccessLibrary.DataContext;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using UpakUtilitiesLibrary;
 
 namespace Ultra77Razor.Areas.Admin.Pages.Category
 {
+    [Authorize(Roles = WebConstants.AdminRole)]
     public class IndexModel : PageModel
     {
 		private readonly MssqlContext _context;

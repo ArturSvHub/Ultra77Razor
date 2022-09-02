@@ -1,13 +1,18 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
+using System.Data;
+
 using UpakDataAccessLibrary.DataContext;
 
 using UpakModelsLibrary.Models;
+using UpakUtilitiesLibrary;
 
 namespace Ultra77Razor.Areas.Admin.Pages.OptionDetails
 {
+    [Authorize(Roles = WebConstants.AdminRole)]
     public class CreateModel : PageModel
     {
         private readonly MssqlContext _context;

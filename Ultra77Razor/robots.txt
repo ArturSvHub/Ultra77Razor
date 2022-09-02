@@ -1,0 +1,9 @@
+
+User-agent: Yandex
+Allow:/
+Disallow:/Admin
+Disallow:/admin
+Disallow:/
+Disallow:/img
+Disallow:/Identity
+Disallow:/identity

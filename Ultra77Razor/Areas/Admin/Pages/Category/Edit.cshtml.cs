@@ -1,13 +1,18 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
+using System.Data;
+
 using UpakDataAccessLibrary.DataContext;
 
+using UpakUtilitiesLibrary;
 using UpakUtilitiesLibrary.Utility.Extentions;
 
 namespace Ultra77Razor.Areas.Admin.Pages.Category
 {
+    [Authorize(Roles = WebConstants.AdminRole)]
     public class EditModel : PageModel
     {
         private readonly MssqlContext _context;

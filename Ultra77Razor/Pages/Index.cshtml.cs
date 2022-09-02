@@ -26,7 +26,7 @@ namespace Ultra77Razor.Pages
 
 		public async Task<IActionResult> OnGetAsync()
 		{
-			ProductList =await _contect.Products.ToListAsync();
+            ProductList =await _contect.Products.ToListAsync();
 			CategoryList =await _contect.Categories.ToListAsync();
 			return Page();
 		}
