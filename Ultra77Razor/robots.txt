@@ -1,6 +1,10 @@
 
 User-agent: Yandex
 Allow:/
+Allow:/services
+Allow:/providers
+Allow:/about
+Allow:/contacts
 Disallow:/Admin
 Disallow:/admin
 Disallow:/
