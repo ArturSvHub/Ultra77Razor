@@ -38,6 +38,8 @@ namespace UpakModelsLibrary.Models
 		[NotMapped]
 		public bool IsChecked { get; set; }
 		public List<ProductOption>? ProductOptions { get; set; } = new();
-
+		public int? PageId { get; set; }
+		[ForeignKey("PageId")]
+		public Page? Page { get; set; }
 	}
 }

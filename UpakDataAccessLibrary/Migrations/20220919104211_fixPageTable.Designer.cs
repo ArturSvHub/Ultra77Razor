@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UpakDataAccessLibrary.DataContext;
 
@@ -11,9 +12,10 @@ using UpakDataAccessLibrary.DataContext;
 namespace UpakDataAccessLibrary.Migrations
 {
     [DbContext(typeof(MssqlContext))]
-    partial class MssqlContextModelSnapshot : ModelSnapshot
+    [Migration("20220919104211_fixPageTable")]
+    partial class fixPageTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

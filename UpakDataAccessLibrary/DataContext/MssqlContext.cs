@@ -23,5 +23,6 @@ namespace UpakDataAccessLibrary.DataContext
 		public DbSet<OrderDetails>? OrderDetails { get; set; }
 		public DbSet<ProductOption>? ProductOptions { get; set; }
 		public DbSet<OptionDetail>? OptionDetails { get; set; }
+		public DbSet<Page>? Pages { get; set; }
 	}
 }

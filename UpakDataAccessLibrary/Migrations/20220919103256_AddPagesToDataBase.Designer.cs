@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UpakDataAccessLibrary.DataContext;
 
@@ -11,9 +12,10 @@ using UpakDataAccessLibrary.DataContext;
 namespace UpakDataAccessLibrary.Migrations
 {
     [DbContext(typeof(MssqlContext))]
-    partial class MssqlContextModelSnapshot : ModelSnapshot
+    [Migration("20220919103256_AddPagesToDataBase")]
+    partial class AddPagesToDataBase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -408,6 +410,9 @@ namespace UpakDataAccessLibrary.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProdictId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
@@ -416,7 +421,9 @@ namespace UpakDataAccessLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId")
+                        .IsUnique()
+                        .HasFilter("[ProductId] IS NOT NULL");
 
                     b.ToTable("Pages");
                 });
@@ -610,8 +617,8 @@ namespace UpakDataAccessLibrary.Migrations
             modelBuilder.Entity("UpakModelsLibrary.Models.Page", b =>
                 {
                     b.HasOne("UpakModelsLibrary.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
+                        .WithOne()
+                        .HasForeignKey("UpakModelsLibrary.Models.Page", "ProductId");
 
                     b.Navigation("Product");
                 });

@@ -5,7 +5,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 using MimeKit;
 
+using System.Text.Json;
+
 using UpakModelsLibrary.Models.DTOModels;
+using UpakModelsLibrary.Models.SEO;
 
 namespace Ultra77Razor.Pages
 {
@@ -16,6 +19,14 @@ namespace Ultra77Razor.Pages
         public EmailModel? EmailModel { get; set; }
 		public void OnGet()
         {
+            string? file = System.IO.File.ReadAllText(System.IO.Path.Combine(Environment.CurrentDirectory, "MainPages.json"));
+            List<MainPage> meta = JsonSerializer.Deserialize<List<MainPage>>(file);
+            if (meta != null)
+            {
+                ViewData["Title"] = meta[4].Title;
+                ViewData["Description"] = meta[4].Description;
+                ViewData["Keywords"] = meta[4].KeyWords;
+            }
         }
         public void OnPost()
 		{
