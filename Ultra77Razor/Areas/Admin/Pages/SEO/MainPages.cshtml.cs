@@ -21,18 +21,18 @@ namespace Ultra77Razor.Areas.Admin.Pages.SEO
     {
         [BindProperty]
         public List<MainPage> MainPages { get; set; }
-        public string NameMainPagesFile { get; set; }
+        public string NameMainPagesFile { get; set; } = "MainPages.json";
         private readonly MssqlContext context;
 
         public MainPagesModel(MssqlContext context)
         {
             this.context = context;
         }
-        public async Task OnGetAsync()
+        public async Task<ActionResult> OnGetAsync()
         {
             var options = new JsonSerializerOptions
             {
-                Encoder=JavaScriptEncoder.Create(UnicodeRanges.BasicLatin,UnicodeRanges.Cyrillic),
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
                 WriteIndented = true
             };
             NameMainPagesFile = "MainPages.json";
@@ -75,21 +75,42 @@ namespace Ultra77Razor.Areas.Admin.Pages.SEO
                         KeyWords=""
                     }
                 };
-                System.IO.File.Create(NameMainPagesFile).Close();
-                string json = JsonSerializer.Serialize(MainPages,options);
-                System.IO.File.WriteAllTextAsync(NameMainPagesFile, json, Encoding.UTF8);
+                WriteJsonToFile(MainPages, NameMainPagesFile, options);
             }
             else
             {
-                using FileStream stream = System.IO.File.OpenRead(NameMainPagesFile);
-                MainPages = await JsonSerializer.DeserializeAsync<List<MainPage>>(stream);
-                await stream.DisposeAsync();
+                MainPages = await ReadJsonFromFile(NameMainPagesFile);
             }
-
+            return Page();
         }
-        public async Task OnPostAsync()
+        public async Task<IActionResult> OnPost()
+        {
+            var options = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
+                WriteIndented = true
+            };
+            await WriteJsonToFile(MainPages, NameMainPagesFile, options);
+            return Page();
+        }
+        public async Task OnPostDeleteAsync([FromForm] int id)
         {
 
+        }
+        private async Task<List<MainPage>> ReadJsonFromFile(string path)
+        {
+            using FileStream stream = System.IO.File.OpenRead(NameMainPagesFile);
+            return await JsonSerializer.DeserializeAsync<List<MainPage>>(stream);
+            await stream.DisposeAsync();
+        }
+        private async Task WriteJsonToFile(List<MainPage> body, string path, JsonSerializerOptions? options = null)
+        {
+                if (!System.IO.File.Exists(path))
+                {
+                    System.IO.File.Create(path).Close();
+                }
+                string json = JsonSerializer.Serialize(body, options);
+                await System.IO.File.WriteAllTextAsync(path, json, Encoding.UTF8);
         }
     }
 }

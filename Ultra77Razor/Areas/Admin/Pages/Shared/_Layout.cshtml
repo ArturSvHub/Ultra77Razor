@@ -38,7 +38,7 @@
                         <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
                     </div>
                     <div class="nk-sidebar-brand">
-                        <a asp-area="" asp-page="./Index" class="logo-link nk-sidebar-logo">
+                        <a href="https://upak77.ru" class="logo-link nk-sidebar-logo">
                             <img class="logo-light logo-img" src="~/img/admin/logo.png" srcset="~/img/admin/logo2x.png 2x" alt="logo">
                             <img class="logo-dark logo-img" src="~/img/admin/logo-dark.png" srcset="~/img/admin/logo-dark2x.png 2x" alt="logo-dark">
                         </a>
@@ -234,23 +234,7 @@
             </div><!-- .modal-content -->
         </div><!-- .modla-dialog -->
     </div><!-- .modal -->
-    <!-- JavaScript -->@*
-    <script src="~/js/bundle.js?ver=2.9.0"></script>
-    <script src="~/js/scripts.js?ver=2.9.0"></script>
-    <script src="~/js/vendors/nioapp/nioapp.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=dc7cefd4-24aa-428f-9f98-475058bcbf26&lang=ru_RU&load=Geolink"
-    type="text/javascript"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/tabs.js" asp-append-version="true"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-     <script src="~/js/summernote-ru-RU.js"></script>
-     <script src="https://kit.fontawesome.com/a0128a8feb.js" crossorigin="anonymous"></script>*@
+
     @await RenderSectionAsync("Scripts", required: false)
         @await Html.PartialAsync("_Scripts")
         @await Html.PartialAsync("_AdminScripts")

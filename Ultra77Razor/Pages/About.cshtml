@@ -1,20 +1,6 @@
 ﻿@page
-@using System.Text.Json
-@using UpakModelsLibrary.Models.SEO
 @model Ultra77Razor.Pages.AboutModel
-@{
-    var file = System.IO.File.ReadAllText(System.IO.Path.Combine(Environment.CurrentDirectory, "MainPages.json"));
-    List<MainPage> meta = JsonSerializer.Deserialize<List<MainPage>>(file);
-    if(meta!=null)
-    {
-        ViewData["Title"] = meta[3].Title;
-        ViewData["Description"] = meta[3].Description;
-        ViewData["Keywords"] = meta[3].KeyWords;
-    }
-    //ViewData["Title"] = "О Компании";
-    //ViewData["Description"] = "Упаковочные материалы оптом в России";
-    //ViewData["Keywords"] = "упаковка, упаковочные, упаковочная, упак, пак, коробка, коробки, картон, гофрокартон, скотч, стрейч,стретч,скотч, лента,пленка,плёнка, перчатки, краги,ПЭ,ПП, upak, пупырчатая, пупырка, перчатки, перчатка, малярный, двухсторонний скотч, аллюминевый скотч,мешки, мешок, шульц,гкультра, ультра, ультрапак";
-}
+
 
 <div class="content__description about">
     <div class="about__first">

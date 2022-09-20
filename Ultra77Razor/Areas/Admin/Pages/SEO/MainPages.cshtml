@@ -5,7 +5,7 @@
     ViewData["Title"] = "Категории";
 }
 
-<div class="container p-3">
+<form class="container p-3" method="post">
     <div class="row pt-4">
         <div class="col-6">
             <h2 class="text-primary">Категории товаров</h2>
@@ -14,15 +14,20 @@
             <a asp-area="Admin" asp-page="Create" class="btn btn-primary">
                 Добавить
             </a>
+            <button type="submit" class="btn btn-success">Сохранить</button>
         </div>
     </div>
 
     @if (Model.MainPages.Count() > 0)
     {
+
         <h6 style="margin-top:50px">Категории</h6>
         <table class="table table-bordered table-striped" style="width:100%">
             <thead>
                 <tr>
+                    <th>
+                        Id
+                    </th>
                     <th>
                         Title
                     </th>
@@ -35,22 +40,15 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.MainPages)
+                @*@foreach (var item in Model.MainPages)*@
+                @for(int i=0;i<Model.MainPages.Count;i++)
                 {
+                    
                     <tr>
-                        <td width="30%">@item.Title</td>
-                        <td width="20%">@item.Description</td>
-                                <td width="20%">@item.KeyWords</td>
-                        <td class="text-center">
-                            <div class="w-75 btn-group" role="group">
-                                <a asp-area="Admin" asp-route-Id="@item.Id" asp-page="Edit" class="btn btn-primary">
-                                    Изменить Характеристику
-                                </a>
-                                <a asp-area="Admin" asp-route-Id="@item.Id" asp-page="Delete" class="btn btn-danger">
-                                    Удалить Характеристику
-                                </a>
-                            </div>
-                        </td>
+                        <td width="1%"><input type="hidden" asp-for="MainPages[i].Id" />@Model.MainPages[i].Id</td>
+                        <td width="15%"><input type="text" asp-for="MainPages[i].Title" value="@Model.MainPages[i].Title" /></td>
+                        <td width="25%"><textarea style="width:100%;" wrap="soft" asp-for="MainPages[i].Description" rows="5">@Model.MainPages[i].Description</textarea></td>
+                        <td width="50%"><textarea style="width:100%;" wrap="soft" asp-for="MainPages[i].KeyWords" rows="5">@Model.MainPages[i].KeyWords</textarea></td>
                     </tr>
                 }
             </tbody>
@@ -60,4 +58,4 @@
     {
         <p>Нет категорий</p>
     }
-</div>
+</form>
