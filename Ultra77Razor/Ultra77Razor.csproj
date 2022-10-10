@@ -27,6 +27,7 @@
   </PropertyGroup>
 	<PropertyGroup>
 		<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+		<UserSecretsId>80a728b1-4645-4546-91b6-1a2e45539207</UserSecretsId>
 	</PropertyGroup>
 	
   <ItemGroup>
