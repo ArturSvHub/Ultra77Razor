@@ -210,7 +210,7 @@ header {
 .header__link:hover {
   background-color: #fff;
   color: black;
-  border-bottom: 5pt solid #ce2874;
+  border-bottom: 5pt solid #df097f;
 }
 
 .header__link,
@@ -1627,21 +1627,21 @@ input::-webkit-inner-spin-button {
 
 .submit {
   padding: 1% 5%;
-  background-color: #ce2874;
+  background-color: #df097f;
   color: #fff;
-  font-size: xx-large;
+  font-size: x-large;
   border: solid #aaa 1px;
 }
 
 .submit:hover {
   background-color: #fff;
-  color: #5593dd;
+  color: #00a0e3;
 }
 
 .head-submit {
   display: flex;
   align-items: center;
-  color: #ce2874;
+  color: #df097f;
   font-size: xx-large;
   white-space: nowrap;
 }
@@ -1651,16 +1651,16 @@ input::-webkit-inner-spin-button {
 }
 
 .head-submit:hover {
-  color: #5593dd;
+  color: #00a0e3;
 }
 
 .triangle {
-  color: #5593dd;
+  color: #00a0e3;
   width: 0;
   height: 0;
 }
 .triangle:hover {
-  color: #ce2874;
+  color: #df097f;
 }
 
 .triangle-left {
@@ -1866,6 +1866,7 @@ input::-webkit-inner-spin-button {
 
 .auth-button {
   width: 45%;
+  min-width: 230px;
   align-self: center;
 }
 
