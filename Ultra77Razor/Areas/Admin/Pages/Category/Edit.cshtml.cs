@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 using System.Data;
+using System.Xml.Linq;
 
 using UpakDataAccessLibrary.DataContext;
 
@@ -16,14 +17,18 @@ namespace Ultra77Razor.Areas.Admin.Pages.Category
     public class EditModel : PageModel
     {
         private readonly MssqlContext _context;
+		private readonly IWebHostEnvironment _env;
 
-		public EditModel(MssqlContext context)
+		public EditModel(MssqlContext context, IWebHostEnvironment env)
 		{
 			_context = context;
+			_env = env;
 		}
 		[BindProperty]
 		public UpakModelsLibrary.Models.Category Category { get; set; }
-		public async Task<IActionResult> OnGetAsync(int? id)
+        [BindProperty]
+        public List<FileInfo>? Files { get; set; }
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
 			if(id==null||id==0)
 			{
@@ -32,7 +37,9 @@ namespace Ultra77Razor.Areas.Admin.Pages.Category
 			else
 			{
 				Category = await _context.Categories.FindAsync(id);
-				if(Category==null)
+                var dirPath = Path.Combine(_env.WebRootPath, "img", "categories", Category.Name);
+				Files = new DirectoryInfo(dirPath).GetFiles().ToList();
+                if (Category==null)
 				{
 					return NotFound();
 				}
@@ -43,14 +50,23 @@ namespace Ultra77Razor.Areas.Admin.Pages.Category
         public async Task<IActionResult> OnPostAsync()
 		{
 			var files = HttpContext.Request.Form.Files;
-			if (files.Count > 0)
+            var dirPath = Path.Combine(_env.WebRootPath, "img", "categories", Category.Name);
+			var currentDirectory = new DirectoryInfo(dirPath);
+			
+            var objFromDb = await _context.Categories.AsNoTracking().FirstOrDefaultAsync(
+                    x => x.Id == Category.Id);
+
+			var oldDirPath = Path.Combine(_env.WebRootPath, "img", "categories", objFromDb.Name);
+            var oldDirectory = new DirectoryInfo(oldDirPath);
+
+            if (currentDirectory.Name!=oldDirectory.Name||!currentDirectory.Exists)
 			{
-				Category.Image = await files[0].ImageToImageDataAsync();
+				//Category.Image = await files[0].ImageToImageDataAsync();
+				oldDirectory.MoveTo(dirPath);
 			}
 			else
 			{
-				var objFromDb = await _context.Categories.AsNoTracking().FirstOrDefaultAsync(
-					x=> x.Id == Category.Id);
+				
 				Category.Image = objFromDb.Image;
 			}
 			_context.Categories.Update(Category);
@@ -58,5 +74,13 @@ namespace Ultra77Razor.Areas.Admin.Pages.Category
 			return RedirectToPage("Index");
 
 		}
+		public async Task<IActionResult> OnPostDeleteAsync(string imageName)
+		{
+            if (System.IO.File.Exists(Path.Combine(_env.WebRootPath, "img","categories",Category.Name, imageName)))
+			{
+                System.IO.File.Delete(Path.Combine(_env.WebRootPath, "img", "categories", Category.Name, imageName));
+            }
+            return RedirectToPage("Edit", new {id=Category.Id});
+        }
     }
 }

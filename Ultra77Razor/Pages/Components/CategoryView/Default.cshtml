@@ -1,0 +1,9 @@
+﻿@using Ultra77Razor.Pages.Components.CategoryView
+@model CategoryViewModel;
+
+<div class="catalog__card card">
+    <a asp-action="Details" asp-route-id=@Model.Category.Id>
+        <img src="~/img/categories/@Model.Category.Name/@Model.Files.FirstOrDefault().Name" alt="">
+        <span>@Model.Category.Name</span>
+    </a>
+</div>

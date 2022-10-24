@@ -16,16 +16,20 @@ namespace Ultra77Razor.Pages
 	{
 		private readonly ILogger<IndexModel> _logger;
 		private readonly MssqlContext _contect;
+		private readonly IWebHostEnvironment _env;
 
-		public IndexModel(ILogger<IndexModel> logger, MssqlContext contect)
+		public IndexModel(ILogger<IndexModel> logger, MssqlContext contect,IWebHostEnvironment env)
 		{
 			_logger = logger;
 			_contect = contect;
+			_env = env;
 		}
 		[BindProperty]
 		public List<Product> ProductList { get; set; }
 		[BindProperty]
 		public List<Category> CategoryList { get; set; }
+		[BindProperty]
+		public string BasePath { get; set; }
 
 		public async Task<IActionResult> OnGetAsync()
 		{
@@ -39,6 +43,7 @@ namespace Ultra77Razor.Pages
             }
             ProductList =await _contect.Products.ToListAsync();
 			CategoryList =await _contect.Categories.ToListAsync();
+			BasePath = Path.Combine(_env.WebRootPath,"img", "categories");
 			return Page();
 		}
 	}

@@ -136,15 +136,7 @@
                             </div><!-- .nk-header-brand -->
                             <div class="nk-header-news d-none d-xl-block">
                                 <div class="nk-news-list">
-                                    <a class="nk-news-item" href="#">
-                                        <div class="nk-news-icon">
-                                            <em class="icon ni ni-card-view"></em>
-                                        </div>
-                                        <div class="nk-news-text">
-                                            <p>Do you know the latest update of 2021? <span> A overview of our is now available on YouTube</span></p>
-                                            <em class="icon ni ni-external"></em>
-                                        </div>
-                                    </a>
+                                    
                                 </div>
                             </div><!-- .nk-header-news -->
                             <div class="nk-header-tools">
@@ -171,32 +163,6 @@
                 <div class="nk-footer">
                     <div class="container-fluid">
                         <div class="nk-footer-wrap">
-                            <div class="nk-footer-copyright"> &copy; 2022 DashLite. Template by <a href="https://softnio.com" target="_blank">Softnio</a>
-                            </div>
-                            <div class="nk-footer-links">
-                                <ul class="nav nav-sm">
-                                    <li class="nav-item dropup">
-                                        <a herf="#" class="dropdown-toggle dropdown-indicator has-indicator nav-link" data-toggle="dropdown" data-offset="0,10"><span>English</span></a>
-                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                            <ul class="language-list">
-                                                <li>
-                                                    <a href="#" class="language-item">
-                                                        <span class="language-name">Русский</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="language-item">
-                                                        <span class="language-name">English</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" data-toggle="modal" data-target="#region" class="nav-link"><em class="icon ni ni-globe"></em><span class="ml-1">Select Region</span></a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -208,32 +174,7 @@
     </div>
     <!-- app-root e -->
     <!-- select region modal -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="region">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <a href="#" class="close" data-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
-                <div class="modal-body modal-body-md">
-                    <h5 class="title mb-4">Select Your Country</h5>
-                    <div class="nk-country-region">
-                        <ul class="country-list text-center gy-2">
-                            <li>
-                                <a href="#" class="country-item">
-                                    <img src="~/img/admin/flags/arg.png" alt="" class="country-flag">
-                                    <span class="country-name">Argentina</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="country-item">
-                                    <img src="~/img/admin/flags/aus.png" alt="" class="country-flag">
-                                    <span class="country-name">Australia</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div><!-- .modal-content -->
-        </div><!-- .modla-dialog -->
-    </div><!-- .modal -->
+    
 
     @await RenderSectionAsync("Scripts", required: false)
         @await Html.PartialAsync("_Scripts")

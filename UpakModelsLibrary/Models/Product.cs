@@ -15,6 +15,7 @@ namespace UpakModelsLibrary.Models
 		[Display(Name = "Короткое описание")]
 		public string? ShortDesc { get; set; }
 		public byte[]? Image { get; set; }
+		public string? ImagePathUrl { get; set; }
 		[Display(Name = "Штрихкод")]
 		public string? Barcode { get; set; }
 		[Display(Name = "Артикль товара")]

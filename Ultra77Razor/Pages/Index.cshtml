@@ -1,5 +1,6 @@
 ﻿@page
 @using System.Text.Json
+@using Ultra77Razor.Pages.Components.CategoryView
 @using UpakModelsLibrary.Models.SEO
 @model IndexModel
 
@@ -11,7 +12,12 @@
       <div class="catalog">
         @foreach (var catCards in Model.CategoryList)
           {
-            <partial name="_IndividualCategoryCard" model="catCards"/>
+        var path = System.IO.Path.Combine(Model.BasePath, catCards.Name);
+        await Component.InvokeAsync("CategoryView", new CategoryViewModel {
+                    Category = catCards,
+                    Files = new DirectoryInfo(path).GetFiles().ToList()
+    });
+        @*<partial name="_IndividualCategoryCard" model="catCards"/>*@
     }
       </div>
       <div class="content__description">
