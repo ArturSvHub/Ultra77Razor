@@ -35,10 +35,12 @@
   <ItemGroup>
     <Content Remove="Areas\Admin\Pages\Options.cshtml" />
     <Content Remove="compilerconfig.json" />
+    <Content Remove="Pages\Shared\ttt.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="Pages\Shared\ttt.cshtml" />
     <None Include="wwwroot\js\site.js" />
     <None Include="wwwroot\js\slider.js" />
     <None Include="wwwroot\scss\auth\auth.scss" />

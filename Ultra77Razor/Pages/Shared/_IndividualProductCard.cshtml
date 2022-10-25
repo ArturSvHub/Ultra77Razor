@@ -1,9 +1,11 @@
 ﻿@using UpakUtilitiesLibrary.Utility.Extentions;
-@model UpakModelsLibrary.Models.Product
+@model UpakModelsLibrary.Models.ViewModels.ProductVM
 
         <div class="catalog__card card">
-          <a asp-page="Product" asp-route-id=@Model.Id>
-            <img src="@Model.Image!.DataArrayToImageUrl()" alt="">
-            <span>@Model.Name</span>
+          <a asp-page="Product" asp-route-id=@Model.Product.Id>
+        <img src="~/img/products/@Model.Product.Name/@(Model.Product
+.GetFirstFileName(System.IO.Path
+.Combine(Model.BasePath,"img","products",Model.Product.Name)))" alt="">
+            <span>@Model.Product.Name</span>
           </a>
         </div>

@@ -5,6 +5,6 @@ namespace UpakModelsLibrary.Models.ViewModels
 	public class CategoryVM
 	{
 		public Category? Category { get; set; }
-		public IEnumerable<Category>? CategoriesForSelect { get; set; }
+		public string BasePath { get; set; }
 	}
 }

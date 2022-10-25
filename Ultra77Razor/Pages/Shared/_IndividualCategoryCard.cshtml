@@ -1,11 +1,13 @@
 ﻿@using Ultra77Razor
 @using UpakUtilitiesLibrary.Utility.Extentions
-@model UpakModelsLibrary.Models.Category
+@model UpakModelsLibrary.Models.ViewModels.CategoryVM
 
 
 <div class="catalog__card card">
-          <a asp-page="Details" asp-route-id=@Model.Id>
-            <img src="@Model.Image.DataArrayToImageUrl()" alt="">
-            <span>@Model.Name</span>
+          <a asp-page="Details" asp-route-id=@Model.Category.Id>
+        <img src="~/img/categories/@Model.Category.Name/@(Model.Category
+.GetFirstFileName(System.IO.Path
+.Combine(Model.BasePath,"img","categories",Model.Category.Name)))" alt="">
+        <span>@Model.Category.Name</span>
           </a>
         </div>

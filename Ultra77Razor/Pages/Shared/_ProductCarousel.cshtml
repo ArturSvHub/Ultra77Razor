@@ -1,0 +1,37 @@
+﻿@model Ultra77Razor.Pages.ProductModel
+
+<div class="container">
+    <div class="carousel">
+        @for (int i = 1; i < Model.Files.Count + 1; i++)
+        {
+            if (i == 1)
+            {
+                <input type="radio" name="slides" checked="checked" id="slide-@i">
+            }
+            else
+            {
+                <input type="radio" name="slides" id="slide-@i">
+            }
+        }
+        <ul class="carousel__slides">
+            @for (int i = 1; i < Model.Files.Count + 1; i++)
+            {
+                <li class="carousel__slide">
+                    <figure>
+                        <div>
+                            <img src="~/img/@Model.Files[i-1].Name" alt="">
+                        </div>
+                    </figure>
+                </li>
+            }
+        </ul>
+        <ul class="carousel__thumbnails">
+            @for (int i = 1; i < Model.Files.Count + 1; i++)
+            {
+                <li>
+                    <label for="slide-@i"><img src="~/img/@Model.Files[i-1].Name" alt=""></label>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

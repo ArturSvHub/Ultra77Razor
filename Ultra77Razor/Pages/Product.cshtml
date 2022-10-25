@@ -2,40 +2,45 @@
 @using UpakUtilitiesLibrary.Utility.Extentions
 @model Ultra77Razor.Pages.ProductModel
 
- <form method="post" class="product-maincard">
-     <input asp-for="@Model.TheProduct.Id" hidden />
-     <div  class="imgcard cardside">
+<form method="post" class="product-maincard">
+    <input asp-for="@Model.TheProduct.Id" hidden />
+    <div class="imgcard cardside">
+        
         <p>@Model.TheProduct.Name</p>
-        <img src="@Model.TheProduct.Image.DataArrayToImageUrl()" alt="">
+        @await Html.PartialAsync("_ProductCarousel")
         <p>@string.Format("{0:c0}",Model.TheProduct.RetailPrice)</p>
-        </div>
-      <div class="navcard cardside">
+    </div>
+    <div class="navcard cardside">
         <div class="number">
-          <div class="number-input">
-              <input type="number" min="1" value="1" asp-for="@Model.TheProduct.TempCount"/>
-              <span asp-validation-for="@Model.TheProduct.TempCount" class="text-danger"></span>
-          </div>
-          <div class="number-label">
-            <p>ШТ.</p>
-          </div>
-          <div class="number-buttons">
-            <button class="number-minus" type="button"
-              onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepUp();"><P>+</P></button>
-            <button class="number-plus" type="button"
-              onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepDown(); "><p>-</p></button>
-          </div>
+            <div class="number-input">
+                <input type="number" min="1" value="1" asp-for="@Model.TheProduct.TempCount" />
+                <span asp-validation-for="@Model.TheProduct.TempCount" class="text-danger"></span>
+            </div>
+            <div class="number-label">
+                <p>ШТ.</p>
+            </div>
+            <div class="number-buttons">
+                <button class="number-minus" type="button"
+                        onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepUp();">
+                    <P>+</P>
+                </button>
+                <button class="number-plus" type="button"
+                        onclick="this.parentNode.parentNode.querySelector('input[type=number]').stepDown(); ">
+                    <p>-</p>
+                </button>
+            </div>
         </div>
         <div class="nav-buttons">
             <button class="submit nav-button" type="submit"><p>Добавить</p></button>
         </div>
-      </div>
-      <div class="aboutproduct cardside">
+    </div>
+    <div class="aboutproduct cardside">
         @Html.Raw(Model.TheProduct.Description)
-        <br/>
+        <br />
         <div class="row">
-            @if(Model.Options is not null||Model.Options.Count>0)
+            @if (Model.Options is not null || Model.Options.Count > 0)
             {
-                for (int i=0;i<Model.Options.Count;i++)
+                for (int i = 0; i < Model.Options.Count; i++)
                 {
                     if (Model.Options[i] is not null && Model.Options[i].OptionDetails is not null && Model.Options[i].OptionDetails.Count >= 1)
                     {
@@ -48,9 +53,9 @@
                             </div>
                         </div>
                     }
-                    
+
                 }
             }
         </div>
-        </div>
+    </div>
 </form>

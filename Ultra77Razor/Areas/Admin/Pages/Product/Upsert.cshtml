@@ -2,21 +2,26 @@
 @using UpakUtilitiesLibrary.Utility.Extentions
 @model Ultra77Razor.Areas.Admin.Pages.Product.UpsertModel
 @{
-    var title = "Добавить товар";
-}
-
-<form method="post" enctype="multipart/form-data">
+    string title;
     @if (Model != null)
     {
         title = "Изменить товар";
-        <input asp-for="Product!.Id" hidden />
+       
     }
-    <div class="border p-3">
-        <div class="form-group row">
-            <h2 class="text-info p-lg-3">@title</h2>
-        </div>
-        <div class="row">
+    else{
+        title = "Добавить товар";
+    }
+    
+}
+<div class="border p-3">
+    <div class="form-group row">
+        <h2 class="text-info p-lg-3">@title</h2>
+    </div>
+    <div class="row">
+        <form method="post" enctype="multipart/form-data">
+                <input asp-for="Product!.Id" hidden />
             <div class="col-8">
+
                 <div class="form-group row">
                     <div class="col-4">
                         <label asp-for="Product.Name"></label>
@@ -96,50 +101,78 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
-                @* Keep this empty *@
-                @if (Model.Product.Id != 0)
+        </form>
+        <div class="col-4">
+            @* Keep this empty *@
+            @if (Model.Product.Id != 0)
+            {
+                @if (Model.Files != null)
                 {
-                    <img src="@Model.Product.Image?.DataArrayToImageUrl()"
-                     width="100%" style="border-radius:5px;border:1px solid #bbb" />
+                    @foreach (var file in Model.Files)
+                    {
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <input type="hidden" asp-for="@file" />
+                                    <td><img src="~/img/products/@Model.Product.Name/@file.Name" style="width:100px;height:auto;" /></td>
+                                    <td><a href="~/img/products/@Model.Product.Name/@file.Name" download="@file.Name">Скачать</a></td>
+                                    <td>
+                                        <form asp-page-handler="Delete" asp-route-imageName="@file.Name">
+                                            <input type="hidden" asp-for="Product.Name" />
+                                            <input type="hidden" asp-for="Product.Id" />
+                                            <button type="submit" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
                 }
-            </div>
+            }
         </div>
+
     </div>
-</form>
+</div>
+
 
 @section Scripts{
     @{
-    <partial name="_ValidationScriptsPartial" />
+        <partial name="_ValidationScriptsPartial" />
     }
-<script>
-              $(document).ready(function() {
-                  $('.summernote').summernote({
-                      height:200,
-                      lang:'ru-RU',
-                      toolbar: [
-      // [groupName, [list of button]]
-      ['style', ['bold', 'italic', 'underline', 'clear']],
-      ['font', ['strikethrough', 'superscript', 'subscript']],
-      ['fontsize', ['fontsize']],
-      ['color', ['color']],
-      ['para', ['ul', 'ol', 'paragraph']],
-      ['height', ['height']]
-    ]
-                  });
-      });
-              function validateInput()
-              {
-                  if (document.getElementById("uploadBox").value == "")
-                  {
-                      Swal.fire(
-                          'Ошибка!',
-                          'Пожалуйста, загрузите изображение',
-                          'error'
-                      )
-                      return false;
-                  }
-                  return true;
-              }
-</script>
+    <script>
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: 200,
+                lang: 'ru-RU',
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ]
+            });
+        });
+        function validateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                Swal.fire(
+                    'Ошибка!',
+                    'Пожалуйста, загрузите изображение',
+                    'error'
+                )
+                return false;
+            }
+            return true;
+        }
+    </script>
 }

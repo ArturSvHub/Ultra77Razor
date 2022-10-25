@@ -8,5 +8,6 @@ namespace UpakModelsLibrary.Models.ViewModels
 	{
 		public Product? Product { get; set; }
 		public IEnumerable<SelectListItem>? CategorySelectedList { get; set; }
-	}
+        public string? BasePath { get; set; }
+    }
 }

@@ -30,8 +30,10 @@ namespace Ultra77Razor.Pages
 		public List<Category> CategoryList { get; set; }
 		[BindProperty]
 		public string BasePath { get; set; }
+        [BindProperty]
+        public List<FileInfo> Files { get; set; }
 
-		public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
 		{
             string? file = System.IO.File.ReadAllText(System.IO.Path.Combine(Environment.CurrentDirectory, "MainPages.json"));
             List<MainPage> meta = JsonSerializer.Deserialize<List<MainPage>>(file);
@@ -43,8 +45,10 @@ namespace Ultra77Razor.Pages
             }
             ProductList =await _contect.Products.ToListAsync();
 			CategoryList =await _contect.Categories.ToListAsync();
-			BasePath = Path.Combine(_env.WebRootPath,"img", "categories");
-			return Page();
+			BasePath = _env.WebRootPath;
+            
+            return Page();
 		}
+
 	}
 }

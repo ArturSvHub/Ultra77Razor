@@ -2,41 +2,46 @@
 @using System.Text.Json
 @using Ultra77Razor.Pages.Components.CategoryView
 @using UpakModelsLibrary.Models.SEO
+@using UpakModelsLibrary.Models.ViewModels
+@using UpakUtilitiesLibrary.Utility.Extentions
 @model IndexModel
 
 <div class="slider__wrapper">
-        <div class="slider">
-      @await Html.PartialAsync("_Carousel");
-      </div>
-      </div>
-      <div class="catalog">
-        @foreach (var catCards in Model.CategoryList)
-          {
-        var path = System.IO.Path.Combine(Model.BasePath, catCards.Name);
-        await Component.InvokeAsync("CategoryView", new CategoryViewModel {
-                    Category = catCards,
-                    Files = new DirectoryInfo(path).GetFiles().ToList()
-    });
-        @*<partial name="_IndividualCategoryCard" model="catCards"/>*@
+    <div class="slider">
+        @await Html.PartialAsync("_Carousel")
+    </div>
+</div>
+<div class="catalog">
+    @foreach (var catCards in Model.CategoryList)
+    {
+        if (Directory.GetFiles(System.IO.Path.Combine(Model.BasePath, "img", "categories", catCards.Name), "*.*", SearchOption.AllDirectories).Length>0)
+        {
+            <partial name="_IndividualCategoryCard" model="new CategoryVM{Category=catCards,BasePath=Model.BasePath}" />
+        }
     }
-      </div>
-      <div class="content__description">
-        <h3>Упаковочные материалы оптом в Москве</h3>
-        <p>ООО ТПК «УЛЬТРАПАК» является лидером в области упаковочных материалов. Компания осуществляет оптовые поставки
-          всех видов упаковочных материалов: брезентовых рукавиц, рулонного и листового гофрокартона, стрейч-пленки,
-          скотча, воздушно-пузырьковой пленки.</p>
-        <p>Сохранность и аккуратный вид груза или предмета – это первое впечатление о производителе или транспортной
-          компании. Надежный упаковочный материал – это забота о своем покупателе, репутации и товаре. ООО ТПК
-          «УЛЬТРАПАК» в Москве предоставляет широкий выбор качественных изделий, которые помогут сложить все как надо.
-        </p>
-        <p>Воздушно-пузырьковая пленка, надежно обмотанная скотчем, становится не заменимой при перевозке хрупкого или
-          дорого груза, рулонные материалы применяются для предметов нестандартной формы, листовые – незаменимы при
-          изготовлении коробок из картона.</p>
-        <h3>ТПК УльтраПак: получить консультацию, запросить цены, сделать заказ</h3>
-        <ul class="content__description-list">
-         <li>Звоните менеджерам по телефонам: <a href="tel:+79222081799">+7(922)2081799</a> - Офис в Екатеринбурге, <a href="tel:+79299633918">+7(929)9633918</a> - офис в Москве</li>
-          <li>Пишите на электронную почту <a href="mailto:zakaz@upak77.ru">zakaz@upak77.ru</a> - время ответа составляет до 1 часа в рабочее время;</li>
-          <li>Склад и офис в Москве находятся по адресу: <span style="color:#04b">г. Москва, <span class="ymaps-geolink">ул. Ткацкая, д. 5А стр. 1.</span></span></li>
-          <li>Склад и офис в Екатеринбурге находятся по адресу: <span style="color:#04b">г. Екатеринбург, <span class="ymaps-geolink">ул. Ереванская, 2Б.</span></span></li>
-        </ul>
-      </div>
+</div>
+<div class="content__description">
+    <h3>Упаковочные материалы оптом в Москве</h3>
+    <p>
+        ООО ТПК «УЛЬТРАПАК» является лидером в области упаковочных материалов. Компания осуществляет оптовые поставки
+        всех видов упаковочных материалов: брезентовых рукавиц, рулонного и листового гофрокартона, стрейч-пленки,
+        скотча, воздушно-пузырьковой пленки.
+    </p>
+    <p>
+        Сохранность и аккуратный вид груза или предмета – это первое впечатление о производителе или транспортной
+        компании. Надежный упаковочный материал – это забота о своем покупателе, репутации и товаре. ООО ТПК
+        «УЛЬТРАПАК» в Москве предоставляет широкий выбор качественных изделий, которые помогут сложить все как надо.
+    </p>
+    <p>
+        Воздушно-пузырьковая пленка, надежно обмотанная скотчем, становится не заменимой при перевозке хрупкого или
+        дорого груза, рулонные материалы применяются для предметов нестандартной формы, листовые – незаменимы при
+        изготовлении коробок из картона.
+    </p>
+    <h3>ТПК УльтраПак: получить консультацию, запросить цены, сделать заказ</h3>
+    <ul class="content__description-list">
+        <li>Звоните менеджерам по телефонам: <a href="tel:+79222081799">+7(922)2081799</a> - Офис в Екатеринбурге, <a href="tel:+79299633918">+7(929)9633918</a> - офис в Москве</li>
+        <li>Пишите на электронную почту <a href="mailto:zakaz@upak77.ru">zakaz@upak77.ru</a> - время ответа составляет до 1 часа в рабочее время;</li>
+        <li>Склад и офис в Москве находятся по адресу: <span style="color:#04b">г. Москва, <span class="ymaps-geolink">ул. Ткацкая, д. 5А стр. 1.</span></span></li>
+        <li>Склад и офис в Екатеринбурге находятся по адресу: <span style="color:#04b">г. Екатеринбург, <span class="ymaps-geolink">ул. Ереванская, 2Б.</span></span></li>
+    </ul>
+</div>

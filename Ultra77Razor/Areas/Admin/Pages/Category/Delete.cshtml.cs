@@ -16,10 +16,12 @@ namespace Ultra77Razor.Areas.Admin.Pages.Category
     public class DeleteModel : PageModel
     {
         private readonly MssqlContext _context;
+		private readonly IWebHostEnvironment _env;
 
-        public DeleteModel(MssqlContext context)
+        public DeleteModel(MssqlContext context, IWebHostEnvironment env)
         {
             this._context = context;
+			this._env = env;
         }
 		[BindProperty]
 		public UpakModelsLibrary.Models.Category Category { get; set; }
@@ -42,11 +44,17 @@ namespace Ultra77Razor.Areas.Admin.Pages.Category
 		}
 		public async Task<IActionResult> OnPostAsync(int? id)
 		{
+			
 			var objFromDb = await _context.Categories.FindAsync(id.GetValueOrDefault());
-			if(objFromDb== null)
+            var path = Path.Combine(_env.WebRootPath, "img", "categories",objFromDb.Name);
+            if (objFromDb== null)
 			{
 				return NotFound();
 			}
+			if(Directory.Exists(path))
+            {
+                Directory.Delete(path, true);
+            }
 			_context.Categories.Remove(objFromDb);
 			await _context.SaveChangesAsync();
 			return RedirectToPage("Index");

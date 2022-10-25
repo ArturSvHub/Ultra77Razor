@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 using System.Data;
+using System.IO;
 using System.Xml.Linq;
 
 using UpakDataAccessLibrary.DataContext;
@@ -37,13 +38,15 @@ namespace Ultra77Razor.Areas.Admin.Pages.Category
 			else
 			{
 				Category = await _context.Categories.FindAsync(id);
-                var dirPath = Path.Combine(_env.WebRootPath, "img", "categories", Category.Name);
-				Files = new DirectoryInfo(dirPath).GetFiles().ToList();
+                
                 if (Category==null)
 				{
 					return NotFound();
 				}
-				return Page();
+                string dirPath = Path.Combine(_env.WebRootPath, "img", "categories", Category.Name);
+
+                Files = new DirectoryInfo(dirPath).GetFiles().ToList();
+                return Page();
 			}
 
         }
@@ -51,6 +54,10 @@ namespace Ultra77Razor.Areas.Admin.Pages.Category
 		{
 			var files = HttpContext.Request.Form.Files;
             var dirPath = Path.Combine(_env.WebRootPath, "img", "categories", Category.Name);
+			if(!Directory.Exists(dirPath))
+			{
+				Directory.CreateDirectory(dirPath);
+			}
 			var currentDirectory = new DirectoryInfo(dirPath);
 			
             var objFromDb = await _context.Categories.AsNoTracking().FirstOrDefaultAsync(
@@ -61,17 +68,28 @@ namespace Ultra77Razor.Areas.Admin.Pages.Category
 
             if (currentDirectory.Name!=oldDirectory.Name||!currentDirectory.Exists)
 			{
+				if(Directory.Exists(dirPath))
+					Directory.Delete(dirPath, true);
 				//Category.Image = await files[0].ImageToImageDataAsync();
 				oldDirectory.MoveTo(dirPath);
 			}
 			else
 			{
-				
-				Category.Image = objFromDb.Image;
-			}
+
+                //Category.Image = objFromDb.Image;
+                foreach (var file in files)
+                {
+                    var path = Path.Combine(dirPath, file.FileName);
+
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                }
+            }
 			_context.Categories.Update(Category);
 			await _context.SaveChangesAsync();
-			return RedirectToPage("Index");
+			return RedirectToPage("Edit", new { id = Category.Id });
 
 		}
 		public async Task<IActionResult> OnPostDeleteAsync(string imageName)

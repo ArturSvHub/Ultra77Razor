@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
+using System.IO;
+
 using UpakDataAccessLibrary.DataContext;
 
 using UpakUtilitiesLibrary;
@@ -38,9 +40,15 @@ namespace Ultra77Razor.Areas.Admin.Pages.Product
         public async Task<IActionResult> OnPostAsync(int id)
         {
             var obj = await _context.Products.FindAsync(id);
+
             if (obj == null)
             {
                 return NotFound();
+            }
+            var path = Path.Combine(_environment.WebRootPath, "img", "products", obj.Name);
+            if (Directory.Exists(path))
+            {
+                Directory.Delete(path, true);
             }
             _context.Remove(obj);
             await _context.SaveChangesAsync();

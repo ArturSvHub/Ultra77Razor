@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+
+using System.IO;
 
 using UpakDataAccessLibrary.DataContext;
 
@@ -17,10 +20,12 @@ namespace Ultra77Razor.Pages
 	public class ProductModel : PageModel
 	{
 		private readonly MssqlContext _context;
+		private readonly IWebHostEnvironment _env;
 
-		public ProductModel(MssqlContext context)
+		public ProductModel(MssqlContext context, IWebHostEnvironment env)
 		{
 			_context = context;
+			_env = env;
 		}
 
 		[BindProperty]
@@ -37,6 +42,10 @@ namespace Ultra77Razor.Pages
 		public List<string> Values { get; set; }
 		[BindProperty]
 		public List<List<SelectListItem>> ListItems { get; set; }
+        [BindProperty]
+        public List<FileInfo> Files { get; set; }
+        [BindProperty]
+		public string BasePath { get; set; }
 		public async Task<IActionResult> OnGetAsync(int id)
 		{
 			SelectedOptions = new();
@@ -49,7 +58,7 @@ namespace Ultra77Razor.Pages
 			TheProduct = await _context.Products!.Include(u => u.Category)
 			.FirstOrDefaultAsync(c => c.Id == id);
 				ExistsInCart = false;
-
+			BasePath = _env.WebRootPath;
 			foreach (var item in shoppingCartsList)
 			{
 				if (item.ProductId == id)
@@ -75,8 +84,11 @@ namespace Ultra77Razor.Pages
 					ListItems[i].Add(new SelectListItem { Value = Options[i].OptionDetails[j].Name, Text = Options[i].OptionDetails[j].Name });
 				}
 			}
-
-			
+			var path = Path.Combine(BasePath, "img", "products", TheProduct.Name);
+            if (Directory.GetFiles(path, "*.*", SearchOption.AllDirectories).Length > 0)
+			{
+                Files = new DirectoryInfo(path).GetFiles().ToList();
+            }
 
 			return Page();
 		}
