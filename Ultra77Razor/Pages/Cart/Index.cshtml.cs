@@ -34,9 +34,11 @@ namespace Ultra77Razor.Pages.Cart
 			_emailSender = emailSender;
 			_context = context;
 		}
-
+		[BindProperty]
+		public string BaseUrl { get; set; }
 		public async Task<IActionResult> OnGetAsync()
 		{
+			BaseUrl = _environment.WebRootPath;
 			ProductList = new();
 			AppUser = await _context.UltrapackUsers.SingleAsync(u => u.UserName == User.Identity.Name);
 			List<ShoppingCart>? shoppingCartList = new List<ShoppingCart>();

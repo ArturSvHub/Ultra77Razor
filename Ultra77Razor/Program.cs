@@ -9,7 +9,7 @@ using UpakDataAccessLibrary.Repository.Interfases;
 using UpakUtilitiesLibrary.Utility.EmailServices;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("Default") ?? throw new InvalidOperationException("Connection string 'MssqlContextConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("Upak3GkultraConnextion") ?? throw new InvalidOperationException("Connection string 'MssqlContextConnection' not found.");
 builder.Services.AddDbContext<MssqlContext>(options =>
 	options.UseSqlServer(connectionString));
 

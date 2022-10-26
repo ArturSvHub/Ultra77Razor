@@ -2,5 +2,9 @@
   {
     "outputFile": "wwwroot/css/bundle.css",
     "inputFile": "wwwroot/scss/bundle.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/product/carousel.css",
+    "inputFile": "wwwroot/scss/product/carousel.scss"
   }
 ]

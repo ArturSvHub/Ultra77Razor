@@ -263,9 +263,6 @@
         align-items: center;
     }
 
-    .number {
-        margin: 0 0 10px 25px;
-    }
 
     .nav-buttons {
         flex-direction: column;
@@ -335,11 +332,13 @@
         }
 
         .service {
+            padding:0;
+            margin:0;
             grid-template-rows: 1fr 1fr 1fr 1fr;
-            gap: 2%;
             grid-template-columns: auto;
             height: auto;
         }
+
 
         .tabs__nav {
             flex-direction: column;
@@ -361,7 +360,13 @@
     }
 
     .number {
-        width: 100px;
+        width: 150px;
+    }
+    .number-buttons{
+        width:100px;
+    }
+    .number-button {
+        height: 100%;
     }
 
     .cart-header {

@@ -12,8 +12,11 @@ $second-color: #5593dd;
 .imgcard {
     font-size: xx-large;
     hyphens: none;
-    align-self: center;
-    width: 50%;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content:center;
+    width: 100%;
 
     p {
         text-align: center;
@@ -42,28 +45,29 @@ $second-color: #5593dd;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 300px;
     padding: 0;
     margin: 0;
+    height:100px;
 }
 
 .number-input {
     border: none;
     padding: 0;
     margin: 0;
-    width: 200px;
+    height: 100%;
+    width:200px;
 
     input[type="number"] {
         border: $main-color solid 1px;
-        width: 30px;
+        width: 20px;
         background-color: #eee;
         padding: 0;
         margin: 0;
-        height: 70px;
-        line-height: 70px;
-        text-indent: 35px;
+        line-height: 30px;
+        text-indent: 10px;
         width: 100%;
-        font-size: 30px;
+        height: 100%;
+        font-size: 60px;
     }
 }
 
@@ -74,159 +78,180 @@ input::-webkit-inner-spin-button {
     margin: 0;
     /* <-- Apparently some margin are still there even though it's hidden */
 }
-
-.number-label {
-    width: 40%;
-    height: 70px;
-    display: flex;
-    padding: 0;
-    margin: 0;
-    justify-content: center;
-    align-items: center;
-    background-color: $main-color;
-
-    p {
-        color: #fff;
-        padding-top: 15%;
-        font-size: 30px;
-        text-align: center;
-        align-self: center;
-    }
-}
-
-.number-buttons {
-    min-height: 100%;
-    max-height: 70px;
-    height: 100%;
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 0;
-    margin: 0;
-    padding: 0;
-}
-
-.number-minus,
-.number-plus {
-    border: none;
-    width: 50px;
-    height: 35px;
-    border: $main-color solid 1px;
-    border-radius: 1px;
-    margin: 0;
-    padding: 0;
-
-    p {
-        display: inline-block;
-        font-size: 20px;
-    }
-}
-
-.number-minus:hover,
-.number-plus:hover {
-    background-color: $main-color;
-    color: #fff;
-}
-
-.nav-buttons {
-    display: flex;
-    justify-content: end;
-    flex-direction: row;
-    width: 100%;
-}
-
-.nav-button {
-    display: flex;
-    align-items: center;
-    margin: 0 5%;
-    height: 100%;
-    a{
+@media screen and (min-width: 960px){
+    .number-label {
+        width: auto;
+        height: 100%;
         display: flex;
+        padding: 0;
+        margin: 0;
+        justify-content: center;
         align-items: center;
-        p{
+        background-color: $main-color;
+
+        p {
+            height: 100%;
+            width: auto;
             color: #fff;
-            margin: 0;
+            font-size: 45px;
             text-align: center;
+            align-self: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .number-buttons {
+            width: 100px;
         }
     }
-    }
-
-.aboutproduct {
-    p {
-
-        text-align: center;
-        margin: 0;
-    }
-
 }
-
-
-.product-maincard {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-
-.number-wrapper{
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    justify-self: center;
-    flex-grow: 3;
-    max-width: 100%;
-    margin-right:5%;
-}
-.product-dictionary 
-{
-    
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    flex-grow: 1;
-    p{
-        margin: 0;
-        font-size:x-large;
-        text-align: end;
-    }
-}
-.cart-options-line{
-    display:flex;
-    white-space:nowrap;
-    div{
-        margin-left:5%;
-    }
-}
-@media (max-width: 960px) {
-    .content form {
-        width: 100%;
-        font-size: 1.5em;
+@media screen and (min-width: 1200px) {
+    .number-buttons {
+        width: 70px;
+        height:100%;
     }
 }
 
-@media (max-width: 767px) {
-}
-
-@media (max-width: 600px) {
-    .navcard {
+    .number-buttons {
+        height: 100px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .number-minus,
+    .number-plus {
+        border: none;
+        border: $main-color solid 1px;
+        border-radius: 1px;
+        margin: 0;
+        padding: 0;
+
+        p {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            font-size: 30px;
+            font-weight: 900;
+            line-height: 1;
+        }
+    }
+
+    .number-minus:hover,
+    .number-plus:hover {
+        background-color: $main-color;
+        color: #fff;
+    }
+
+    .nav-buttons {
+        display: flex;
+        justify-content: end;
+        flex-direction: row;
         width: 100%;
     }
-    .nav-buttons {
-        margin-top:10%;
+
+    .nav-button {
+        display: flex;
+        align-items: center;
+        margin: 0 5%;
+        height: 100%;
+
+        a {
+            display: flex;
+            align-items: center;
+
+            p {
+                color: #fff;
+                margin: 0;
+                text-align: center;
+            }
+        }
+    }
+
+    .aboutproduct {
+        p {
+            text-align: center;
+            margin: 0;
+        }
+    }
+
+
+    .product-maincard {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        div {
+            height: 100%;
+        }
+    }
+
+
+    .number-wrapper {
         display: flex;
         justify-content: center;
-        width: 100%;
+        align-self: center;
+        justify-self: center;
+        flex-grow: 3;
+        max-width: 100%;
+        margin-right: 5%;
     }
-    .content form{
-        width:100%;
-        font-size:1.5em;
+
+    .product-dictionary {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        flex-grow: 1;
+
+        p {
+            margin: 0;
+            font-size: x-large;
+            text-align: end;
+        }
     }
-    
-}
+
+    .cart-options-line {
+        display: flex;
+        white-space: nowrap;
+
+        div {
+            margin-left: 5%;
+        }
+    }
+
+    @media (max-width: 960px) {
+        .content form {
+            width: 100%;
+            font-size: 1.5em;
+        }
+    }
+
+    @media (max-width: 767px) {
+    }
+
+    @media (max-width: 600px) {
+        .navcard {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .nav-buttons {
+            margin-top: 10%;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .content form {
+            width: 100%;
+            font-size: 1.5em;
+        }
+    }
 

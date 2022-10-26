@@ -1,6 +1,6 @@
 ﻿@model Ultra77Razor.Pages.ProductModel
 
-<div class="container">
+<div class="product-carousel">
     <div class="carousel">
         @for (int i = 1; i < Model.Files.Count + 1; i++)
         {
@@ -19,19 +19,23 @@
                 <li class="carousel__slide">
                     <figure>
                         <div>
-                            <img src="~/img/@Model.Files[i-1].Name" alt="">
+                            <img src="~/img/products/@Model.TheProduct.Name/@Model.Files[i-1].Name" alt="">
                         </div>
                     </figure>
                 </li>
             }
         </ul>
-        <ul class="carousel__thumbnails">
-            @for (int i = 1; i < Model.Files.Count + 1; i++)
-            {
-                <li>
-                    <label for="slide-@i"><img src="~/img/@Model.Files[i-1].Name" alt=""></label>
-                </li>
-            }
-        </ul>
+        @if (Model.Files.Count>1)
+        {
+            <ul class="carousel__thumbnails">
+                @for (int i = 1; i < Model.Files.Count + 1; i++)
+                {
+                    <li>
+                        <label for="slide-@i"><img src="~/img/products/@Model.TheProduct.Name/@Model.Files[i-1].Name" alt=""></label>
+                    </li>
+                }
+            </ul>
+        }
+        
     </div>
 </div>

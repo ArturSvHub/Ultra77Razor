@@ -6,20 +6,21 @@
     @if (Model != null)
     {
         title = "Изменить товар";
-       
+
     }
-    else{
+    else
+    {
         title = "Добавить товар";
     }
-    
+
 }
 <div class="border p-3">
     <div class="form-group row">
         <h2 class="text-info p-lg-3">@title</h2>
     </div>
     <div class="row">
-        <form method="post" enctype="multipart/form-data">
-                <input asp-for="Product!.Id" hidden />
+        <form method="post" novalidate enctype="multipart/form-data">
+            <input asp-for="Product!.Id" hidden />
             <div class="col-8">
 
                 <div class="form-group row">
@@ -27,7 +28,7 @@
                         <label asp-for="Product.Name"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Product.Name" class="form-control" />
+                        <input asp-for="Product.Name" class="form-control" required/>
                         <span asp-validation-for="Product.Name" class="text-danger"></span>
                     </div>
 
@@ -70,10 +71,10 @@
 
                 <div class="form-group row">
                     <div class="col-4">
-                        <label asp-for="Product.CategoryId"></label>
+                        <label asp-for="Product.CategoryId" class="form-label"></label>
                     </div>
                     <div class="col-8">
-                        <select asp-for="Product.CategoryId" class="form-select"
+                        <select asp-for="Product.CategoryId" class="form-select is-invalid" required
                                 asp-items="Model.CategorySelectedList">
                             <option disabled selected>Выберите категорию</option>
                         </select>
@@ -128,7 +129,7 @@
                                         <form asp-page-handler="Delete" asp-route-imageName="@file.Name">
                                             <input type="hidden" asp-for="Product.Name" />
                                             <input type="hidden" asp-for="Product.Id" />
-                                            <button type="submit" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+                                            <button type="submit" style="border:none; height:30px; width:30px;" class="delete"><i class="fa-regular fa-trash-can" style="width:100%;height:100%;"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -145,7 +146,7 @@
 
 @section Scripts{
     @{
-        <partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial" />
     }
     <script>
         $(document).ready(function () {
@@ -173,6 +174,19 @@
                 return false;
             }
             return true;
-        }
+        };
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+                }) ()
     </script>
 }

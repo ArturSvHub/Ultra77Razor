@@ -5,6 +5,7 @@
   .tabs__nav {
     display: flex;
     flex-wrap: wrap;
+    justify-content:center;
     list-style-type: none;
     margin: 0;
     border-bottom: 1px solid #e0e0e0;
@@ -20,6 +21,9 @@
     flex-grow: 1;
     border: 1px solid transparent;
     cursor: pointer;
+    display:flex;
+    flex-direction:column;
+    width:33.3%;
   }
 
   .tabs__btn_active {
@@ -64,6 +68,7 @@
   .icon-box {
       padding-block: 20px;
       max-width: 300px;
+      align-self:center;
       img{
           width: 100%;
           height: 100%;
@@ -87,7 +92,6 @@ ul{
     text-align:center;
     font-size: 16px;
     line-height: 1.5;
-    padding-left: 50px;
     background-image: url("/wwwroot/img/services/service/down.png");
 	  background-repeat: no-repeat;
 	  background-position: left start;
@@ -121,6 +125,9 @@ ul{
     }
     .tabs__btn {
         width:33%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
     }
     .scard {
         padding: 0;

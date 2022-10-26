@@ -1,4 +1,4 @@
-﻿@using UpakUtilitiesLibrary
+﻿@*@using UpakUtilitiesLibrary
 @using UpakUtilitiesLibrary.Utility.Extentions;
 @model UpakModelsLibrary.Models.Product
 
@@ -10,8 +10,9 @@
                     <div class="col-12"><label class="float-left">@Model.Name</label></div>
                     <div class="col-5"><label class="float-right"><span class="text-info h5">@string.Format("{0:c0}",Model.RetailPrice)</span> - шт</label> </div>
                 </div>
-                <img class="card-img-top img-fluid d-block mx-auto mb-3" src="@Model.Image.DataArrayToImageUrl()" alt="Card image cap">
+                <img class="card-img-top img-fluid d-block mx-auto mb-3" src="/" alt="Card image cap">
                 <div class="card-body p-1 px-3 row">
+
                     <div class="col-6">
                         <span class="p-2 border w-100"></span>
                     </div>
@@ -26,4 +27,4 @@
                 </div>
                 </div>
             </div>
-        </div>
+        </div>*@

@@ -82,7 +82,7 @@
                         <form asp-page-handler="Delete" asp-route-imageName="@file.Name">
                             <input type="hidden" asp-for="Category.Name"/>
                             <input type="hidden" asp-for="Category.Id" />
-                            <button type="submit" class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+                            <button type="submit" style="height:30px; width:30px;" class="delete"><i class="fa-regular fa-trash-can" style="width:100%;height:100%;"></i></button>
                         </form>
                     </td>
                 </tr>

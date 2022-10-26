@@ -83,8 +83,11 @@ namespace Ultra77Razor.Areas.Admin.Pages.Product
             {
 
                 var currentDirectory = new DirectoryInfo(dirPath);
-
-                var objFromDb = await _context.Categories.AsNoTracking().FirstOrDefaultAsync(
+                if(Product.Id == null)
+                {
+                    Product.CategoryId = _context.Categories.FirstOrDefault().Id;
+                }
+                var objFromDb = await _context.Products.AsNoTracking().FirstOrDefaultAsync(
                         x => x.Id == Product.Id);
                 if (objFromDb != null)
                 {
@@ -97,11 +100,6 @@ namespace Ultra77Razor.Areas.Admin.Pages.Product
                             Directory.Delete(dirPath, true);
                         oldDirectory.MoveTo(dirPath);
                     }
-                }
-
-                else
-                {
-
                     foreach (var file in files)
                     {
                         var path = Path.Combine(dirPath, file.FileName);
@@ -112,11 +110,22 @@ namespace Ultra77Razor.Areas.Admin.Pages.Product
                         }
                     }
                 }
+
                 _context.Update(product);
             }
-            await _context.SaveChangesAsync();
+            
+            if(product.Id == 0)
+            {
+                await _context.SaveChangesAsync();
+                return RedirectToPage("Index");
+            }
+            else
+            {
+                await _context.SaveChangesAsync();
+                return RedirectToPage("Upsert", new { id = Product.Id });
+            }
 
-            return RedirectToPage("Upsert", new { id = Product.Id });
+            
         }
         public IActionResult OnPostDelete(string imageName)
         {
@@ -124,7 +133,7 @@ namespace Ultra77Razor.Areas.Admin.Pages.Product
             {
                 System.IO.File.Delete(Path.Combine(_environment.WebRootPath, "img", "products", Product.Name, imageName));
             }
-            return RedirectToPage("Index");
+            return RedirectToPage("Upsert", new { id = Product.Id });
         }
     }
 }
