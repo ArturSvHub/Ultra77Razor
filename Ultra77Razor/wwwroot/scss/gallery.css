@@ -1,0 +1,63 @@
+﻿@charset "UTF-8";
+.section__gallery {
+  margin-bottom: 64px;
+}
+
+.section__gallery:last-child {
+  margin-bottom: 0;
+}
+
+.h2 {
+  font-family: "Lora", serif;
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 48px;
+  color: #fff;
+}
+
+.gallery {
+  position: relative;
+}
+
+.gallery__flex {
+  height: 600px;
+  display: flex;
+}
+
+/* дополнительный класс для вертикального расположения блоков с изображениями */
+.gallery__flex_column {
+  flex-direction: column;
+}
+
+.gallery__item {
+  flex: 1;
+  /* изначальное значени для все элементов */
+  transition: flex-grow 0.64s ease-in-out;
+  /* для плавного изменения занимаемого пространства */
+  /* если блоки изображений отображаются вертикально, им необходимо задать overflow: hidden; или min-height: 0; иначе блоки с изображениями не будут сжиматься и выйдут за границы блока галереи */
+  overflow: hidden;
+  min-height: 0;
+}
+
+.gallery__item:hover {
+  flex: 16;
+  /* при наведении меняем значение flex */
+}
+
+.gallery__item img {
+  /* пропорционально растягиваем изображение на весь блок <div class="gallery__item"></div> */
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  display: block;
+  /* для плавного перехода используем transition */
+  transition: transform 1.6s ease-in-out;
+  /* изначально изображение немного увеличено */
+  transform: scale(1.1);
+}
+
+.gallery__item:hover img {
+  transform: scale(1);
+  /* при наведении убираем масштабирование изображения */
+}

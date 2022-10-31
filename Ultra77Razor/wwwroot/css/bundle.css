@@ -1395,7 +1395,7 @@ textarea.form-control {
   width: 200px;
 }
 .number-input input[type=number] {
-  border: #b3b3b3 solid 1px;
+  border: gray solid 1px;
   width: 20px;
   background-color: #eee;
   padding: 0;
@@ -1424,7 +1424,7 @@ input::-webkit-inner-spin-button {
     margin: 0;
     justify-content: center;
     align-items: center;
-    background-color: #b3b3b3;
+    background-color: #00a0e3;
   }
   .number-label p {
     height: 100%;
@@ -1459,7 +1459,7 @@ input::-webkit-inner-spin-button {
 .number-minus,
 .number-plus {
   border: none;
-  border: #b3b3b3 solid 1px;
+  border: #00a0e3 solid 1px;
   border-radius: 1px;
   margin: 0;
   padding: 0;
@@ -1476,7 +1476,7 @@ input::-webkit-inner-spin-button {
 
 .number-minus:hover,
 .number-plus:hover {
-  background-color: #b3b3b3;
+  background-color: #00a0e3;
   color: #fff;
 }
 

@@ -6,5 +6,37 @@
   {
     "outputFile": "wwwroot/scss/product/carousel.css",
     "inputFile": "wwwroot/scss/product/carousel.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/gallery.css",
+    "inputFile": "wwwroot/scss/gallery.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/slider-style.css",
+    "inputFile": "wwwroot/scss/slider-style.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/style.css",
+    "inputFile": "wwwroot/scss/style.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/style-mobile.css",
+    "inputFile": "wwwroot/scss/style-mobile.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/tabs/tabs.css",
+    "inputFile": "wwwroot/scss/tabs/tabs.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/form/formstyles.css",
+    "inputFile": "wwwroot/scss/form/formstyles.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/cart/cart.css",
+    "inputFile": "wwwroot/scss/cart/cart.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/card/card.css",
+    "inputFile": "wwwroot/scss/card/card.scss"
   }
 ]

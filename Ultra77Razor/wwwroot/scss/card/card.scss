@@ -1,5 +1,5 @@
 $acent-color: rgb(223,9,127);
-$second-color: rgb(0,160,227);
+$main-color: rgb(0,160,227);
 $second-color: #5593dd;
 
 .content form {
@@ -55,10 +55,10 @@ $second-color: #5593dd;
     padding: 0;
     margin: 0;
     height: 100%;
-    width:200px;
+    width: 200px;
 
     input[type="number"] {
-        border: $main-color solid 1px;
+        border: gray solid 1px;
         width: 20px;
         background-color: #eee;
         padding: 0;
