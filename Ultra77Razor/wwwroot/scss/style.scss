@@ -454,7 +454,7 @@ h3 {
     }
 }
 
-.footer__links form li a:hover {
+.footer__links form a:hover {
     color: white;
 }
 
@@ -519,6 +519,9 @@ h3 {
 
 .footer__copy a {
     font-size: 0.5em;
+    &:hover{
+        color:white;
+    }
 }
 
 .footer__logo {

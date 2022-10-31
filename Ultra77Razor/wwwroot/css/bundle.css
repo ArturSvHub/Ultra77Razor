@@ -432,7 +432,7 @@ h3 {
   white-space: nowrap;
 }
 
-.footer__links form li a:hover {
+.footer__links form a:hover {
   color: white;
 }
 
@@ -496,6 +496,9 @@ h3 {
 
 .footer__copy a {
   font-size: 0.5em;
+}
+.footer__copy a:hover {
+  color: white;
 }
 
 .footer__logo {
